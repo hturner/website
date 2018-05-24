@@ -1,0 +1,163 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    height:100%
+}
+
+body {
+    background-color: #585858;
+    min-height:100%;
+    padding: 0px 5%; /* set padding to simulate border */
+}
+
+body, td {
+    font-family: Verdana,'DejaVu Sans', 'Lucida Grande', 'Bitstream Vera Sans', sans-serif;
+    font-size:15px;
+    line-height:24px;
+}
+
+div#faux-borders {
+    background-color: #585858;
+    min-height:100%;
+    padding: 0px 5%; /* set padding to simulate border */
+}
+
+div#content {
+    margin:0px auto;
+    padding: 0 40px;
+    min-height:100vh;
+    height:100%;
+    background-color:white;
+    bottom:0; 
+}
+
+div#content ul {
+   padding:0px 40px;
+   margin:10px 0px;
+}
+
+div#content li {
+   margin:10px 10px;
+}
+
+div#content dl { 
+    padding: 0.1em 0 0.1em 0;
+} 
+
+div#content dt { 
+    float: left; 
+    width: 200px;
+    text-align: left;
+    font-weight: bold; 
+    padding: 0.3em 0 0.3em 1em; 
+} 
+
+div#content dd {
+    margin: 0 0 0 220px;
+    padding: 0.3em 1em 0.3em 0; 
+}
+
+div#content dd::after {
+    content: "";
+    display: block;
+    clear: left;
+} 
+
+
+div#content p {
+   padding:10px 0px; /* not margin else white container stops before bottom! */
+}
+
+div#content a {
+    color: RoyalBlue;
+    text-decoration: none;
+    outline: none;
+}
+
+div#content a:hover, a:active {
+    outline: RoyalBlue dotted thin;
+}
+
+div#content h1 {
+    float:left;
+    font-size:28px;
+    margin:20px 0px;
+}
+
+div#content h1 a {
+    color: maroon;
+}
+
+div#content h1 a:hover, h1 a:active  {
+    color: RoyalBlue;
+    outline: RoyalBlue dotted thin;
+}
+
+div#content h2 {
+    color: maroon;
+    font-size:20px;
+    margin:7px 0px;
+}
+
+div#content h3 {
+    font-size:18px;
+    margin:0px;
+    padding:15px 0px;
+}
+
+div#content hr { 
+    width:100%;
+    background-color: #585858;
+    clear:both;
+} 
+
+div#buttons {
+    text-align:center;
+    float:right;
+    padding-top: 18px;
+}
+
+div#buttons a:hover, a:active {
+    outline:none;
+}
+
+div#navigation { 
+    clear:both;
+    background-color: maroon;
+    width:100%;
+    text-align:left;
+    font-weight: bold; 
+    margin-bottom: 10px;
+}
+
+div#navigation ul {
+    padding: 0px;
+    margin:0px;
+}
+
+div#navigation li {
+    list-style:none;
+    display: inline-block;
+    margin: 0px;
+}
+
+div#navigation a, div#navigation a:visited {
+    display: block;
+    margin: 0px;
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+}
+
+div#navigation a:hover, div#navigation a:active, li.current_page_item a, div#navigation li.current_page_item a:visited  {
+    background-color: IndianRed;
+    outline: none;
+}
+
+div#navigation li.me a, div#navigation li.me a:visited  {
+
+}
+

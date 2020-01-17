@@ -1,0 +1,70 @@
+/* two-column layout (N.B. plots will fill to fit) */
+.reveal .left {
+    float: left; z-index: -10; width: 50%;
+}
+.reveal .right {
+    float: right; z-index: -10; width: 50%;
+}
+/* no border round images */
+.reveal .slides section img
+{
+    border: none;
+    box-shadow: none;
+}
+
+/* no margin round images (control via plot par!) */
+.left>img {
+    margin: 0;
+}
+
+/* style author */
+.reveal .author
+{
+    font-size: 0.9em;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    margin: 0 0 20px 0;
+    color: #222;
+    font-weight: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-transform: none;
+    text-shadow: none;
+    word-wrap: break-word;
+}
+
+/* style date */
+.reveal .date
+{
+    font-size: 0.9em;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    margin: 0 0 20px 0;
+    color: #222;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-transform: none;
+    text-shadow: none;
+    word-wrap: break-word;
+}
+
+/* code block 100% */
+.reveal pre {
+    width: 100%;
+}
+
+.reveal p {
+  text-align: left;
+}
+.reveal ol{
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 0 1em;
+}
+.reveal ol li{
+  margin: 0 0 0 1em;
+}
+.reveal ul{
+  display: block;
+  text-align: left;
+  margin: 0 0 0 1em;
+}
+

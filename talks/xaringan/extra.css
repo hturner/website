@@ -38,6 +38,16 @@
   width: 30%;
 }
 
+.pull-right-64 {
+  padding: 0;
+  float: right;
+  width: 64%;
+}
+.pull-left-30 {
+  float: left;
+  width: 30%;
+}
+
 /* more padding in table cells and bulleted lists */
 .remark-slide th, td {
     padding: 5px 15px;
@@ -74,6 +84,11 @@ then created, so use css to hide) */
   display: none;
 }
 
-
-
-
+.footer {
+    color: #F92672;
+    position: fixed;
+    left: 20px;
+    bottom: 10px;
+    text-align: left;
+    width: 90%;
+}

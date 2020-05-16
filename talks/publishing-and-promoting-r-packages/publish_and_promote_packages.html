@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Publishing and Promoting your R Package</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Heather Turner" />
+    <meta name="date" content="2020-03-05" />
+    <link rel="stylesheet" href="..\xaringan\remark-css-0.0.1\default.css" type="text/css" />
+    <link rel="stylesheet" href="..\xaringan\extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Publishing and Promoting your R Package
+### Heather Turner
+### March 5, 2020
+
+---
+
+
+# Not yet written a package?
+
+Take a look at these resources!
+
+- Earo Wang's R-Ladies talk "Everything you need to know to create your own R package"
+https://github.com/earowang/rladies-pkg
+- Maëlle Salmon's satRdays workshop
+https://github.com/maelle/satrday_package_workshop
+- Forwards Package Development Workshop
+https://github.com/forwards/workshops/tree/master/Cville2019
+
+--
+
+Update with Johannesburg satRday 2020 workshop materials soon!
+
+---
+
+# Why publish on CRAN?
+
+- Sign of quality
+   - Code is ready to be used (not a beta version)
+   - Basic standards: documented code, running examples, etc
+   - Works with current version of R and other packages 
+   - Commitment of maintainer
+- Discoverability
+- Ease of installation
+- Bioconductor, rOpenSci: even higher standards, code review
+
+---
+
+# Preparing for CRAN release
+
+&lt;blockquote class="twitter-tweet"&gt;&lt;p lang="en" dir="ltr"&gt;As someone who hopes to submit their first package 📦to CRAN this year… what should I know? 😳&lt;/p&gt;&amp;mdash; We are R-Ladies (@WeAreRLadies) &lt;a href="https://twitter.com/WeAreRLadies/status/1227937968117043200?ref_src=twsrc%5Etfw"&gt;February 13, 2020&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+---
+
+# Useful resources
+
+- Hadley Wickham's R Packages gives good advice: http://r-pkgs.had.co.nz/release.html
+- `usethis::use_release_issue()` creates a GitHub issue with a checklist. 
+- See also 
+    - https://cran.r-project.org/web/packages/submission_checklist.html
+    - https://github.com/ThinkR-open/prepare-for-cran
+- Useful functions for additional checks:
+    - `goodpractice::gp()`
+    - `spelling::spell_check_package()`
+    
+
+---
+
+# Promoting your package
+
+- Some promotion will/may be done for you: CRANberries, R Views Monthly Top 40, 
+search engines (vignette/pkgdown site)
+- Some channels are obvious: website, blog, Twitter (#rstats)
+- Consider RPubs or gist for one-off tutorial/case study, e.g.
+    - https://gist.github.com/sckott/08de710da349e48ede3e
+    - https://rpubs.com/mdbrown/TreatmentSelection
+- Publicize your new package via R Weekly https://rweekly.org/
+    - Add to the weekly news blog, see [CONTRIBUTING](https://github.com/rweekly/rweekly.org/blob/gh-pages/CONTRIBUTING.md), and example pull requests [new package](https://github.com/rweekly/rweekly.org/pull/279), [new version](https://github.com/rweekly/rweekly.org/pull/277).
+- Would your package fit in a CRAN Task View? https://cran.r-project.org/web/views/
+    - Check description for how to propose addition
+    
+---
+
+# Talks
+
+- Meetups: RUGs, R-Ladies, satRdays
+- Conferences (https://jumpingrivers.github.io/meetingsR/events.html)
+    - **General**: useR!, rstudio::conf, satRdays
+    - **Specific**: Insurance Data Science Conference, BiocAsia 2020
+    - **Non R-specific**: ???
+- Conferences provide greater exposure, particular to people working in relevant
+field(s).
+- Don't forget to share your slides! (Conference/personal website, LinkedIn, 
+RPubs, Slideshare)
+    
+---
+
+# Paper
+
+- A paper not only promotes your package but benefits from peer review
+    - Paper can also overlap with vignette
+- Traditional journals:
+    - **Open Source Software**: The R Journal, Journal of Statistical Software
+    - **Computing**: Computational Statistics and Data Analysis, Journal of 
+    Computational and Graphical Statistics, SoftwareX
+    - **Science**: Bioinformatics, PLOS ONE, Method in Ecology and Evolution
+- Alternative journals:
+    - F1000research Bioconductor/R package gateway: publish, then open review
+    - Journal Open Source Software: open code review, short descriptive paper
+    
+---
+
+# Research compendium
+
+- A *research compendium* can showcase your work in a reproducible workflow
+    - Could demonstrate a protocol/pipeline vs research study.
+- Advice on how to structure a research compendium is given by rOpenSci: https://github.com/ropensci/rrrpkg
+- The research compendium can be published on Zenodo, Figshare or Dryad
+    - DOI points to a particular version (e.g. matching results in a paper)
+    - Example using R: https://zenodo.org/record/61312#.WfnvS3BpFWO
+
+---
+
+# Interacting with users
+
+- Add a `BugReports` url to your `DESCRIPTION`
+   - Using GitHub issues means that people can see if bug already reported and
+   what action has been taken
+- Consider creating an RSS feed for relevant StackOverflow questions
+    - DIY based on search terms: https://meta.stackexchange.com/a/238460
+    - Based on package tag (requires &gt;1,500 reputation to add tag)
+- Bug reports/help requests
+    - Can show where documentation/tests need improving
+    - Help you find out who's using your package and what for
+    - Can give ideas for new features
+    - Can lead to collaborations
+    
+---
+
+# Interacting with developers
+
+- Add a `CONTRIBUTING.md` to your GitHub repository
+    - Do you have a style guide?
+    - Reminders to run check/tests/add NEWS item to pull requests
+- Use tags to highlight issues: the following are promoted by GitHub
+    - `help wanted`
+    - `good first issue` 
+- Add a code of conduct: make sure everyone knows ground rules for happy 
+collaboration and a welcoming community
+    - `devtools::use_code_of_conduct` adds Contributor Covenant
+    - Be prepared to enforce!
+    
+---
+
+# Don't keep it to yourself!    
+
+&lt;img id="anim" src="http://media3.giphy.com/media/lShOQ8lMmoHqE/200.gif" style="width:800px;height:400px;"&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../xaringan/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

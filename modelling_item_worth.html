@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="modelling_item_worth_files/reveal.js-3.3.0.1/css/reveal.css"/>
+  <link rel="stylesheet" href="modelling_item_worth_files/reveal.js-4.1.3/css/reveal.scss"/>
 
 
 <style type="text/css">
@@ -318,12 +318,12 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 		font-size: 0.8em;
 	}
 
-}  
+}
 </script>
 
 
 <script id="pdf-css" type="application/dynamic-css">
-    
+
 /**
  * This stylesheet is used to print reveal.js
  * presentations to PDF.
@@ -560,11 +560,11 @@ Ioannis Kosmidis, University of Warwick/Alan Turing Institute, UK <br><br></div>
 <pre class="sourceCode r" id="cb3"><code class="sourceCode r"><div class="sourceLine" id="cb3-1" data-line-number="1">R &lt;-<span class="st"> </span><span class="kw">as.rankings</span>(netflix[,<span class="op">-</span><span class="dv">1</span>], <span class="dt">input =</span> <span class="st">&quot;ordering&quot;</span>)</div>
 <div class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">colnames</span>(R) &lt;-<span class="st"> </span><span class="kw">attr</span>(netflix, <span class="st">&quot;item&quot;</span>)</div>
 <div class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">print</span>(R[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">width =</span> <span class="dv">60</span>)</div></code></pre>
-<pre><code>#                                                              1 
-# &quot;Beverly Hills Cop &gt; Mean Girls &gt; Mission: Impossible II  ...&quot; 
-#                                                              2 
-# &quot;Mean Girls &gt; Beverly Hills Cop &gt; Mission: Impossible II  ...&quot; 
-#                                                              3 
+<pre><code>#                                                              1
+# &quot;Beverly Hills Cop &gt; Mean Girls &gt; Mission: Impossible II  ...&quot;
+#                                                              2
+# &quot;Mean Girls &gt; Beverly Hills Cop &gt; Mission: Impossible II  ...&quot;
+#                                                              3
 # &quot;Beverly Hills Cop &gt; Mean Girls &gt; The Mummy Returns &gt; Mis ...&quot;</code></pre>
 </section>
 <section class="slide level1">
@@ -573,9 +573,9 @@ Ioannis Kosmidis, University of Warwick/Alan Turing Institute, UK <br><br></div>
 <p>Now <code>PlackettLuce</code> can be used to fit the model, with frequencies as weights</p>
 <pre class="sourceCode r" id="cb5"><code class="sourceCode r"><div class="sourceLine" id="cb5-1" data-line-number="1">mod &lt;-<span class="st"> </span><span class="kw">PlackettLuce</span>(R, <span class="dt">weights =</span> netflix<span class="op">$</span>n)</div>
 <div class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">coef</span>(mod, <span class="dt">log =</span> <span class="ot">FALSE</span>)</div></code></pre>
-<pre><code>#             Mean Girls      Beverly Hills Cop 
-#                 0.2306                 0.4511 
-#      The Mummy Returns Mission: Impossible II 
+<pre><code>#             Mean Girls      Beverly Hills Cop
+#                 0.2306                 0.4511
+#      The Mummy Returns Mission: Impossible II
 #                 0.1685                 0.1498</code></pre>
 <p>These coefficients are the <em>worth</em> parameters and represent the probability that each movie is ranked first.</p>
 </section>
@@ -687,9 +687,9 @@ Ioannis Kosmidis, University of Warwick/Alan Turing Institute, UK <br><br></div>
 <p>The rankings are grouped by farm</p>
 <pre class="sourceCode r" id="cb13"><code class="sourceCode r"><div class="sourceLine" id="cb13-1" data-line-number="1">G &lt;-<span class="st"> </span><span class="kw">grouped_rankings</span>(R, <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(beans), <span class="dv">4</span>))</div>
 <div class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">format</span>(<span class="kw">head</span>(G, <span class="dv">2</span>), <span class="dt">width =</span> <span class="dv">50</span>)</div></code></pre>
-<pre><code>#                                                                   1 
-#  &quot;PM2 Don Rey &gt; SJC 730-79 &gt; BRT 103-182, Local &gt; BRT 103-182, ...&quot; 
-#                                                                   2 
+<pre><code>#                                                                   1
+#  &quot;PM2 Don Rey &gt; SJC 730-79 &gt; BRT 103-182, Local &gt; BRT 103-182, ...&quot;
+#                                                                   2
 # &quot;INTA Centro Sur &gt; INTA Sequia &gt; INTA Rojo, Local &gt; INTA Rojo, ...&quot;</code></pre>
 <p>Use <code>pltree</code> with max depth 3 and <span class="math inline">\(\ge\)</span> 5% records in each group</p>
 <pre class="sourceCode r" id="cb15"><code class="sourceCode r"><div class="sourceLine" id="cb15-1" data-line-number="1">beans<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">factor</span>(beans<span class="op">$</span>year)</div>
@@ -769,7 +769,7 @@ Incorporating genotype information
 <script>
   (function() {
     if (window.jQuery) {
-      Reveal.addEventListener( 'slidechanged', function(event) {  
+      Reveal.addEventListener( 'slidechanged', function(event) {
         window.jQuery(event.previousSlide).trigger('hidden');
         window.jQuery(event.currentSlide).trigger('shown');
       });

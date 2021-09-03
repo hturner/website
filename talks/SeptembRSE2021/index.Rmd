@@ -18,27 +18,67 @@ always_allow_html: yes
 
 layout: true
 
-.footer[`r icons::fontawesome("link")` [heatherturner.net/talks/SeptembRSE2021](https://www.heatherturner.net/talks/SeptembRSE2021)  &nbsp; `r icons::fontawesome("twitter")` [@HeathrTurnr](https://twitter.com/heathrturnr)]
+.footer[`r fontawesome::fa("link")` [heatherturner.net/talks/SeptembRSE2021](https://www.heatherturner.net/talks/SeptembRSE2021)  &nbsp; `r fontawesome::fa("twitter")` [@HeathrTurnr](https://twitter.com/heathrturnr)]
 
 ---
 
-# The R & RSE Communites
+# useR! Incubator Session
+
+.pull-left[
+
+The useR! conference introduced "incubators" for 2021
+
+> give the opportunity to people working in similar fields to connect and work on a common goal or question.
+
+Heidi Seibold proposed an incubator to accompany her keynote
+
+*The Role of the R Community in the RSE movement*
+]
+
+.pull-right[
+[![Title slide from useR! 2021 keynote: Research Software Engineers (& Academia) by Heidi Seibold, affiliated to the Johner Institut and IGDORE](Heidi_Seibold_useR2021_keynote_title_slide.png)](https://youtu.be/Xhwh80aTF0k)
+![R and RSE logos with a heart in between](R_heart_RSE.png)
+Image credits: @HeidiBaya
+]
 
 ---
 
-# useR! Incubator Session [Idea]
+# Planning the Incubator
+
+.pull-left[
+* Gathered team of R users in RSE-related roles
+* Planned format for session
+   - 1 hr with  ~45 min for discussion
+   - Team propose topics in advance
+   - Participants have free choice
+   - Team facilitate breakout groups
+   - Each group writes summary
+]
+
+.pull-right[![Headshots of the team of organizers](organizers2.png)
+]
 
 ---
 
-# useR! Incubator Session [Planning]
+# Special Guests
+
+.pull-left[
+*  Ania Brown (RSE at the University of Southampton, UK and Trustee at the Society of Research Software Engineering) 
+   - Gave introductory talk
+* Mario Antonioletti (RSE at Software Sustainability Institute, UK).
+   - Helped plan and facilitate
+]
+
+.pull-right[
+<a href="https://www.youtube.com/watch?v=Xhwh80aTF0k"><img src="RSE_incubator_intro_title.jpg" width=550>Ania Brown's talk "Society of Research Software Engineering" on YouTube.</a>
+]
+
 
 ---
 
-# Talk by Ania Brown
+class: inverse middle
 
----
-
-# Topics
+# Outputs
 
 ---
 
@@ -151,26 +191,34 @@ Thoughts on idea in general:
 - Podcast vs YouTube
     - Longer, less technical vs short technical topics with visual support
     - Better reach with YouTube
-- Is there space alongside existing outlets?
+- How to differentiate from existing efforts in R community?
 
 ---
 
-# 5B: Potential to connect with existing outlets
+# 5B: Existing outlets
 
+Collaborating with existing outlets may be most practical
  - [Bioconductor Developer's Forum](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQQLMupAtEzm2y4gUIUm_1n6) (Monthly teleconference with RSE content)
-    - [Why R? Webinars]( https://www.youtube.com/watch?v=3RkBEva4xRk&list=PLKMUlj_pGn_ldSI9_xIae6tOozrMNYa96)
-    - [RSE Stories podcast  ](https://us-rse.org/rse-stories/posts/)
+ - [Why R? Webinars]( https://www.youtube.com/watch?v=3RkBEva4xRk&list=PLKMUlj_pGn_ldSI9_xIae6tOozrMNYa96)
+ - [RSE Stories podcast](https://us-rse.org/rse-stories/posts/)
+ 
+RSE Stories is most in line with the original idea.
 
 ---
 
 # 6A: What should a book “Research Software Engineering with R” contain? 
 
+.pull-left-64[
 Fundamentals to allow R users to become software engineers (similar to [Research Software Engineering with Python](https://merely-useful.tech/py-rse/))
-  - unix shell, git
-  - pipeline toolkits (including R-specific ones)
-  - package development, testing and deployment
-  - thinking like a RSE, how to be a good contributor
-  
+  - Unix, shell, git
+  - Pipeline toolkits (including R-specific ones)
+  - Package development, testing and deployment
+  - Thinking like a RSE, how to be a good contributor
+]
+
+.pull-right-30[
+![Headshots of the team of organizers](book_front2.jpg)
+]
 ---
 
 # 6B: Further themes
@@ -199,14 +247,26 @@ Ideas overlap with other groups, but set out a coherent plan:
 
 ---
 
-# Actions (what has haeppened since and how to take ideas forward)
-- \#r-users groups on Slack
-- Blog post of ideas from incubator
-- This talk! (abstract before incubator!)
-   - encouraging individual actions
-   - connected collaborators
-   - space to build on ideas - at future conferences or together
+# Actions
+
+A few actions since the incubator:
+- Created \#r-users groups on RSESlack
+- Published post about incubator on useR! blog
+- Presented this talk!
 
 ---
 
 # Summary   
+
+Incubators
+
+- Require pre-planning and post-processing by the organizers
+- Can be a productive way to get a community working together on a theme.
+
+The useR! RSE incubator helped to
+   - Raise awareness of the RSE movement
+   - Promote individual actions
+   - Connect collaborators
+   - Provide space to build on ideas
+
+

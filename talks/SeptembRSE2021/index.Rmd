@@ -217,7 +217,7 @@ Fundamentals to allow R users to become software engineers (similar to [Research
 ]
 
 .pull-right-30[
-![Headshots of the team of organizers](book_front2.jpg)
+![Front page of the “Research Software Engineering with Python” book with "Python" crossed out and "R?" written above ](book_front2.jpg)
 ]
 ---
 

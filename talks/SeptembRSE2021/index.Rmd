@@ -1,7 +1,7 @@
 ---
 title: "The R & RSE Communities: <br>Strengthening Each Other"
-author: <span style="font-size:40px;font-weight:600">Heather Turner</span>
-date: '`r fontawesome::fa("twitter")` [\@HeathrTurnr](https://twitter.com/heathrturnr)<br><br><br>6 September 2021<br><br><span style="font-size:50px;font-weight:600";>`r fontawesome::fa("link")` [heatherturner.net/talks/SeptembRSE2021](heatherturner.net/talksSeptembRSE2021)</span>'
+author: <span style="font-size:40px;font-weight:600">Heather Turner<br> EPSRC RSE Fellow, University of Warwick</span>
+date: '`r fontawesome::fa("twitter")` [\@HeathrTurnr](https://twitter.com/heathrturnr)<br><br>6 September 2021<br><br><span style="font-size:50px;font-weight:600";>`r fontawesome::fa("link")` [heatherturner.net/talks/SeptembRSE2021](heatherturner.net/talksSeptembRSE2021)</span>'
 output:
   xaringan::moon_reader:
     css: ["libs/remark-css-0.0.1/default.css", "extra.css"]
@@ -22,24 +22,45 @@ layout: true
 
 ---
 
-# useR! Incubator Session
+# R & RSE Communities
 
 .pull-left[
 
-The useR! conference introduced "incubators" for 2021
+R is widely used software for data science.
 
-> give the opportunity to people working in similar fields to connect and work on a common goal or question.
+RSE community mainly people from computer science and physical sciences.
+
+A lot of scope to bring communities closer together!
+
+]
+.pull-right[<br>![R and RSE logos with a heart in between](R_heart_RSE.png)<small>Image credit: @HeidiBaya</small>]
+
+
+---
+
+# Incubator Session at useR!
+
+.pull-left[
+
+*useR!* is the main R user conference
+
+Introduced "incubators" for 2021
+
+> Incubators give the opportunity to people working in similar fields to connect and work on a common goal or question.
 
 Heidi Seibold proposed an incubator to accompany her keynote
-
-*The Role of the R Community in the RSE movement*
 ]
 
 .pull-right[
-[![Title slide from useR! 2021 keynote: Research Software Engineers (& Academia) by Heidi Seibold, affiliated to the Johner Institut and IGDORE](Heidi_Seibold_useR2021_keynote_title_slide.png)](https://youtu.be/Xhwh80aTF0k)
-![R and RSE logos with a heart in between](R_heart_RSE.png)
-Image credits: @HeidiBaya
+<br><br>
+<a href="https://youtu.be/Xhwh80aTF0k"><img src="Heidi_Seibold_useR2021_keynote_title_slide.png" alt="Title slide: Research Software Engineers (& Academia), Heidi Seibold, Johner Institut and IGDORE" width=550>Heidi Seibold's keynote on YouTube.</a>
 ]
+
+---
+
+class: inverse middle
+
+# Plan
 
 ---
 
@@ -64,13 +85,11 @@ Image credits: @HeidiBaya
 
 .pull-left[
 *  Ania Brown (RSE at the University of Southampton, UK and Trustee at the Society of Research Software Engineering) 
-   - Gave introductory talk
 * Mario Antonioletti (RSE at Software Sustainability Institute, UK).
-   - Helped plan and facilitate
 ]
 
 .pull-right[
-<a href="https://www.youtube.com/watch?v=Xhwh80aTF0k"><img src="RSE_incubator_intro_title.jpg" width=550>Ania Brown's talk "Society of Research Software Engineering" on YouTube.</a>
+<a href="https://www.youtube.com/watch?v=Xhwh80aTF0k"><img src="RSE_incubator_intro_title.jpg" alt="Title slide: Society of Research Software Engineering, Ania Brown, a.brown@society-rse.org" width=550>Ania Brown's introductory talk on YouTube.</a>
 ]
 
 
@@ -132,7 +151,7 @@ RSE careers depend on academia valuing software
 
 ---
 
-# 3A: How can we identify and highlight which funders are most research software friendly? 
+# 3A: How can we identify and highlight funders of research software? 
 
 Many funders provide seed capital, but maintenance harder
 
@@ -250,8 +269,8 @@ Ideas overlap with other groups, but set out a coherent plan:
 # Actions
 
 A few actions since the incubator:
-- Created \#r-users groups on RSESlack
-- Published post about incubator on useR! blog
+- Created \#r-users groups on RSE Slack
+- Published post about incubator on useR! blog [https://user2021.r-project.org/blog/](user2021.r-project.org/blog)
 - Presented this talk!
 
 ---

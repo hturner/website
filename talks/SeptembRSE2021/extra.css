@@ -17,7 +17,7 @@
 
 
 .remark-slide h1 {
-    font-size: 48px;
+    font-size: 56px;
 }
 .remark-slide-number {
     font-size: 18px;
@@ -85,10 +85,17 @@ then created, so use css to hide) */
 }
 
 .footer {
-    color: #F26321;/* #F92672 */
+    color: #B5153B;
     position: fixed;
     left: 20px;
     bottom: 10px;
     text-align: left;
     width: 90%;
 }
+
+.inverse .footer {
+    visibility: hidden;
+}
+
+
+

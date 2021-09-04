@@ -1,5 +1,5 @@
 a, a > code {
-  color: #F26321;
+  color: #B5153B;
   text-decoration: none;
 }
 .footnote {
@@ -17,6 +17,10 @@ a, a > code {
 }
 .inverse h1, .inverse h2, .inverse h3 {
   color: #f3f3f3;
+}
+.inverse a, a > code {
+  color: #FFC233;
+  text-decoration: none;
 }
 /* Two-column layout */
 .left-column {

@@ -266,12 +266,14 @@ Ideas overlap with other groups, but set out a coherent plan:
 
 ---
 
-# Actions
+# Post Incubator
 
 A few actions since the incubator:
 - Created \#r-users groups on RSE Slack
 - Published post about incubator on useR! blog [https://user2021.r-project.org/blog/](user2021.r-project.org/blog)
 - Presented this talk!
+
+Discovered work in progress on RSE with R book: https://merely-useful.tech/r-rse/
 
 ---
 

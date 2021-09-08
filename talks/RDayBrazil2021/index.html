@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>The Development of the R Community</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Heather Turner  Research Software Engineering Fellow University of Warwick" />
+    <script src="index_files/header-attrs-2.10/header-attrs.js"></script>
+    <link rel="stylesheet" href="libs/remark-css-0.0.1/default.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# The Development of the R Community
+### <span style="font-size:40px;font-weight:600">Heather Turner<br> Research Software Engineering Fellow<br>University of Warwick</span>
+### <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> <a href="https://twitter.com/heathrturnr">@HeathrTurnr</a><br><br>9 September 2021<br><br>&lt;span style=“font-size:50px;font-weight:600”;&gt;<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg> <a href="heatherturner.net/talksSeptembRSE2021">heatherturner.net/talks/RDayBrazil2021</a></span>
+
+---
+
+
+layout: true
+
+.footer[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg> [heatherturner.net/talks/RDayBrazil2021](https://www.heatherturner.net/talks/RDayBrazil2021)  &amp;nbsp; <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> [@HeathrTurnr](https://twitter.com/heathrturnr)]
+
+---
+
+# Intro
+
+About me
+
+---
+
+# In the beginning
+
+.pull-left[
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+1992: Robert Gentleman and Ross Ihaka develop an early version of R for teaching.
+]
+.pull-right[
+&lt;img src="robert_gentleman_and_ross_ihaka.png" alt="Robert Gentleman and Ross Ihaka" style="width:550px"&gt;
+At the  Black Crow Cafe, Auckland, NZ 
+&lt;small&gt;(source: [R. Ihaka](https://www.stat.auckland.ac.nz/~ihaka/downloads/the-r-project.pdf))&lt;/small&gt;]
+
+---
+
+# The birth of a community
+
+.pull-left-64[
+1993: Robert Gentleman and Ross Ihaka 
+
+ - share binary copies of R via Statlib
+ - make announcement on the s-news mailing list
+ 
+Others start to use R and give feedback.
+
+1995: Martin Mächler (ETH Zurich) persuades Robert and Ross to release R under a GNU public license.
+]
+.pull-right-30[
+&lt;img src="martin_maechler.png" alt="Martin Maechler" style="height:400px"&gt;
+&lt;small&gt;(source: [M. Maechler](https://stat.ethz.ch/~maechler/index-2004.html))&lt;/small&gt;]
+
+---
+
+# Development of the mailing lists
+
+Early days: 
+ - Robert, Ross &amp; Martin handle bug reports and releases by email.
+ - Robert &amp; Ross maintain small mailing list
+ 
+Martin establishes automated mailing lists
+ - 1996: *r-testers*
+ - 1997: *r-announce*, *r-help*, *r-devel*
+ 
+This supports the community and accelerates development of R and R "extensions".
+
+---
+
+# Comprehensive R Archive Network
+
+.pull-left-64[
+1997: CRAN formed by Kurt Hornik (TU Wien) 
+
+- Official R source distribution provided by R&amp;R
+- Extension packages: acepack, bootstrap, ctest, date, e1071, fracdiff, gee, jpn, oz,
+snns, splines, survival4
+- Documentation and Debian binaries of packages
+
+Mirrors in USA and Switzerland.
+
+R developers could submit package to CRAN via FTP.
+
+]
+.pull-right-30[
+&lt;img src="kurt_hornik_2001.jpg" alt="Kurt Hornik" style="height:380px"&gt;
+&lt;small&gt;(source: [Museum Unseres Computer Hinterhofs](https://much.isds.tugraz.at/people/by_name/h/hornik_kurt/index.htm/))&lt;/small&gt;]
+
+
+---
+# R Core 
+
+.pull-left[Over time, people given commit rights:
+  - Luke Tierney (USA)
+  - Heiner Schwarte (Switzerland)
+  - Paul Murrell (Ross' PhD student)
+  
+1997: founded R "core team", adding
+  - Kurt Hornik (Austria)
+  - Peter Dalgaard (Denmark)
+  - Thomas Lumley (USA at the time)
+]
+
+.pull-right[
+&lt;p&gt;
+&lt;blockquote class="twitter-tweet tw-align-right"&gt;&lt;p lang="en" dir="ltr"&gt;It was twenty years ago today, Ross Ihaka got the band to play.... &lt;a href="https://twitter.com/hashtag/rstats?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#rstats&lt;/a&gt; &lt;a href="https://t.co/msSpPz2kyA"&gt;pic.twitter.com/msSpPz2kyA&lt;/a&gt;&lt;/p&gt;&amp;mdash; Peter Dalgaard (@pdalgd) &lt;a href="https://twitter.com/pdalgd/status/897735023427801088?ref_src=twsrc%5Etfw"&gt;August 16, 2017&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;/p&gt;
+]
+
+---
+
+# R-project.org
+
+.pull-left-30[1999: website launched  
+
+ - CRAN mirrors in Denmark, UK
+ - JitterBug bug tracker
+ - FAQ
+ - Contributed documentation in EN, FR, ES
+ 
+&lt;small&gt; 
+(snapshot in June 2000, source: [Wayback Machine](https://web.archive.org/web/20000620195631/http://www.r-project.org/))&lt;/small&gt;]
+.pull-right-64-raise[
+&lt;img src="r-project-website.png" alt="Screenshot of R-project.org website"&gt;]
+
+---
+
+# Directions in Statistical Computing
+
+.pull-left[
+1999: First meeting of R Core team
+
+New members present: 
+ - Douglas Bates (USA), 
+ - Friedrich Leisch (Austria), 
+ - Brian Ripley (UK), 
+ - Duncan Temple Lang (USA)
+
+Also John Chambers, R Core from 2000
+
+]
+.pull-right[
+&lt;img src="dsc1999.jpg" alt="Participants of DSC 1999"&gt;
+&lt;small&gt; 
+(credit Doug Bates, source: [DSC 1999](http://www.ci.tuwien.ac.at/Conferences/DSC-1999/doug-photos/20.html))&lt;/small&gt;]
+
+---
+
+# R 1.0.0
+
+.pull-left[
+Released 29 February 2000
+
+Base distribution tested and stable.
+
+Now ~50 packages, e.g.
+ - boot
+ - cluster
+ - foreign
+ - nlme
+]
+.pull-right[
+&lt;img src="R-1.0.0.jpg" alt="CD of R version 1.0.0, signed by members of the R Core team"&gt;
+&lt;small&gt; 
+(source: [R Foundation](https://twitter.com/_R_Foundation/status/1233671896144793600))&lt;/small&gt;]
+
+---
+
+# CRAN growth
+
+https://rdrr.io/cran/RWsearch/man/archivedb.html
+
+or https://www.r-bloggers.com/2017/03/scraping-cran-with-rvest/
+
+---
+
+# R News
+
+.pull-left[
+2-5 issues a year, 2001-2008
+
+ - Changes in R
+ - Changes on CRAN
+ - R package introductions/reviews
+ - Programmer's Niche
+ - Hints for newcomers
+ - Applications
+]
+.pull-right[
+&lt;img src="Rcgi-r-news.png" alt="Screenshot of Rcgi web application"&gt;
+&lt;small&gt; 
+(Screenshot from first issue, source: [R News](https://cran.r-project.org/doc/Rnews/Rnews_2001-1.pdf))&lt;/small&gt;]
+
+---
+
+# R Foundation
+
+2003: Founded by R Core
+
+ - Provide support for the R project
+ - Provide a reference point
+ - Hold copyright of R
+ 
+Further members added by majority vote, currently 
+  - 18 R Core members
+  - 19 other
+
+---
+
+# useR!
+
+.pull-left[
+2004: Inauguaral conference
+
+~ 200 participants
+
+- Keynotes from R Core
+- User contributed talks &amp; posters
+    - Biostatistics, Ecology, Finance, etc
+    - Statistical methods
+    - R programming and interfaces
+]
+.pull-right[
+&lt;img src="useR2004.jpg" alt="People listening to poster presentation"&gt;
+&lt;small&gt; 
+(Poster session, source: [R Conferences](http://www.ci.tuwien.ac.at/Conferences/useR-2004/Photos/36.html))&lt;/small&gt;]
+
+---
+
+# Internationalization of R
+
+.pull-left[
+2005: Support for Localization in R 2.1.0
+
+ - messages, error and warning messages
+ - menu labels in the GUIs
+
+Initially: *Brazilian Portuguese*, Chinese, English (as opposed to American), French, German, Italian, Korean, Russian and Spanish.
+
+Reliant on volunteer [translation teams](https://developer.r-project.org/TranslationTeams.html).
+
+]
+.pull-right[
+&lt;img src="rgui-fr.png" alt="Screenshot of Windows R GUI, with French menu and console text"&gt;
+&lt;small&gt; 
+(French R GUI, source: [B. Ripley](https://www.r-project.org/conferences/useR-2006//Slides/Ripley.pdf))&lt;/small&gt;]
+
+---
+
+# CSDA 2005
+
+
+.pull-left[
+*International Association for Statistical Computing 3rd world conference on Computational Statistics &amp; Data Analysis*
+
+My first computational statistics conference 🎉
+
+More academic than useR!, but given friendly welcome by R folk, especially Achim Zeileis and Martin Mächler.
+
+]
+.pull-right[
+&lt;img src="thomas_and_achim_user2006.jpg" alt="Thomas and Achim in deep discussion"&gt;
+&lt;small&gt; 
+(Achim with Thomas Petzoldt, source: [useR! 2006](https://www.r-project.org/conferences/useR-2006/Photos/Dinner/10.html))&lt;/small&gt;]
+
+---
+
+# R Journal
+
+
+.pull-left-30[2009: inaugural issue  
+
+Peer-reviewed articles 
+ - Separate from news.
+ - Individual PDFs
+
+Conference reports.
+
+2 issues a year.
+ 
+]
+.pull-right-64[
+&lt;img src="r-journal.png" alt="Screenshot of R Journal website"&gt;
+&lt;small&gt; 
+(snapshot in May 2009, source: [Wayback Machine](https://web.archive.org/web/20090530125136/https://journal.r-project.org/))&lt;/small&gt;]
+
+---
+
+# 
+
+---
+
+# References
+
+Ihaka, R. (1998). [R: Past and future history](https://cran.r-project.org/doc/html/interface98-paper/paper_2.html). Interface ’98.  
+Smith, D. (2020). [The History of R (updated for 2020)](https://blog.revolutionanalytics.com/2020/07/the-history-of-r-updated-for-2020.html). Revolutions blog.
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "googlecode",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

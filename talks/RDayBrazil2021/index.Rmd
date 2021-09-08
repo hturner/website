@@ -1,0 +1,308 @@
+---
+title: "The Development of the R Community"
+author: <span style="font-size:40px;font-weight:600">Heather Turner<br> Research Software Engineering Fellow<br>University of Warwick</span>
+date: '`r fontawesome::fa("twitter")` [\@HeathrTurnr](https://twitter.com/heathrturnr)<br><br>9 September 2021<br><br><span style="font-size:50px;font-weight:600";>`r fontawesome::fa("link")` [heatherturner.net/talks/RDayBrazil2021](heatherturner.net/talksSeptembRSE2021)</span>'
+output:
+  xaringan::moon_reader:
+    css: ["libs/remark-css-0.0.1/default.css", "extra.css"]
+    keep_md: true
+    nature:
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      highlightStyle: googlecode
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+always_allow_html: yes      
+
+---
+
+layout: true
+
+.footer[`r fontawesome::fa("link")` [heatherturner.net/talks/RDayBrazil2021](https://www.heatherturner.net/talks/RDayBrazil2021)  &nbsp; `r fontawesome::fa("twitter")` [@HeathrTurnr](https://twitter.com/heathrturnr)]
+
+---
+
+# Intro
+
+About me
+
+---
+
+# In the beginning
+
+.pull-left[
+<br>
+<br>
+<br>
+<br>
+1992: Robert Gentleman and Ross Ihaka develop an early version of R for teaching.
+]
+.pull-right[
+<img src="robert_gentleman_and_ross_ihaka.png" alt="Robert Gentleman and Ross Ihaka" style="width:550px">
+At the  Black Crow Cafe, Auckland, NZ 
+<small>(source: [R. Ihaka](https://www.stat.auckland.ac.nz/~ihaka/downloads/the-r-project.pdf))</small>]
+
+---
+
+# The birth of a community
+
+.pull-left-64[
+1993: Robert Gentleman and Ross Ihaka 
+
+ - share binary copies of R via Statlib
+ - make announcement on the s-news mailing list
+ 
+Others start to use R and give feedback.
+
+1995: Martin Mächler (ETH Zurich) persuades Robert and Ross to release R under a GNU public license.
+]
+.pull-right-30[
+<img src="martin_maechler.png" alt="Martin Maechler" style="height:400px">
+<small>(source: [M. Maechler](https://stat.ethz.ch/~maechler/index-2004.html))</small>]
+
+---
+
+# Development of the mailing lists
+
+Early days: 
+ - Robert, Ross & Martin handle bug reports and releases by email.
+ - Robert & Ross maintain small mailing list
+ 
+Martin establishes automated mailing lists
+ - 1996: *r-testers*
+ - 1997: *r-announce*, *r-help*, *r-devel*
+ 
+This supports the community and accelerates development of R and R "extensions".
+
+---
+
+# Comprehensive R Archive Network
+
+.pull-left-64[
+1997: CRAN formed by Kurt Hornik (TU Wien) 
+
+- Official R source distribution provided by R&R
+- Extension packages: acepack, bootstrap, ctest, date, e1071, fracdiff, gee, jpn, oz,
+snns, splines, survival4
+- Documentation and Debian binaries of packages
+
+Mirrors in USA and Switzerland.
+
+R developers could submit package to CRAN via FTP.
+
+]
+.pull-right-30[
+<img src="kurt_hornik_2001.jpg" alt="Kurt Hornik" style="height:380px">
+<small>(source: [Museum Unseres Computer Hinterhofs](https://much.isds.tugraz.at/people/by_name/h/hornik_kurt/index.htm/))</small>]
+
+
+---
+# R Core 
+
+.pull-left[Over time, people given commit rights:
+  - Luke Tierney (USA)
+  - Heiner Schwarte (Switzerland)
+  - Paul Murrell (Ross' PhD student)
+  
+1997: founded R "core team", adding
+  - Kurt Hornik (Austria)
+  - Peter Dalgaard (Denmark)
+  - Thomas Lumley (USA at the time)
+]
+
+.pull-right[
+<p>
+<blockquote class="twitter-tweet tw-align-right"><p lang="en" dir="ltr">It was twenty years ago today, Ross Ihaka got the band to play.... <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/msSpPz2kyA">pic.twitter.com/msSpPz2kyA</a></p>&mdash; Peter Dalgaard (@pdalgd) <a href="https://twitter.com/pdalgd/status/897735023427801088?ref_src=twsrc%5Etfw">August 16, 2017</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</p>
+]
+
+---
+
+# R-project.org
+
+.pull-left-30[1999: website launched  
+
+ - CRAN mirrors in Denmark, UK
+ - JitterBug bug tracker
+ - FAQ
+ - Contributed documentation in EN, FR, ES
+ 
+<small> 
+(snapshot in June 2000, source: [Wayback Machine](https://web.archive.org/web/20000620195631/http://www.r-project.org/))</small>]
+.pull-right-64-raise[
+<img src="r-project-website.png" alt="Screenshot of R-project.org website">]
+
+---
+
+# Directions in Statistical Computing
+
+.pull-left[
+1999: First meeting of R Core team
+
+New members present: 
+ - Douglas Bates (USA), 
+ - Friedrich Leisch (Austria), 
+ - Brian Ripley (UK), 
+ - Duncan Temple Lang (USA)
+
+Also John Chambers, R Core from 2000
+
+]
+.pull-right[
+<img src="dsc1999.jpg" alt="Participants of DSC 1999">
+<small> 
+(credit Doug Bates, source: [DSC 1999](http://www.ci.tuwien.ac.at/Conferences/DSC-1999/doug-photos/20.html))</small>]
+
+---
+
+# R 1.0.0
+
+.pull-left[
+Released 29 February 2000
+
+Base distribution tested and stable.
+
+Now ~50 packages, e.g.
+ - boot
+ - cluster
+ - foreign
+ - nlme
+]
+.pull-right[
+<img src="R-1.0.0.jpg" alt="CD of R version 1.0.0, signed by members of the R Core team">
+<small> 
+(source: [R Foundation](https://twitter.com/_R_Foundation/status/1233671896144793600))</small>]
+
+---
+
+# CRAN growth
+
+https://rdrr.io/cran/RWsearch/man/archivedb.html
+
+or https://www.r-bloggers.com/2017/03/scraping-cran-with-rvest/
+
+---
+
+# R News
+
+.pull-left[
+2-5 issues a year, 2001-2008
+
+ - Changes in R
+ - Changes on CRAN
+ - R package introductions/reviews
+ - Programmer's Niche
+ - Hints for newcomers
+ - Applications
+]
+.pull-right[
+<img src="Rcgi-r-news.png" alt="Screenshot of Rcgi web application">
+<small> 
+(Screenshot from first issue, source: [R News](https://cran.r-project.org/doc/Rnews/Rnews_2001-1.pdf))</small>]
+
+---
+
+# R Foundation
+
+2003: Founded by R Core
+
+ - Provide support for the R project
+ - Provide a reference point
+ - Hold copyright of R
+ 
+Further members added by majority vote, currently 
+  - 18 R Core members
+  - 19 other
+
+---
+
+# useR!
+
+.pull-left[
+2004: Inauguaral conference
+
+~ 200 participants
+
+- Keynotes from R Core
+- User contributed talks & posters
+    - Biostatistics, Ecology, Finance, etc
+    - Statistical methods
+    - R programming and interfaces
+]
+.pull-right[
+<img src="useR2004.jpg" alt="People listening to poster presentation">
+<small> 
+(Poster session, source: [R Conferences](http://www.ci.tuwien.ac.at/Conferences/useR-2004/Photos/36.html))</small>]
+
+---
+
+# Internationalization of R
+
+.pull-left[
+2005: Support for Localization in R 2.1.0
+
+ - messages, error and warning messages
+ - menu labels in the GUIs
+
+Initially: *Brazilian Portuguese*, Chinese, English (as opposed to American), French, German, Italian, Korean, Russian and Spanish.
+
+Reliant on volunteer [translation teams](https://developer.r-project.org/TranslationTeams.html).
+
+]
+.pull-right[
+<img src="rgui-fr.png" alt="Screenshot of Windows R GUI, with French menu and console text">
+<small> 
+(French R GUI, source: [B. Ripley](https://www.r-project.org/conferences/useR-2006//Slides/Ripley.pdf))</small>]
+
+---
+
+# CSDA 2005
+
+
+.pull-left[
+*International Association for Statistical Computing 3rd world conference on Computational Statistics & Data Analysis*
+
+My first computational statistics conference `r emojifont::emoji("tada")`
+
+More academic than useR!, but given friendly welcome by R folk, especially Achim Zeileis and Martin Mächler.
+
+]
+.pull-right[
+<img src="thomas_and_achim_user2006.jpg" alt="Thomas and Achim in deep discussion">
+<small> 
+(Achim with Thomas Petzoldt, source: [useR! 2006](https://www.r-project.org/conferences/useR-2006/Photos/Dinner/10.html))</small>]
+
+---
+
+# R Journal
+
+
+.pull-left-30[2009: inaugural issue  
+
+Peer-reviewed articles 
+ - Separate from news.
+ - Individual PDFs
+
+Conference reports.
+
+2 issues a year.
+ 
+]
+.pull-right-64[
+<img src="r-journal.png" alt="Screenshot of R Journal website">
+<small> 
+(snapshot in May 2009, source: [Wayback Machine](https://web.archive.org/web/20090530125136/https://journal.r-project.org/))</small>]
+
+---
+
+# 
+
+---
+
+# References
+
+Ihaka, R. (1998). [R: Past and future history](https://cran.r-project.org/doc/html/interface98-paper/paper_2.html). Interface ’98.  
+Smith, D. (2020). [The History of R (updated for 2020)](https://blog.revolutionanalytics.com/2020/07/the-history-of-r-updated-for-2020.html). Revolutions blog.
+
+
+

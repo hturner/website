@@ -112,7 +112,7 @@ R developers could submit package to CRAN via FTP.
 
 .pull-right[
 <p>
-<blockquote class="twitter-tweet tw-align-right"><p lang="en" dir="ltr">It was twenty years ago today, Ross Ihaka got the band to play.... <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/msSpPz2kyA">pic.twitter.com/msSpPz2kyA</a></p>&mdash; Peter Dalgaard (@pdalgd) <a href="https://twitter.com/pdalgd/status/897735023427801088?ref_src=twsrc%5Etfw">August 16, 2017</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet-raise tw-align-right"><p lang="en" dir="ltr">It was twenty years ago today, Ross Ihaka got the band to play.... <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/msSpPz2kyA">pic.twitter.com/msSpPz2kyA</a></p>&mdash; Peter Dalgaard (@pdalgd) <a href="https://twitter.com/pdalgd/status/897735023427801088?ref_src=twsrc%5Etfw">August 16, 2017</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 ]
 
@@ -236,6 +236,15 @@ Further members added by majority vote, currently
 
 ---
 
+# "The useR! world"
+
+<center>
+<img src="user_map.png" style="height:400px;" alt="World map with ">
+</center>
+Home cities of useR! 2004 participants, redrawn map [original by Roger Bivand](http://www.ci.tuwien.ac.at/Conferences/useR-2004/Photos/27.html)
+
+---
+
 # Internationalization of R
 
 .pull-left[
@@ -276,7 +285,6 @@ More academic than useR!, but given friendly welcome by R folk, especially Achim
 
 # R Journal
 
-
 .pull-left-30[2009: inaugural issue  
 
 Peer-reviewed articles 
@@ -295,7 +303,82 @@ Conference reports.
 
 ---
 
-# 
+# \#RStats Twitter
+
+.pull-left[
+2006: Twitter founded  
+2009: #RStats adopted as "official" hashtag
+
+Easy way to "join" the R community
+ - @_R_Foundation joins 2016
+
+It is so useful there is a book about it! [t4rstats.com](www.t4rstats.com). 
+]
+
+.pull-right[
+<p>
+<blockquote class="twitter-tweet tw-align-right"><p lang="en" dir="ltr">I declare <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> the official R statistical prog lang hashtag, pass it on to friends, family and Stata users</p>&mdash; Drew Conway (@drewconway) <a href="https://twitter.com/drewconway/status/1448027809?ref_src=twsrc%5Etfw">April 3, 2009</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</p>
+]
+
+---
+
+# R User Groups
+
+.pull-left-30[
+
+Panel at useR! 2010 with
+
+- San Francisco Bay Area (2008)
+- Ottawa Gatineau (2008?)
+- Los Angeles (2009)
+- New York (2009)
+
+LondonR founded 2009
+
+]
+
+.pull-right-64[
+<img src="BARUG.png" alt="Screenshot of BARUG Meetup page">
+<small> 
+(snapshot in Feb 2009, source: [Wayback Machine](https://web.archive.org/web/20090218051838/http://www.meetup.com/R-Users/))</small>]
+
+---
+
+# R-Bloggers
+
+.pull-left[
+Aggregator of R blogs
+
+- RSS feed
+- Follow via email/Facebook
+
+English only in 2009.
+
+Expanded to other langauges in 2010: Indonesian, Italian, Dutch and Korean.
+
+]
+
+.pull-right-raise[
+<img src="R-bloggers.png" alt="Screenshot of R-bloggers">
+<small> 
+(snapshot in Dec 2009, source: [Wayback Machine](https://web.archive.org/web/20091223103951/http://www.r-bloggers.com/)</small>]
+
+---
+
+# Women in R
+
+.pull-left[
+heR panel at useR! 2014 raised awareness of gender disparity
+
+In 2015:
+  - Myself and Bettina Grün elected to R Foundation
+  - Women in R taskforce set up in December 2015
+]
+
+.pull-right[
+  ![Chair and panelists at the heR panel at useR! 2014](her_panel_and_chair.png)
+  ]
 
 ---
 

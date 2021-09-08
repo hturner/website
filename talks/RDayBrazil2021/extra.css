@@ -28,6 +28,13 @@
   border-bottom: 1px solid #666;
 }
 
+.pull-right-raise {
+  margin-top: -150px;
+  padding: 0;
+  float: right;
+  width: 50%;
+}
+
 .pull-left-64 {
   padding: 0;
   float: left;
@@ -104,9 +111,11 @@ then created, so use css to hide) */
     visibility: hidden;
 }
 
-.twitter-tweet {
+.twitter-tweet-raise {
   margin-top: -100px !important;
 }
+
+
 
 
 

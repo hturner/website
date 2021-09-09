@@ -830,9 +830,9 @@ Some covered: [heatherturner.net/talks/r-community](https://www.heatherturner.ne
 
 <center>
 <img src="welcome_to_rstats_twitter.png" alt="Two fuzzy monsters standing side-by-side outside of a door frame containing different R communities and accounts on Twitter, with a “mind blown” rainbow coming out of the one closest to the door. A welcome mat says “Welcome." style="width:550px">
-<center>
 </center>
-<small><Artwork by @allison_horst </small>
+<center>
+<small>Artwork by @allison_horst </small>
 </center>
 
 

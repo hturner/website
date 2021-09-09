@@ -45,6 +45,17 @@
   width: 30%;
 }
 
+.pull-left-54 {
+  padding: 0;
+  float: left;
+  width: 54%;
+}
+
+.pull-right-40 {
+  float: right;
+  width: 40%;
+}
+
 .pull-right-64 {
   padding: 0;
   float: right;

@@ -22,15 +22,29 @@ layout: true
 
 ---
 
-# Intro
+# About me
 
-.pull-left[
-About me
+.pull-left-64[
+* Started using R in 2001 at start of Statistics PhD
+ - Self-taught - mostly S-Plus resources!
+* Postdoc 2004-2010
+ - Developing R packages
+* Period outside academia 2010-2021
+ - Phamarceutical industry, freelance
+* Return to academia as Research Software Engineer 
+
+Become more involved in R community at each stage!
 
 ]
-.pull-right[
-<img src="heather_turner_500x500.jpg" alt="Dr Heather Turner outside in the sun, smiling. She is a white woman in her 40s with dark straight hair tied back and wears glasses. She is dressed in a business casual shirt" style="width:400px">
+.pull-right-30[
+<img src="splus.jpg">
 ]
+
+---
+
+class: inverse middle
+
+# Development of the R Community
 
 ---
 
@@ -65,6 +79,10 @@ Others start to use R and give feedback.
 .pull-right-30[
 <img src="martin_maechler.png" alt="Martin Maechler" style="height:400px">
 <small>(source: [M. Maechler](https://stat.ethz.ch/~maechler/index-2004.html))</small>]
+
+???
+
+StatLib, a system for distributing statistical software, datasets, and information by electronic mail, FTP and WWW
 
 ---
 
@@ -101,6 +119,15 @@ R developers could submit package to CRAN via FTP.
 <img src="kurt_hornik_2001.jpg" alt="Kurt Hornik" style="height:380px">
 <small>(source: [Museum Unseres Computer Hinterhofs](https://much.isds.tugraz.at/people/by_name/h/hornik_kurt/index.htm/))</small>]
 
+---
+
+# CRAN growth
+
+<center>
+<img src="CRAN_growth.png" alt="Line plot, titled: How many packages are available on CRAN? (Only packages that were still available). From 1997 to 2017, a curve showing approximately exponential growth from 12 packages to over 10,000" style="width:550px"><br>
+1997 - 2017 (source: <a href="https://www.r-bloggers.com/2017/03/scraping-cran-with-rvest">J.Silge</a>)
+</center>
+
 
 ---
 
@@ -118,10 +145,14 @@ R developers could submit package to CRAN via FTP.
 ]
 
 .pull-right[
-<p>
-<blockquote class="twitter-tweet-raise tw-align-right"><p lang="en" dir="ltr">It was twenty years ago today, Ross Ihaka got the band to play.... <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/msSpPz2kyA">pic.twitter.com/msSpPz2kyA</a></p>&mdash; Peter Dalgaard (@pdalgd) <a href="https://twitter.com/pdalgd/status/897735023427801088?ref_src=twsrc%5Etfw">August 16, 2017</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p style="margin-top: -150px">
+<blockquote class="twitter-tweet tw-align-right"><p lang="en" dir="ltr">It was twenty years ago today, Ross Ihaka got the band to play.... <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/msSpPz2kyA">pic.twitter.com/msSpPz2kyA</a></p>&mdash; Peter Dalgaard (@pdalgd) <a href="https://twitter.com/pdalgd/status/897735023427801088?ref_src=twsrc%5Etfw">August 16, 2017</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 ]
+
+???
+
+CVS: Concurrent Versioning System
 
 ---
 
@@ -160,6 +191,13 @@ Also John Chambers, R Core from 2000
 <small> 
 (credit Doug Bates, source: [DSC 1999](http://www.ci.tuwien.ac.at/Conferences/DSC-1999/doug-photos/20.html))</small>]
 
+???
+
+John Chambers creator of the S language
+28 people at DSC altogether
+Not just about R!
+biennial conference series from 1999 to 2009
+
 ---
 
 # R 1.0.0
@@ -179,15 +217,6 @@ Now ~50 packages, e.g.
 <img src="R-1.0.0.jpg" alt="CD of R version 1.0.0, signed by members of the R Core team">
 <small> 
 (source: [R Foundation](https://twitter.com/_R_Foundation/status/1233671896144793600))</small>]
-
----
-
-# CRAN growth
-
-<center>
-<img src="CRAN_growth.png" alt="Line plot, titled: How many packages are available on CRAN? (Only packages that were still available). From 1997 to 2017, a curve showing approximately exponential growth from 12 packages to over 10,000" style="width:550px"><br>
-1997 - 2017 (source: <a href="https://www.r-bloggers.com/2017/03/scraping-cran-with-rvest">J.Silge</a>)
-</center>
 
 ---
 
@@ -227,7 +256,7 @@ Further members added by majority vote, currently
 # useR!
 
 .pull-left[
-2004: Inauguaral conference
+2004: Inaugural conference
 
 ~ 200 participants
 
@@ -256,7 +285,7 @@ Home cities of useR! 2004 participants, redrawn map [original by Roger Bivand](h
 # Internationalization of R
 
 .pull-left[
-2005: Support for Localization in R 2.1.0
+2005: Support for localization in R 2.1.0
 
  - messages, error and warning messages
  - menu labels in the GUIs
@@ -389,7 +418,7 @@ Later:
 ]
 .pull-right[
 <img src="rOpenSci-oldlogo.png" alt="" style="width:550px">
-<small> rOpenSci old logo </small>
+<small> (rOpenSci's logo at the time, later updated) </small>
 ]  
 
 ---
@@ -482,6 +511,22 @@ Later: Twin Cities, Taipei, London
 
 ---
 
+# R Community Explorer
+
+https://benubah.github.io/r-community-explorer
+
+.pull-left[
+<img src="rugs.png" alt="" style="width:500px">
+RUGS: > 100 in Latin America
+]
+.pull-right[
+<br>
+<img src="rladies_groups.png" alt="" style="width:500px">
+R-Ladies: ~55 in  Latin America
+] 
+
+---
+
 # satRdays
 
 .pull-left[
@@ -494,10 +539,16 @@ Later: Twin Cities, Taipei, London
 - 6 in Africa
 - 1 in S. America, Asia, Oceania
 
+[https://satRdays.org/](https://satRdays.org/)
 ]
 .pull-right[
 <img src="satRday-logo.png" alt="" style="width:400px">
 ] 
+
+???
+
+free/low-cost
+locally organized
 
 ---
 
@@ -512,7 +563,7 @@ Later: Twin Cities, Taipei, London
  - Calls for participation
  - Upcoming events
  
- 
+[rweekly.org/](https://rweekly.org/)
 
 ]
 .pull-right[
@@ -552,7 +603,9 @@ Online learning community
  
 Slack now has ~10,000 members
 
-Scope of group now expanded beyond book
+Scope of group now expanded
+
+[rfordatasci.com](https://www.rfordatasci.com/)
 
 ]
 .pull-right[
@@ -572,6 +625,8 @@ Focused initially on
  - RStudio IDE
  
 Now expanded to include R in production, teaching, package development 
+
+[community.rstudio.com](https://community.rstudio.com/)
 
 ]
 .pull-right-raise[
@@ -619,21 +674,22 @@ India:
 
 # AfricaR
 
->  Our mission is to achieve improved representation by encouraging, inspiring, 
-and empowering the African population of all genders who are underrepresented 
-in the global R community.
+
 
 .pull-left-30[
 <center>
-<img src="africar.png" alt="" style="width:250px">
+<img src="africar.png" alt="" style="width:300px">
 </center>
 ]
 
 .pull-right-64[
-So far: 
+Established 2019
+
+Expanded leadership team 2020 (9 countries)
+
 - Connect R Users from different regions
 - Established several R User Groups
-- Organized 2 satRday conferences
+- Organized 6 satRday conferences
 
 [@AfricaRUsers](https://twitter.com/AfricaRUsers) / [africa-r.org](https://africa-r.org/)
 ]
@@ -658,21 +714,22 @@ Repeated useR! 2019, rstudio::conf(2020)
 
 # Minorities in R (MiR)
 
-.pull-left[
+.pull-left-54[
 2020: Founded by Danielle Smalls-Perkins and Dorris Scott
 
 - Conference support
- - Mi-useR Slack
- - Social media and blog posts
- - Mi-useR directory
- - MiR dev days
- 
- https://mircommunity.com/
+- Mi-useR Slack
+- Social media and blog posts
+- Mi-useR directory
+- MiR dev days
+
+[@miR_community](https://twitter.com/miR_community) / [mircommunity.com](https://mircommunity.com/)
+]
 ]
 
-.pull-right[
-<p>
-<blockquote class="twitter-tweet-raise tw-align-right"><p lang="en" dir="ltr">Dear Danielle,<br><br>Remember these incredibly brilliant, talented, and kind women data scientists whenever you feel like “the only one,” on a team or in a space. Thanks to <a href="https://twitter.com/hashtag/rstudioconf2020?src=hash&amp;ref_src=twsrc%5Etfw">#rstudioconf2020</a> for bringing us together! <a href="https://twitter.com/hashtag/rladies?src=hash&amp;ref_src=twsrc%5Etfw">#rladies</a> <a href="https://t.co/sA312EibH5">pic.twitter.com/sA312EibH5</a></p>&mdash; Danielle Smalls-Perkins (@smallperks) <a href="https://twitter.com/smallperks/status/1222380156347547649?ref_src=twsrc%5Etfw">January 29, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+.pull-right-40[
+<p style="margin-top: -150px">
+<blockquote class="twitter-tweet tw-align-right"><p lang="en" dir="ltr">Dear Danielle,<br><br>Remember these incredibly brilliant, talented, and kind women data scientists whenever you feel like “the only one,” on a team or in a space. Thanks to <a href="https://twitter.com/hashtag/rstudioconf2020?src=hash&amp;ref_src=twsrc%5Etfw">#rstudioconf2020</a> for bringing us together! <a href="https://twitter.com/hashtag/rladies?src=hash&amp;ref_src=twsrc%5Etfw">#rladies</a> <a href="https://t.co/sA312EibH5">pic.twitter.com/sA312EibH5</a></p>&mdash; Danielle Smalls-Perkins (@smallperks) <a href="https://twitter.com/smallperks/status/1222380156347547649?ref_src=twsrc%5Etfw">January 29, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 ]
 
@@ -765,7 +822,7 @@ Were you able to interact with other people during the conference?
 - Specialized communities: Blind R User Group, NHS Community, HumanitaRian useR group, R Epidemics Consortium, ...
 - R learning resources: tutorials, podcasts
 - General resources: Stackoverflow, GitHub, ...
-- Other organizations: Why R? Foundation
+- Other organizations: Why R? Foundation, Bioconductor
 
 Some covered: [heatherturner.net/talks/r-community](https://www.heatherturner.net/talks/r-community/#1)
 

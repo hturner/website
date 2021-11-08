@@ -50,7 +50,7 @@ Similar over-representation of men in general user community
 diversity in the R community.
 
 .pull-left-30[
-![R-Ladies logo, the R logo with a purple R and "Ladies" underneath](original/rladies-logo.png)
+![R-Ladies logo, the R logo with a purple R and "Ladies" underneath](rladies-logo.png)
 ]
 .pull-right-64[
 * Local chapters

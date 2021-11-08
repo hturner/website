@@ -28,6 +28,11 @@
   border-bottom: 1px solid #666;
 }
 
+.center-64 {
+  padding: 0;
+  width: 64%;
+}
+
 .pull-left-64 {
   padding: 0;
   float: left;

@@ -1,7 +1,7 @@
 ---
 title: "The Development of the R Community"
 author: <span style="font-size:40px;font-weight:600">Heather Turner<br> Research Software Engineering Fellow<br>University of Warwick</span>
-date: '`r fontawesome::fa("twitter")` [\@HeathrTurnr](https://twitter.com/heathrturnr)<br><br>9 September 2021<br><br><span style="font-size:50px;font-weight:600";>`r fontawesome::fa("link")` [heatherturner.net/talks/RDayBrazil2021](heatherturner.net/talksSeptembRSE2021)</span>'
+date: '`r fontawesome::fa("twitter")` [\@HeathrTurnr](https://twitter.com/heathrturnr)<br><br>9 September 2021<br><br><span style="font-size:50px;font-weight:600";>`r fontawesome::fa("link")` [heatherturner.net/talks/RDayBrazil2021](heatherturner.net/talks/RDayBrazil2021)</span>'
 output:
   xaringan::moon_reader:
     css: ["libs/remark-css-0.0.1/default.css", "extra.css"]

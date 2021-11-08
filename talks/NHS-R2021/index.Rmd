@@ -1,0 +1,335 @@
+---
+title: "Supporting Equality, Diversity and Inclusion in the R Community"
+author: <span style="font-size:40px;font-weight:600">Heather Turner<br> Research Software Engineering Fellow<br>University of Warwick</span>
+date: '`r fontawesome::fa("twitter")` [\@HeathrTurnr](https://twitter.com/heathrturnr)<br><br>10 November 2021<br><br><span style="font-size:50px;font-weight:600";>`r fontawesome::fa("link")` [heatherturner.net/talks/NHS-R2021](heatherturner.net/talks/NHS-R2021)</span>'
+output:
+  xaringan::moon_reader:
+    css: ["libs/remark-css-0.0.1/default.css", "extra.css"]
+    keep_md: true
+    nature:
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      highlightStyle: googlecode
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+always_allow_html: yes      
+
+---
+
+layout: true
+
+.footer[`r fontawesome::fa("link")` [heatherturner.net/talks/NHS-R2021](https://www.heatherturner.net/talks/NHS-R2021)  &nbsp; `r fontawesome::fa("twitter")` [@HeathrTurnr](https://twitter.com/heathrturnr)]
+
+---
+
+# Gender Diversity
+
+.pull-left[![Bar chart of random sample of CRAN maintainers by self-identified gender: 10.9% Woman, 88.2% Man, 0.1% Non-binary, 0.7% NA](pinto_et_al_2018_gender_plot2.png)
+]
+.pull-right[
+Similar over-representation of men in general user community
+
+* [R Consortium Survey, 2017](https://blog.revolutionanalytics.com/downloads/Voice%20of%20R%20Community.pdf) <br>\> 80%
+* [RStudio R Community Survey 2020](R Community Survey) ~80%
+
+]
+
+---
+
+# Geographical Diversity
+
+.center-64[
+<img src="pinto_et_al_2018_loc_plot2.png" alt="Bar chart of random sample of CRAN maintainers by self-identified region: 48.9% Europe, 34.2% America, 5.9% Asia, 5.6% South America, 4.1% Oceania, 0.5% Africa, 0.4% Central America, 0.4% NA">
+]
+
+---
+
+# R-Ladies
+
+> R-Ladies is a worldwide organization whose mission is to promote gender
+diversity in the R community.
+
+.pull-left-30[
+![R-Ladies logo, the R logo with a purple R and "Ladies" underneath](original/rladies-logo.png)
+]
+.pull-right-64[
+* Local chapters
+* R-Ladies Remote ([@RLadiesRemote](https://twitter.com/rladiesremote))
+* R-Ladies directory
+* Community slack
+* [Abstract review for conferences](https://docs.google.com/forms/d/e/1FAIpQLSck8FBjNWjziI8pPIoCBlf5J4oQ_6pzeUdbQ1HjYfJ2bNDwDw/viewform)
+* [@RLadiesGlobal](https://twitter.com/RLadiesGlobal), [@WeAreRLadies](https://twitter.com/WeAreRLadies)
+* [rladies.org](https://rladies.org/)
+]
+
+---
+
+# R-Ladies Growth
+
+Currently 216 Chapters (source: [R Community Explorer](https://benubah.github.io/r-community-explorer))
+![Growth of R-Ladies from October 2012 to October 2021: single numbers up to late 2016 then steady increase up to ](rladies-growth.png)
+
+---
+
+# R Ladies Global Team
+
+.center[
+.img-100[![](claudia.jpg)]
+.img-100[![](erin.jpg)]
+.img-100[![](hannah.jpg)]<br>
+.img-100[![](mo-150x150.png)]
+.img-100[![](batool_almarzouq-300x300.jpg)]
+.img-100[![](bea.jpg)]
+.img-100[![](Christin.jpg)]
+.img-100[![](florencia.jpg)]
+.img-100[![](jennifer.jpg)]
+.img-100[![](Katherine-147x150.jpg)]
+.img-100[![](maelle-300x298.png)]<br>
+.img-100[![](mouna_belaid-300x300.jpg)]
+.img-100[![](Nadejda-Sero-150x150.jpg)]
+.img-100[![](noa_tamir-300x300.jpg)]
+.img-100[![](page.jpg)]
+.img-100[![](Patricia_A_Loto-150x150.jpg)]
+.img-100[![](Saranjeet-Kaur-Bhogal-150x150.jpg)]
+.img-100[![](sheila.jpg)]
+.img-100[![](yanina-300x300.jpg)]
+<small>
+<br>Claudia Vitolo, Erin LeDell, Hannah Frick <br>
+Athanasia Monika Mowinckel, Batool Almarzouq, Bea Hernández, Christin Zasada, Florencia D’Andrea, Jennifer Thompson, Katherine Simeon, Maëlle Salmon, Mouna Belaid, Nadeja Sero, Noa Tamir, Page Piccinini, Patricia A. Loto, Saranjeet Kaur Bhogal, Sheila Saia, Yanina Bellini Saibene</small>
+]
+
+---
+
+# R-Ladies vs RUGS
+
+* 858 RUGS on Meetup.com (earliest 2008)
+* R-Ladies relatively stronger in Latin America
+
+.pull-left[
+![Number of R-Ladies groups per region: US/Canada 59, Europe 57, Latin America 59, Australia 10, Asia 19, Africa 12](rladies-loc2.png)
+]
+.pull-right[
+![Number of R user groups per region: US/Canada 292, Europe 279, Latin America 111, Australia 36, Asia 97, Africa 43](rugs-loc2.png)
+]
+
+---
+
+# R Girls School
+
+> A worldwide network to promote the use of R in secondary schools for girls
+
+.pull-left[
+![Handwritten note: "First R lesson I loved it"](first-R-lesson.jpg)
+]
+
+.pull-right[
+* Led by Green Oak Academy, Birmingham, UK
+* R markdown based lessons
+* Ages 11-16
+* [@R_Girls_School](https://twitter.com/R_Girls_School)
+![R Girls School logo, a pink R with a ring of pink flowers behind it](r-girls-school-logo-wide.jpg)
+]
+
+---
+
+# Regional Networks
+
+.pull-left[
+![Hex logos of LatinR (a blue hex with "LATINR" and horizontal bars in approximate shape of Latin America in white), AfricaR (black chloropleth of Africa with "Africa" in white and R logo on top, with orange to purple gradient in background) and a temporary placeholder for AsiaR hex logo ("AsiaR" in red on white hex with red border)](regional.jp
+g)
+]
+.pull-right[
+* [@LatinR_Conf](https://twitter.com/LatinR_Conf) / [LatinR](https://latin-r.com/) 
+    * Conference and Slack
+* [@AfricaRUsers](https://twitter.com/AfricaRUsers) / [africa-r.org](https://africa-r.org/)
+    * Support new user groups
+    * satRday conferences
+* AsiaR
+    * Support new user groups
+    * Promote local conferences, e.g. JapanR, Korea R conference
+    * Plan for AsiaR 2023/24
+]
+
+---
+
+# Regional Leaders
+
+.center[
+.img-100[![](florencia.jpg)]
+.img-100[![](lacion-150x150.jpg)]
+.img-100[![](natalia.jpg)]
+.img-100[![](riva.jpg)]
+.img-100[![](yanina-300x300.jpg)]<br>
+<small> LatinR chairs: Florencia D'Andrea, Laura Ación, Natalia da Silva, Riva Quiroga, Yanina Bellini Saibene<br>
+.img-100[![](shel.jpg)]
+.img-100[![](ahmadou.jpg)]
+.img-100[![](Nelda.jpg)]
+.img-100[![](anicet.jpg)]
+.img-100[![](vebash.jpg)]
+.img-100[![](dennis.jpg)]
+.img-100[![](mohammed.jpg)]<br>
+AfricaR leaders: Shelmith Kariuki, Ahmadou Dicko, Nelda Limilimi, Anicet Ebou, <br>Vebashini Naidoo, Dennis Irorere, Mohammed Ibrahim Ali<br> 
+.img-100[![](janani.jpg)]
+.img-100[![](adithi.jpg)]<br>
+AsiaR founders: Janani Ravi, Adithi Upadhya
+]
+    
+---
+
+# Minorities in R
+
+> MiR Community aims to support historically underrepresented R users around the world.
+.pull-left[
+![Minorities in R logo, "MiR" in the middle on a green background surrounded by hands of various skin colours typing on keyboards](mir_logo2.png)
+]
+.pull-right[
+- MiR community Slack
+- Blog
+- Webinars and tutorials
+- Support RStudio instructor certification
+
+[@miR_community](https://twitter.com/miR_community) / [mircommunity.com](https://mircommunity.com/)
+]
+
+---
+
+# MiR Team
+
+.center[
+.img-100[![](danielle.jpg)]
+.img-100[![](dorris.jpg)]<br>
+Co-founders: Danielle Smalls-Perkins, Dorris Scott<br><br>
+.img-100[![](silvia.jpg)]
+.img-100[![](liz.jpg)]
+.img-100[![](audris.jpg)]
+.img-100[![](andy.jpg)]
+.img-100[![](meenakshi.jpg)]
+.img-100[![](zaynaib_ola.jpg)]<br>
+Silvia Canelón, Liz Hare, Audris Campbell, <br>Andy Murtha, Meenakshi Kushwaha, Ola Giwa
+]
+
+---
+
+# Forwards
+
+.pull-left-30[
+<br>
+.center[.img-300[![](forwards-logo.png)]]
+] 
+.pull-right-64[Widening participation in R Foundation activities: <br>*useR!*, *R Journal*, CRAN, R project
+- Accessibility
+- Community
+- Conferences
+- On-ramps
+- Surveys
+- Teaching
+
+[@R_Forwards](https://twitter.com/R_Forwards) / [forwards.github.io](https://forwards.github.io/)
+]
+
+---
+
+# Forwards Team
+
+.center[
+.img-100[![](heather.jpg)]
+.img-100[![](gwynn.jpg)]
+.img-100[![](jonathan.jpg)]
+.img-100[![](noa_tamir-300x300.jpg)]
+.img-100[![](yanina-300x300.jpg)]<br>
+.img-100[![](Saranjeet-Kaur-Bhogal-150x150.jpg)]
+.img-100[![](michael_lawrence.jpg)]
+.img-100[![](anna.jpg)]
+.img-100[![](andrea.jpg)]
+.img-100[![](mine.jpg)]
+.img-100[![](emma.jpg)]<br>
+<small>Core Team: Heather Turner, gwynn sturdevant, Jonathan Godfrey, Noa Tamir, Yanina Bellini Saibene,
+Saranjeet Kaur, Michael Lawrence, Anna Vasylytsya, Andrea Sánchez-Tapia, <br> Mine Çetinkaya-Rundel, Emma Rand </small>
+
+Plus >20 sub-team members!
+]
+
+---
+
+# R Contribution Working Group
+
+Aim to foster larger, more diverse community of contributors to the R project.
+
+Range of ways to contribute to R development:
+.pull-left-30[
+- Report a bug
+- Confirm a bug
+]
+.pull-left-30[
+- Contribute a message translation
+- Contribute a minor fix
+- Test a pre-release version of R
+]
+.pull-left-30[
+- Contribute a substantial fix 
+- Implement a new feature
+]
+
+
+---
+
+# RCWG Initiatives
+
+So far:
+
+ - Created the R Contribution Site: [forwards.github.io/rcontribution/](https://forwards.github.io/rcontribution/)
+ - Set up the [R-Devel Slack](https://forwards.github.io/rcontribution/slack)
+ - Developed a draft version of the [R Development Guide](https://forwards.github.io/rdevguide)
+ - Organized, prepared and delived two contributor-focused tutorials at *useR! 2021*
+     - [Contributing to R](https://youtu.be/CZmldTOdlRM?list=PL4IzsxWztPdnCC_kMCYKrd_t6cViMhBrD)
+     - [Translating R to your language](https://forwards.github.io/rcontribution/tutorials#translating-r-to-your-language)
+     
+Next: more events to support novice contributors.
+
+---
+
+# RCWG participants
+
+.pull-left[
+.img-100-float[![](Saranjeet-Kaur-Bhogal-150x150.jpg)] 
+Saranjeet Kaur<br> *R Development Guide* <br><br>
+.img-100-float[![](lluis.jpg)] 
+Lluís Revilla Sancho<br> *R Bugzilla analysis*<br><br>
+.img-100-float[![](michael_chirico.jpg)] 
+.img-100-float-next[![](michael_lawrence.jpg)] 
+Michael Chirico<br>
+Michael Lawrence *Translations tutorial*
+]
+.pull-right[
+.img-100-float[![](kara.jpg)] 
+Kara Woo<br> *R-Ladies link, RWeekly<br>Slack moderator* <br>
+.img-100-float[![](gwynn.jpg)] 
+gwynn sturdevant<br> *MiR link*<br><br>
+.img-100-float[![](gabe.jpg)] 
+.img-100-float-next[![](martin.jpg)] 
+Gabriel Becker<br>
+Martin Mächler *Contributing tutorial*
+]
+
+<br>
+Plus several others joining meetings, contributing via [github.com/forwards/rcontribution](https://github.com/forwards/rcontribution)
+
+---
+
+# Get Involved
+
+- Stay informed, share opportunities
+    - Twitter ([@RLadiesGlobal](https://twitter.com/RLadiesGlobal), [@miR_community](https://twitter.com/miR_community),[@R_Forwards](https://twitter.com/R_Forwards), ...)
+    - Blogs ([blog.rladies.org](https://blog.rladies.org/), [mircommunity.com/blog](https://mircommunity.com/blog), [forwards.github.io/blog](https://forwards.github.io/blog))
+- Visit community/working group websites to join in
+  - Slack groups, meetups/webinars, initiatives
+- Offer to speak (reuse NHS-R talk?)
+- Make sure colleagues/friends know what groups are out there
+
+---
+
+.center[
+<img src="welcome_to_rstats_twitter.png" alt="Two fuzzy monsters standing side-by-side outside of a door frame containing different R communities and accounts on Twitter, with a “mind blown” rainbow coming out of the one closest to the door. A welcome mat says “Welcome." style="width:500px"><br>
+<small>Artwork by [@allison_horst](https://twitter.com/allison_horst) </small>
+]
+

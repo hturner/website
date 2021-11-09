@@ -144,7 +144,7 @@ g)
 * [@AfricaRUsers](https://twitter.com/AfricaRUsers) / [africa-r.org](https://africa-r.org/)
     * Support new user groups
     * satRday conferences
-* AsiaR
+* AsiaR ([Slack](https://bit.ly/join_asiaR_slack))
     * Support new user groups
     * Promote local conferences, e.g. JapanR, Korea R conference
     * Plan for AsiaR 2023/24

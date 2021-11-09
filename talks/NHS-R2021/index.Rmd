@@ -235,6 +235,8 @@ Silvia Canelón, Liz Hare, Audris Campbell, <br>Andy Murtha, Meenakshi Kushwaha,
 .img-100[![](heather.jpg)]
 .img-100[![](gwynn.jpg)]
 .img-100[![](jonathan.jpg)]
+.img-100[![](richard.jpg)]
+.img-100[![](kevin.jpg)]
 .img-100[![](noa_tamir-300x300.jpg)]
 .img-100[![](yanina-300x300.jpg)]<br>
 .img-100[![](Saranjeet-Kaur-Bhogal-150x150.jpg)]
@@ -243,8 +245,8 @@ Silvia Canelón, Liz Hare, Audris Campbell, <br>Andy Murtha, Meenakshi Kushwaha,
 .img-100[![](andrea.jpg)]
 .img-100[![](mine.jpg)]
 .img-100[![](emma.jpg)]<br>
-<small>Core Team: Heather Turner, gwynn sturdevant, Jonathan Godfrey, Noa Tamir, Yanina Bellini Saibene,
-Saranjeet Kaur, Michael Lawrence, Anna Vasylytsya, Andrea Sánchez-Tapia, <br> Mine Çetinkaya-Rundel, Emma Rand </small>
+<small>Core Team: Heather Turner, gwynn sturdevant, Jonathan Godfrey, Richard Ngamita, Kevin O'Brien, <br> Noa Tamir, Yanina Bellini Saibene,
+Saranjeet Kaur, Michael Lawrence, Anna Vasylytsya, <br> Andrea Sánchez-Tapia, Mine Çetinkaya-Rundel, Emma Rand </small>
 
 Plus >20 sub-team members!
 ]

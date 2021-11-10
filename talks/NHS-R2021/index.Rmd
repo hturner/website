@@ -84,7 +84,7 @@ Currently 216 Chapters (source: [R Community Explorer](https://benubah.github.io
 .img-100[![](florencia.jpg)]
 .img-100[![](jennifer.jpg)]
 .img-100[![](Katherine-147x150.jpg)]
-.img-100[![](maelle-300x298.png)]<br>
+.img-100[![](maelle-300x298.jpg)]<br>
 .img-100[![](mouna_belaid-300x300.jpg)]
 .img-100[![](Nadejda-Sero-150x150.jpg)]
 .img-100[![](noa_tamir-300x300.jpg)]

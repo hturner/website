@@ -1,0 +1,12 @@
+﻿,Estimate,Std. Error,z value,Pr(>|z|)
+(Intercept),-5.052388,0.063708,-79.305,< 2e-16
+age9,0.063571,0.001221,52.084,< 2e-16
+"Dref(mnssec9, mnssec0)delta1",0,NA,NA,NA
+"Dref(mnssec9, mnssec0)delta2",-0.481034,0.112211,-4.287,1.81e-05
+"Dref(., .).mnssec9|mnssec0high man/pro",0,NA,NA,NA
+"Dref(., .).mnssec9|mnssec0low man/pro",0.446765,0.053225,8.394,< 2e-16
+"Dref(., .).mnssec9|mnssec0intermed",1.001239,0.063136,15.858,< 2e-16
+"Dref(., .).mnssec9|mnssec0small empl/own ac",0.744878,5.24E-02,14.227,< 2e-16
+"Dref(., .).mnssec9|mnssec0low sup/tech",0.945572,0.053376,17.715,< 2e-16
+"Dref(., .).mnssec9|mnssec0semi-routine",1.271671,0.053763,23.653,< 2e-16
+"Dref(., .).mnssec9|mnssec0routine",1.472374,0.049871,29.524,< 2e-16

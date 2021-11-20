@@ -1,0 +1,11 @@
+﻿,Estimate,Std. Error,z value,Pr(>|z|)
+age9,0.063571,0.001221,52.084,< 2e-16
+"Dref(mnssec9, mnssec0)delta1",0,NA,NA,NA
+"Dref(mnssec9, mnssec0)delta2",-0.481034,0.112211,-4.287,1.81e-05
+"Dref(., .).mnssec9|mnssec0high man/pro",-5.052388,0.063708,-79.305,NA
+"Dref(., .).mnssec9|mnssec0low man/pro",-4.605623,0.055264,-83.339,< 2e-16
+"Dref(., .).mnssec9|mnssec0intermed",-4.05115,0.062986,-64.318,< 2e-16
+"Dref(., .).mnssec9|mnssec0small empl/own ac",-4.30751,0.05705,-75.504,< 2e-16
+"Dref(., .).mnssec9|mnssec0low sup/tech",-4.106816,0.055572,-73.901,< 2e-16
+"Dref(., .).mnssec9|mnssec0semi-routine",-3.780717,0.054812,-68.977,< 2e-16
+"Dref(., .).mnssec9|mnssec0routine",-3.580014,0.052253,-68.513,< 2e-16

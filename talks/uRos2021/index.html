@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Structured Effects with Generalized Nonlinear Models</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Heather Turner  Research Software Engineering Fellow University of Warwick" />
+    <script src="index_files/header-attrs-2.10/header-attrs.js"></script>
+    <script src="index_files/kePrint-0.0.1/kePrint.js"></script>
+    <link href="index_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/remark-css-0.0.1/default.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Structured Effects with Generalized Nonlinear Models
+### <span style="font-size:40px;font-weight:600">Heather Turner<br> Research Software Engineering Fellow<br>University of Warwick</span>
+### <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> <a href="https://twitter.com/heathrturnr">@HeathrTurnr</a><br><br>24 November 2021<br><br>&lt;span style=“font-size:50px;font-weight:600”;&gt;<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg> <a href="heatherturner.net/talks/uRos2021">heatherturner.net/talks/uRos2021</a></span>
+
+---
+
+
+layout: true
+
+.footer[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg> [heatherturner.net/talks/uRos2021](https://www.heatherturner.net/talks/uRos2021)  &amp;nbsp; <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> [@HeathrTurnr](https://twitter.com/heathrturnr)]
+
+
+
+
+---
+
+# Overview
+
+* Introduction to Generalized Nonlinear Models and the `gnm` package
+
+* Case study of a structured main effect:
+    
+    *Modelling the Consequences of Social Mobility with the Diagonal Reference Model*
+    
+* Case study of a structured interaction:
+
+    *Modelling Mortality Trends with the Lee-Carter Model*
+    
+---
+
+class: inverse middle
+
+# Introduction to GNMs and the &lt;tt&gt;gnm&lt;/tt&gt; package
+    
+---
+
+# Linear models?
+
+So no what linear vs nonlinear means
+
+---
+
+# Generalized linear models
+
+Problems with linear models in many applications:
+
+* range of `\(y\)` is restricted (e.g., `\(y\)` is a count, or is binary, or is a
+duration)
+* effects are not additive
+* variance depends on mean (e.g., large mean `\(\Rightarrow\)` large variance)
+
+*Generalized* linear models specify a non-linear *link function* and *variance
+function* to allow for such things, while maintaining the simple
+interpretation of linear models.
+
+---
+
+# GLM structure
+
+A GLM is made up of a *linear predictor*
+
+`$$\eta = \beta_0 + \beta_1 x_{1} + ... + \beta_p x_{p}$$`
+
+a *link function* that describes how `\(E(Y) = \mu\)` depends on `\(\eta\)`
+
+`$$g(\mu) = \eta$$`
+
+a *variance function* that describes how `\(\text{Var}(Y)\)` depends on `\(\mu\)`
+
+`$$\text{Var}(Y) = \phi a_i V(\mu)$$`
+
+where the *dispersion parameter* `\(\phi\)` is a constant and `\(a_i\)` are known values.
+
+---
+
+# Logistic regression `\(\newcommand{\stext}[1]{{\style{font-family:inherit}{\text{#1}}}}\)`
+
+Suppose proportions `\(Y_i/n_i\)` with `\(Y_i \sim \text{Binomial}(n_i, p_i)\)`. Then 
+
+$$
+`\begin{align*}
+    E(Y_i/n_i) &amp;= p_i &amp; \text{Var}(Y_i/n_i) = \frac{1}{n_i}p_i(1 - p_i)
+\end{align*}`
+$$
+
+The variance function is
+
+`$$V(\mu_i) = \mu_i(1 - \mu_i)$$`
+Using a logit link maps the mean from `\((0,1)\)` to `\((-\infty,\infty)\)`
+`$$g(\mu_i) = \text{logit}(\mu_i)=\log\left(\frac{\mu_i}{1 - \mu_i}\right)$$`
+
+
+---
+
+
+# Log-linear model
+
+Suppose counts `\(Y_i \sim \text{Poisson}(\lambda_i)\)`. Then
+
+$$
+`\begin{align*}
+    E(Y_i) &amp;= \lambda_i &amp; \text{Var}(Y_i) = \lambda_i
+\end{align*}`
+$$
+
+The variance function is
+
+`$$V(\mu_i) = \mu_i$$`
+Using a log link maps the mean from `\((0,\infty)\)` to `\((-\infty,\infty)\)`
+
+`$$g(\mu_i) = \log(\mu_i)$$`
+---
+
+# Generalized Nonlinear Models
+
+A generalized nonlinear model (GNM) is the same as a GLM except that we have
+
+`$$g(\mu) = \eta(x; \beta)$$`
+
+where `\(\eta(x; \beta)\)` is nonlinear in the parameters `\(\beta\)`.
+
+Equivalently an extension of nonlinear least squares model, where the
+variance of `\(Y\)` is allowed to depend on the mean.
+
+Using a nonlinear predictor can produce a more parsimonious and
+interpretable model.
+
+---
+.pull-left-45[
+# Example: Mental Health Status
+
+A study of 1660 children from Manhattan recorded their mental impairment and
+parents' socioeconomic status [@Agre02]
+
+
+```r
+library(vcd)
+mosaic(mentalHealth)
+```
+
+]
+
+.pull-right-54-raise[
+![](index_files/figure-html/mentalHealth-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Independence
+
+A simple analysis of these data might be to test for independence of MHS and SES using a chi-squared test.
+
+Equivalent to testing goodness-of-fit of the independence model
+`$$\log(\mu_{rc}) = \alpha_r + \beta_c$$`
+
+Such a test compares the independence model to the saturated model
+
+`$$\log(\mu_{rc}) = \alpha_r + \beta_c + \gamma_{rc}$$`
+which may be over-complex.
+
+---
+
+# Row-column Association
+    
+One intermediate model is the Row-Column association model:
+
+`$$\log(\mu_{rc}) = \alpha_r + \beta_c + \phi_r\psi_c$$`
+@Good79a, an example of a multiplicative interaction model.
+
+For the mental health data:
+
+```
+Analysis of Deviance Table
+
+Model 1: Freq ~ SES + MHS
+Model 2: Freq ~ SES + MHS + Mult(SES, MHS)
+Model 3: Freq ~ SES + MHS + SES:MHS
+  Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)
+1        15       47.4                     
+2         8        3.6  7     43.8  2.3e-07
+3         0        0.0  8      3.6     0.89
+```
+
+---
+
+# &lt;tt&gt;gnm&lt;/tt&gt; R package
+
+* Provides a framework for specifying, fitting and criticizing GNMs in R
+* Designed to be `glm`-like
+    * common arguments, returned objects, methods, etc
+    * equivalent results for linear predictors
+* For `family = gaussian` equivalent to `nls` fit.
+
+---
+
+# Model Specification
+
+* Linear terms in the model may be specified in the usual way, e.g.
+
+```r
+y ∼ a + b + a:b
+```
+
+* Nonlinear terms must be specified using functions of class
+`"nonlin"`
+ * specify structure of term, possible also labels &amp; starting values
+ * provided functions: Exp, Inv, Mult, MultHomog, Dref
+ * custom functions
+ 
+---
+
+
+```r
+RCmod &lt;- gnm(Freq ~ SES + MHS + Mult(SES, MHS), family = poisson, 
+             data = mentalHealth, verbose = FALSE, ofInterest = "Mult")
+coef(RCmod)
+```
+
+```
+Coefficients of interest:
+       Mult(., MHS).SESA        Mult(., MHS).SESB        Mult(., MHS).SESC 
+                 0.37314                  0.37649                  0.10062 
+       Mult(., MHS).SESD        Mult(., MHS).SESE        Mult(., MHS).SESF 
+                -0.04575                 -0.40728                 -0.70431 
+    Mult(SES, .).MHSwell     Mult(SES, .).MHSmild Mult(SES, .).MHSmoderate 
+                 0.76609                  0.07004                 -0.05557 
+Mult(SES, .).MHSimpaired 
+                -0.63370 
+```
+---
+
+# Parameterisation in (G)LMs
+
+The independence model was defined in an over-parameterised
+form:
+
+$$
+`\begin{align*}
+\log(\mu_{rc}) &amp;= \alpha_r + \beta_c \\
+               &amp;= (\alpha_r + 1) + (\beta_c - 1) \\
+               &amp;= \alpha_r^* + \beta_c^*
+\end{align*}`
+$$
+
+`glm` will impose identifiability constraints, by default `\(\alpha_1 = \beta_1 = 0\)`
+
+---
+
+# Parameterisation in (G)NMs
+
+In the Row-Column Association model
+
+$$
+`\begin{align*}
+\alpha_r + \beta_r + \phi_r\psi_c &amp;= \alpha_r + (\beta_r - \psi_c) + (\phi_r + 1)\psi_c\\
+&amp;= \alpha_r + \beta_r + (2\phi_r)(\psi_c/2)
+\end{align*}`
+$$
+
+We need to constrain both location and scale for identifiability.
+
+`gnm` works with overparameterised models
+ - will return one of infinite parameterisations at random
+ - by default, nonlinear parameters are not identifiable: standard error `NA`
+ - constrain parameters of interest, as required
+
+---
+
+class: inverse middle
+
+# Case study: Diagonal Reference Model
+
+---
+
+# Background
+
+Data from the ONS Longitudinal Survey, which links census and vital event data 
+for 1% of the  population of England and Wales. 
+
+Objective is to study the effect of social mobility on long-term limiting illness (LLTI)
+
+&gt; *a long-standing illness, health problem or handicap that limits a person's
+activities or the work they can do*
+
+Data include
+ * National Statistics socio-economic classification (7 classes, high man/prof to routine) in 1991 (origin) and 2001 (destination).
+ * Age, gender
+
+---
+
+# Bartley &amp; Plewis Models
+  
+@Bart07 modelled trajectories by combining social mobility effects with origin or destination effects.
+
+For example the origin + mobility model includes the term
+$$
+\theta_{ij} = 
+`\begin{cases}
+    \alpha_i + \delta_0 &amp; i &gt; j\\
+    \alpha_i + \delta_1 &amp; i = j\\
+    \alpha_i + \delta_2 &amp; i &lt; j\\
+\end{cases}`
+$$
+
+where `\(\alpha_i\)` is the effect for origin `\(i\)` and `\(i &gt; j\)` denotes moving to a more favourable destination class.
+
+---
+
+# GLM mobility models
+
+The probability of LLTI in 2001 was modelled via
+logistic regression.
+
+Age in 1991 was included as a covariate and men and women were
+modelled separately.
+
+In R
+
+```r
+dest_m &lt;- glm(llti ~ age1991 + origin + mobility, 
+              family = binomial, data = LS_m)
+```
+
+---
+
+# Social Mobility Effects
+
+The exponential of the mobility parameters gives the odds ratios of LLTI, shown here for men
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Origin + Mobility &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Destination + Mobility &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; To more favourable &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Stable &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.21 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.71 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; To less favourable &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.45 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.52 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+* given origin, odds of LLTI increased by downward mobility
+* given destination, odds of LLTI decreased by downward mobility
+
+---
+
+# Weighted Residuals
+
+The working residuals from the GLM fit can be averaged over each
+origin-destination combination to provide an indicator of fit for each
+trajectory 
+
+These average residuals can be standardized to be approximately N(0, 1) assuming the model is correct.
+
+Passing a GLM fit to the `mosaic` function will produce a plot of the weighted residuals, with the p-value for a `\(\chi^2\)` goodness-of-fit test.
+
+---
+
+.pull-left[
+Origin + Mobility
+![](model1men_mosaic.png)
+]
+.pull-right[
+Destination + Mobility
+![](model2men_mosaic.png)
+]
+
+Although two sides of the same coin, the two models capture different features of the data.
+
+---
+
+# Diagonal Reference Model
+
+@Sobe1991 proposed the *diagonal reference model*,
+which combines origin, destination and social mobility effects
+$$
+      w_1 \gamma_i + (1 - w_1) \gamma_j
+$$
+The effect of moving from class `\(i\)` to class `\(j\)` is a weighted sum of the diagonal effects `\(\gamma_i\)`, where `\(\gamma_i\)` is the effect for stable individuals in that class.
+
+---
+
+# Dref in &lt;tt&gt;gnm&lt;/tt&gt;
+
+A diagonal reference term may be specified via `Dref(fac1, fac2, ...)`
+
+The weights are constrained to be non-negative and to sum to one by defining them as
+$$
+w_f = \frac{e^{\delta_f}}{\sum_i e^{\delta_i}}
+$$
+and estimating unconstrained `\(\delta_f\)` parameters.
+
+---
+
+Following the previous analysis we fit the diagonal reference model with age as a covariate and fit models for men and women separately.
+
+
+```r
+dref_m &lt;- gnm(llti ~ age1991 + Dref(origin, dest),
+              family = binomial, data = LS_m)
+coef(summary(classMobility))
+```
+
+```
+                                        Estimate Std. Error z value Pr(&gt;|z|)
+(Intercept)                             -1.30795         NA      NA       NA
+age1991                                  0.06357   0.001221   52.08  &lt; 2e-16
+Dref(origin, dest)delta1                -0.05275         NA      NA       NA
+Dref(origin, dest)delta2                -0.53378         NA      NA       NA
+Dref(., .).origin|desthigh man/pro      -3.74444         NA      NA       NA
+Dref(., .).origin|destlow man/pro       -3.29767         NA      NA       NA
+Dref(., .).origin|destintermed          -2.74320         NA      NA       NA
+Dref(., .).origin|destsmall empl/own ac -2.99956         NA      NA       NA
+Dref(., .).origin|destlow sup/tech      -2.79887         NA      NA       NA
+Dref(., .).origin|destsemi-routine      -2.47277         NA      NA       NA
+Dref(., .).origin|destroutine           -2.27206         NA      NA       NA
+```
+
+---
+
+# Diagonal Effects
+
+The model for the stable individuals is an ordinary logistic regression
+
+$$
+\text{logit}(p_{iik}) = \beta_0 + \beta_1\text{age}_k + \gamma_i        
+$$
+Setting `\(\gamma_i = 0\)`, the diagonal effects are log odds ratios of LLTI in class `\(i\)` against the first class for a given age
+
+$$
+`\begin{align*}
+&amp;\log\left(\frac{p_{iik}/(1 - p_{iik})}{p_{11k}/(1 - p_{11k})}\right) \\
+=&amp;(\beta_0 + \beta_1 \text{age}_k  + \gamma_i) -  (\beta_0 + \beta_1
+\text{age}_k) \\
+=&amp; \gamma_i
+\end{align*}`
+$$
+---
+
+
+```r
+dref_m &lt;- gnm(llti ~ age1991 + Dref(origin, dest),
+              family = binomial, data = LS_m,  constrain = "(high man)")
+coef(summary(classMobility))
+```
+
+```
+                                        Estimate Std. Error z value Pr(&gt;|z|)
+(Intercept)                             -5.05239   0.063708 -79.305  &lt; 2e-16
+age1991                                  0.06357   0.001221  52.084  &lt; 2e-16
+Dref(origin, dest)delta1                      NA         NA      NA       NA
+Dref(origin, dest)delta2                      NA         NA      NA       NA
+Dref(., .).origin|desthigh man/pro       0.00000         NA      NA       NA
+Dref(., .).origin|destlow man/pro        0.44677   0.053225   8.394  &lt; 2e-16
+Dref(., .).origin|destintermed           1.00124   0.063136  15.858  &lt; 2e-16
+Dref(., .).origin|destsmall empl/own ac  0.74488   0.052400  14.227  &lt; 2e-16
+Dref(., .).origin|destlow sup/tech       0.94557   0.053376  17.715  &lt; 2e-16
+Dref(., .).origin|destsemi-routine       1.27167   0.053763  23.653  &lt; 2e-16
+Dref(., .).origin|destroutine            1.47237   0.049871  29.524  &lt; 2e-16
+```
+---
+
+# Health Inequality
+
+
+
+```
+Warning: Removed 2 rows containing missing values (geom_segment).
+```
+
+![](index_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+---
+
+# &lt;tt&gt;DrefWeights&lt;/tt&gt;
+
+Setting `\(\delta_1 = 0\)` is enough to constrain the weights, so that 
+
+$$
+`\begin{align*}
+    w_1 &amp;= \frac{1}{1 + e^{\delta_2}} &amp; w_2 &amp;= \frac{e^{\delta_2}}{1 + e^{\delta_2}}
+\end{align*}`
+$$
+`DrefWeights()` computes these weights and their standard errors, e.g.
+
+```r
+ DrefWeights(dref_m)
+```
+```
+$origin
+ weight      se
+0.61799 0.02649
+$dest
+ weight       se
+0.38201 0.02649
+```
+---
+
+# Diluting Effect of Social Mobility
+    
+The ratio of origin weight to destination weight quantifies the diluting effect of social mobility on health inequality
+
+* **1:0** social mobility has no effect on individual
+* **0:1** social mobility has no effect on inequality
+* otherwise social mobility increases P(LLTI) in the upper classes and decreases P(LLTI) in the lower classes. 
+
+The larger the origin weight, the greater the diluting effect.
+     
+???
+mobile assume probability of stable in destination class
+
+---
+
+# Diagonal Weights
+
+The  diagonal weights for the LLTI models are
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Men &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Women &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Origin &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.62 (0.03) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.41 (0.03) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Destination &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.38 (0.03) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.59 (0.03) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+Since their destination class is given more weight, social mobility has a 
+greater impact for women.
+
+---
+
+# Model Comparison
+    
+The models can be compared by the difference in deviance from the null
+model: 
+
+&lt;table&gt;
+ &lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Men&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Women&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Deviance &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Deviance &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; DF &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Origin + mobility &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4050 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3194 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Destination + mobility &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4026 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3273 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Diagonal reference &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4121 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3312 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+The diagonal reference model reduces the deviance the most despite requiring
+fewer degrees of freedom.
+
+---
+
+# References
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "googlecode",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

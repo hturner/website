@@ -23,8 +23,10 @@ layout: true
 ```{r setup, include = FALSE}
 options(digits = 4)
 options(width = 80)
+library(dplyr)
 library(ggplot2)
 library(gnm)
+library(splines)
 library(vcd)
 library(kableExtra)
 library(knitr)
@@ -166,7 +168,7 @@ interpretable model.
 A study of 1660 children from Manhattan recorded their mental impairment and
 parents' socioeconomic status [@Agre02]
 
-```{r, eval = FALSE}
+```{r mosaic, eval = FALSE}
 library(vcd)
 mosaic(mentalHealth)
 ```
@@ -207,7 +209,7 @@ $$\log(\mu_{rc}) = \alpha_r + \beta_c + \phi_r\psi_c$$
 @Good79a, an example of a multiplicative interaction model.
 
 For the mental health data:
-```{r, echo = FALSE}
+```{r RCmodel, echo = FALSE}
 options(show.signif.stars = FALSE)
 indep <- gnm(Freq ~ SES + MHS, family = poisson, data = mentalHealth)
 sat <- update(indep, Freq ~ SES*MHS)
@@ -243,7 +245,7 @@ y ∼ a + b + a:b
  
 ---
 
-```{r}
+```{r RCmod}
 RCmod <- gnm(Freq ~ SES + MHS + Mult(SES, MHS), family = poisson, 
              data = mentalHealth, verbose = FALSE, ofInterest = "Mult")
 coef(RCmod)
@@ -336,7 +338,7 @@ Age in 1991 was included as a covariate and men and women were
 modelled separately.
 
 In R
-```{r, eval = FALSE}
+```{r dest_m, eval = FALSE}
 dest_m <- glm(llti ~ age1991 + origin + mobility, 
               family = binomial, data = LS_m)
 ```
@@ -347,7 +349,7 @@ dest_m <- glm(llti ~ age1991 + origin + mobility,
 
 The exponential of the mobility parameters gives the odds ratios of LLTI, shown here for men
 
-```{r, echo = FALSE}
+```{r mobility_effects, echo = FALSE}
 tab <- data.frame(`Origin + Mobility` = c(1.00, 1.21, 1.45),
                   `Destination + Mobility` = c(1.00, 0.71, 0.52),
                   row.names = c("To more favourable", "Stable", 
@@ -411,12 +413,12 @@ and estimating unconstrained $\delta_f$ parameters.
 
 Following the previous analysis we fit the diagonal reference model with age as a covariate and fit models for men and women separately.
 
-```{r, eval = FALSE}
+```{r dref_m, eval = FALSE}
 dref_m <- gnm(llti ~ age1991 + Dref(origin, dest),
               family = binomial, data = LS_m)
 coef(summary(classMobility))
 ```
-```{r, echo = FALSE}
+```{r drefmen_intercept, echo = FALSE}
 tab <- read.csv("drefmen_intercept.csv", header = TRUE, row.names = 1, check.names = FALSE)
 nm <- rownames(tab)
 nm <- gsub("mnssec9", "origin", nm)
@@ -453,12 +455,12 @@ $$
 $$
 ---
 
-```{r, eval = FALSE}
+```{r dref_m_constrain, eval = FALSE}
 dref_m <- gnm(llti ~ age1991 + Dref(origin, dest),
               family = binomial, data = LS_m,  constrain = "(high man)")
 coef(summary(classMobility))
 ```
-```{r, echo = FALSE}
+```{r drefmean_intercept_constrain, echo = FALSE}
 tab <- read.csv("drefmen_intercept.csv", header = TRUE, row.names = 1, check.names = FALSE)
 nm <- rownames(tab)
 nm <- gsub("mnssec9", "origin", nm)
@@ -478,7 +480,7 @@ print(tab, na.print = "NA")
 # Health Inequality
 
 
-```{r, echo = FALSE}
+```{r OR, fig.width = 7, fig.height = 3, echo = FALSE, warning = FALSE}
 # exp(tab$Estimate[-(1:4)] + 1.96*tab$`Std. Error`[-(1:4)])
 OR <- data.frame(class = rep(c("high prof", "low prof", "intermed", "self empl",
                                "low sup", "semi-routine", "routine"), 2),
@@ -515,7 +517,7 @@ $$
 \end{align*}
 $$
 `DrefWeights()` computes these weights and their standard errors, e.g.
-```{r, eval = FALSE}
+```{r DrefWeights, eval = FALSE}
  DrefWeights(dref_m)
 ```
 ```
@@ -539,6 +541,7 @@ The ratio of origin weight to destination weight quantifies the diluting effect 
 The larger the origin weight, the greater the diluting effect.
      
 ???
+
 mobile assume probability of stable in destination class
 
 ---
@@ -546,7 +549,7 @@ mobile assume probability of stable in destination class
 # Diagonal Weights
 
 The  diagonal weights for the LLTI models are
-```{r, echo = FALSE}
+```{r weights_tab, echo = FALSE}
 tab <- data.frame(Men = c("0.62 (0.03)", "0.38 (0.03)"),
                   Women = c("0.41 (0.03)", "0.59 (0.03)"),
                   row.names = c("Origin", "Destination"))
@@ -563,7 +566,7 @@ greater impact for women.
 The models can be compared by the difference in deviance from the null
 model: 
 
-```{r, echo = FALSE}
+```{r mobility_models, echo = FALSE}
 tab <- data.frame(dev1 = c(4050, 4026, 4121),
                   df1 = c(9, 9, 8),
                   dev2 = c(3194, 3273, 3312),
@@ -577,6 +580,294 @@ kable(tab, col.names = c("Deviance", "Df", "Deviance", "DF"),
 
 The diagonal reference model reduces the deviance the most despite requiring
 fewer degrees of freedom.
+    
+---
+
+class: inverse middle
+
+# Case study: Lee-Carter Model
+
+---
+
+# Background
+
+Data from the Human Mortality Database, which provides open, international access to population and mortality data from 41 countries. 
+
+Here we consider data on deaths for men aged 20 to 99 in Canada from 1921 to 2003.
+
+The data comprise the variables
+* `Year`: year death recorded
+* `Age`: age at time of death (0 to 110+)
+* `Deaths`: number of deaths
+* `Exposure`: number at risk
+model
+---
+
+# Lee-Carter model
+
+@LeeCart92 proposed a model for age-specific population mortality rates that has  been the basis of many
+subsequent analyses.
+
+Suppose that death count $D_{ay}$ for individuals of age $a$ in year $y$ has
+mean $\mu_{ay}$ and *quasi-Poisson* variance $\phi\mu_{ay}$.
+
+*Lee-Carter model*
+
+$$
+\begin{align*}
+&\log(\mu_{ay}/e_{ay}) = \alpha_a + \beta_a\gamma_y\, ,\\
+\Rightarrow & \log(\mu_{ay}) = \log(e_{ay}) + \alpha_a + \beta_a\gamma_y
+\end{align*}
+$$
+
+where $e_{ay}$ is the \emph{exposure} (number of lives at risk).
+
+---
+
+# Lee-Carter in gnm
+
+The Lee-Carter model can be fitted with `gnm` as follows
+
+```{r LC_model, eval  = FALSE}
+LCmodel <- gnm(Deaths ~ Mult(Exp(Age), Year),
+               eliminate = Age, offset = log(Exposure),
+               family = "quasipoisson")
+```
+
+* `Exp(Age)` is used to constrain the parameters representing the
+    *sensitivity* of age group $a$ to have the same sign,
+* `Age` is *eliminated* since it will typically have many levels,
+* `offset` is used to add the log exposure with a coefficient of 1
+* the `quasipoisson` family is used so that the dispersion parameter $\phi$ is estimated rather than fixed to 1.
+
+???
+    
+The eliminate argument of gnm is used to specify that the Age
+parameters replace the intercept in the model. This has two benefits:
+* gnm exploits the structure of these parameters to estimate them
+more efficiently
+* these nuisance parameters are excluded from summaries of the
+model object
+
+---
+
+
+```{r Canada, include = FALSE}
+Canada <- readRDS(url("https://github.com/hturner/gnm-case-studies/raw/main/LeeCarter_artefacts/saved_results/Canada.rds",method = "libcurl"))
+saveRDS(Canada, "Canada.rds")
+```
+<br>
+Residuals are more dispersed for ages 25-35 and 50-65, as well as pre-1930
+
+```{r res1, fig.width = 3.6, fig.height = 3.2, echo = FALSE, out.width = "49%"}
+Canada <- readRDS("Canada.rds")
+ggplot(Canada, aes(x = Age, y = LC_res)) +
+  geom_boxplot(fill = "cornflowerblue", outlier.size = 0.5) +
+  labs(y = "Pearson residual") + 
+  scale_x_discrete(breaks = seq(20, 100, by = 5), 
+                   expand = c(0.02,0)) +
+  coord_cartesian(ylim = c(-8, 8))  
+ggplot(Canada, aes(x = Year, y = LC_res)) +
+  geom_boxplot(fill = "cornflowerblue", outlier.size = 0.5) +
+  labs(y = "Pearson residual") + 
+  scale_x_discrete(breaks = seq(1930, 2000, by = 10), 
+                   expand = c(0.02,0)) +
+  coord_cartesian(ylim = c(-8, 8))  
+```
+
+---
+
+Residuals by birth cohort (calendar year - age) show a clear trend
+
+```{r res2, fig.width = 4.5, fig.height = 3, echo = FALSE, fig.align = "center", out.width = "75%"}
+ggplot(Canada, aes(x = Cohort, y = LC_res)) +
+  geom_boxplot(fill = "cornflowerblue", outlier.size = 0.5) +
+  labs(y = "Pearson residual") + 
+  scale_x_discrete(breaks = seq(1825, 1983, by = 25), 
+                   expand = c(0.02,0)) +
+  coord_cartesian(ylim = c(-8, 8))  
+```
+
+---
+
+# Renshaw & Haberman extension
+
+@Rensabe06 considered a cohort-based extension
+
+
+$$
+\text{log}(\mu_{ay}/e_{ay}) = \alpha_a + \beta^{(0)}_a \gamma_y + \beta^{(1)}_a\lambda_{y-a}
+$$
+
+This is easy to specify in `gnm`
+
+```r
+Deaths ~ Mult(Exp(Age), Year) + Mult(Exp(Age), Cohort)
+```
+
+But not so easy to fit!
+ - `Year`, `Age` and `Cohort` are directly related
+ - now have 405 multiplicative parameters, data for some cohorts is sparse
+ 
+???
+
+Haberman and Renshaw rejected the model on practical grounds
+ 
+---
+
+# Fitting the Renshaw & Haberman model
+
+Step 1. Initially fit the model with age multipliers fixed to 1
+
+$$\log(\mu_{ay}/e_{ay}) = \alpha_a + \gamma_y + \lambda_{y-a}$$
+
+Step 2. Fit the full model with starting values from step 1, without constraining the age multipliers.
+   * Converges in 54 iterations
+   * Find the multiplier for age 99 in the first multiplicative term is negative
+
+Step 3. Re-fit using `Exp(Age)` to constrain the age multipliers to be positive, setting 
+$$\beta^{(0)}_{99} = \exp(-1000) = 0$$
+
+---
+
+Residuals from Renshaw & Haberman model
+
+```{r res1b, fig.width = 3.6, fig.height = 3.2, echo = FALSE, out.width = "49%"}
+Canada <- readRDS("Canada.rds")
+ggplot(Canada, aes(x = Age, y = APC_res)) +
+  geom_boxplot(fill = "cornflowerblue", outlier.size = 0.5) +
+  labs(y = "Pearson residual") + 
+  scale_x_discrete(breaks = seq(20, 100, by = 5), 
+                   expand = c(0.02,0)) +
+  coord_cartesian(ylim = c(-8, 8))  
+ggplot(Canada, aes(x = Year, y = APC_res)) +
+  geom_boxplot(fill = "cornflowerblue", outlier.size = 0.5) +
+  labs(y = "Pearson residual") + 
+  scale_x_discrete(breaks = seq(1930, 2000, by = 10), 
+                   expand = c(0.02,0)) +
+  coord_cartesian(ylim = c(-8, 8))   
+```
+
+---
+<br>
+```{r res2b, fig.width = 4.5, fig.height = 3, echo = FALSE, fig.align = "center", out.width = "75%"}
+ggplot(Canada, aes(x = Cohort, y = APC_res)) +
+  geom_boxplot(fill = "cornflowerblue", outlier.size = 0.5) +
+  labs(y = "Pearson residual") + 
+  scale_x_discrete(breaks = seq(1825, 1983, by = 25), 
+                   expand = c(0.02,0)) +
+  coord_cartesian(ylim = c(-8, 8))  
+```
+
+---
+
+# Age multipliers
+
+```{r AgeContrasts, include = FALSE}
+AgeContrasts <- readRDS(url("https://github.com/hturner/gnm-case-studies/raw/main/LeeCarter_artefacts/saved_results/AgeContrasts.rds",method = "libcurl"))
+saveRDS(AgeContrasts, "AgeContrasts.rds")
+```
+
+An advantage of re-parameterising the model such that 
+$$
+\begin{align*}
+   \beta^{(0)}_a &= \exp(\delta^{(0)}_a) & \beta^{(1)}_a &= \exp(\delta^{(1)}_a)
+\end{align*}
+$$
+is that simple contrasts (differences) of $\delta^{(n)}_a$ are identifiable.
+
+We can obtain the contrasts and standard errors with `getContrasts()`
+```{r AgeMult2, eval = FALSE}
+AgeMult2 <- pickCoef(APCmodel_GNM,  "Mult(Exp(.), Cohort)", fixed = TRUE)
+getContrasts(APCmodel_GNM, AgeMult2, check = FALSE)$qvframe[1:3,]
+```
+```{r AgeContrasts_qv, echo = FALSE}
+AgeContrasts <- readRDS("AgeContrasts.rds")[[2]]
+AgeContrasts$qvframe[1:3,]
+```
+
+???
+
+delta are log-multipliers
+
+the relative approximation errors for the quasi-variances of these contrasts range from −24% to 70.1%, so the quasi-variance approximation performs poorly in this example
+
+---
+
+<br>
+```{r AgeMultipliers, fig.align = "center", fig.width = 4.5, fig.height = 3, out.width = "75%", echo = FALSE}
+dat <- AgeContrasts$qvframe[c("estimate", "SE")] %>%
+  mutate(tops = estimate + (2 * SE),
+         tails = estimate - (2 * SE),
+         Age = seq(from = 20, length.out = n()))
+
+ggplot(dat, aes(x = Age, y = estimate)) + 
+  geom_point() +
+  geom_segment(aes(x = Age, xend = Age, y = tops, yend = tails)) +
+  labs(y = "Log-multiplier (Cohort)") +
+  coord_cartesian(ylim = c(-10, 2))
+```
+
+???
+
+Figure shows a clear pattern in the log-multipliers for age in both terms, with the sensitivity
+of age initially rising until about 35 years of age, then decreasing with increasing age. However
+there is a lot of local variability with the estimates rising and falling in consecutive years and
+it is clear that the precision of the estimates decreases with age. The large uncertainty in the
+log-multipliers of the cohort effects for ages 85 and above is due to the early cohorts, for which
+we only have data at the end of the age range.
+
+---
+
+# Spline model
+
+Define a piecewise linear spline over age:
+
+```{r Age_bs}
+Age_num <- as.numeric(as.character(Canada$Age))
+Age_bs <- bs(Age_num, knots = c(seq(25, 70, by = 5), 80), 
+             degree = 1)
+```
+
+Use instead of age in the Renshaw & Haberman model:
+```r
+Deaths ~ Mult(Exp(Age_bs), Year) + Mult(Exp(Age_bs), Cohort)
+```
+```{r dev, include = FALSE}
+dev <- readRDS(url("https://github.com/hturner/gnm-case-studies/raw/main/LeeCarter_artefacts/saved_results/dev.rds",method = "libcurl"))
+saveRDS(dev, "dev.rds")
+```
+
+---
+
+# Model comparison
+
+```{r mortality_models, echo = FALSE}
+mod_dev <- readRDS("dev.rds")
+tab <- data.frame(model = c("Lee-Carter", "Main effects", "Spline", "Renshaw-Haberman"), 
+                  dev = mod_dev[c("LC", "APC_GLM", "APC_spline", "APC_GNM")],
+                  df = c(6399, 6318, 6293, 6159)) %>%
+  mutate(perc = (mod_dev["APC_GLM"] - dev)/(mod_dev["APC_GLM"] - mod_dev["APC_GNM"])*100)
+tab$perc[1] <- NA
+kable(tab, booktabs = TRUE, 
+      col.names = c("Model", "Deviance", "Df", "Percent"), 
+      digits = 2, row.names = FALSE) %>%
+  pack_rows("Age-Period-Cohort models", 2, 4)
+```
+
+The spline model preserves the year and cohort multipliers which could
+be modelled using time series methods for forecasting as in [@RensHabe06] - only depends on the *differences* between multipliers.
+
+???
+
+so it is not necessary to impose constraints on these parameters
+
+---
+
+# Wrap-up
+
+other models
+case studies, vignette
 
 ---
 

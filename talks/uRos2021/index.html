@@ -494,12 +494,7 @@ Dref(., .).origin|destroutine            1.47237   0.049871  29.524  &lt; 2e-16
 # Health Inequality
 
 
-
-```
-Warning: Removed 2 rows containing missing values (geom_segment).
-```
-
-![](index_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/OR-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -538,6 +533,7 @@ The ratio of origin weight to destination weight quantifies the diluting effect 
 The larger the origin weight, the greater the diluting effect.
      
 ???
+
 mobile assume probability of stable in destination class
 
 ---
@@ -619,6 +615,263 @@ model:
 
 The diagonal reference model reduces the deviance the most despite requiring
 fewer degrees of freedom.
+    
+---
+
+class: inverse middle
+
+# Case study: Lee-Carter Model
+
+---
+
+# Background
+
+Data from the Human Mortality Database, which provides open, international access to population and mortality data from 41 countries. 
+
+Here we consider data on deaths for men aged 20 to 99 in Canada from 1921 to 2003.
+
+The data comprise the variables
+* `Year`: year death recorded
+* `Age`: age at time of death (0 to 110+)
+* `Deaths`: number of deaths
+* `Exposure`: number at risk
+model
+---
+
+# Lee-Carter model
+
+@LeeCart92 proposed a model for age-specific population mortality rates that has  been the basis of many
+subsequent analyses.
+
+Suppose that death count `\(D_{ay}\)` for individuals of age `\(a\)` in year `\(y\)` has
+mean `\(\mu_{ay}\)` and *quasi-Poisson* variance `\(\phi\mu_{ay}\)`.
+
+*Lee-Carter model*
+
+$$
+`\begin{align*}
+&amp;\log(\mu_{ay}/e_{ay}) = \alpha_a + \beta_a\gamma_y\, ,\\
+\Rightarrow &amp; \log(\mu_{ay}) = \log(e_{ay}) + \alpha_a + \beta_a\gamma_y
+\end{align*}`
+$$
+
+where `\(e_{ay}\)` is the \emph{exposure} (number of lives at risk).
+
+---
+
+# Lee-Carter in gnm
+
+The Lee-Carter model can be fitted with `gnm` as follows
+
+
+```r
+LCmodel &lt;- gnm(Deaths ~ Mult(Exp(Age), Year),
+               eliminate = Age, offset = log(Exposure),
+               family = "quasipoisson")
+```
+
+* `Exp(Age)` is used to constrain the parameters representing the
+    *sensitivity* of age group `\(a\)` to have the same sign,
+* `Age` is *eliminated* since it will typically have many levels,
+* `offset` is used to add the log exposure with a coefficient of 1
+* the `quasipoisson` family is used so that the dispersion parameter `\(\phi\)` is estimated rather than fixed to 1.
+
+???
+    
+The eliminate argument of gnm is used to specify that the Age
+parameters replace the intercept in the model. This has two benefits:
+* gnm exploits the structure of these parameters to estimate them
+more efficiently
+* these nuisance parameters are excluded from summaries of the
+model object
+
+---
+
+
+
+&lt;br&gt;
+Residuals are more dispersed for ages 25-35 and 50-65, as well as pre-1930
+
+&lt;img src="index_files/figure-html/res1-1.png" width="49%" /&gt;&lt;img src="index_files/figure-html/res1-2.png" width="49%" /&gt;
+
+---
+
+Residuals by birth cohort (calendar year - age) show a clear trend
+
+&lt;img src="index_files/figure-html/res2-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Renshaw &amp; Haberman extension
+
+@Rensabe06 considered a cohort-based extension
+
+
+$$
+\text{log}(\mu_{ay}/e_{ay}) = \alpha_a + \beta^{(0)}_a \gamma_y + \beta^{(1)}_a\lambda_{y-a}
+$$
+
+This is easy to specify in `gnm`
+
+```r
+Deaths ~ Mult(Exp(Age), Year) + Mult(Exp(Age), Cohort)
+```
+
+But not so easy to fit!
+ - `Year`, `Age` and `Cohort` are directly related
+ - now have 405 multiplicative parameters, data for some cohorts is sparse
+ 
+???
+
+Haberman and Renshaw rejected the model on practical grounds
+ 
+---
+
+# Fitting the Renshaw &amp; Haberman model
+
+Step 1. Initially fit the model with age multipliers fixed to 1
+
+`$$\log(\mu_{ay}/e_{ay}) = \alpha_a + \gamma_y + \lambda_{y-a}$$`
+
+Step 2. Fit the full model with starting values from step 1, without constraining the age multipliers.
+   * Converges in 54 iterations
+   * Find the multiplier for age 99 in the first multiplicative term is negative
+
+Step 3. Re-fit using `Exp(Age)` to constrain the age multipliers to be positive, setting 
+`$$\beta^{(0)}_{99} = \exp(-1000) = 0$$`
+
+---
+
+Residuals from Renshaw &amp; Haberman model
+
+&lt;img src="index_files/figure-html/res1b-1.png" width="49%" /&gt;&lt;img src="index_files/figure-html/res1b-2.png" width="49%" /&gt;
+
+---
+&lt;br&gt;
+&lt;img src="index_files/figure-html/res2b-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Age multipliers
+
+
+
+An advantage of re-parameterising the model such that 
+$$
+`\begin{align*}
+   \beta^{(0)}_a &amp;= \exp(\delta^{(0)}_a) &amp; \beta^{(1)}_a &amp;= \exp(\delta^{(1)}_a)
+\end{align*}`
+$$
+is that simple contrasts (differences) of `\(\delta^{(n)}_a\)` are identifiable.
+
+We can obtain the contrasts and standard errors with `getContrasts()`
+
+```r
+AgeMult2 &lt;- pickCoef(APCmodel_GNM,  "Mult(Exp(.), Cohort)", fixed = TRUE)
+getContrasts(APCmodel_GNM, AgeMult2, check = FALSE)$qvframe[1:3,]
+```
+
+```
+                           estimate     SE quasiSE quasiVar
+Mult(Exp(.), Cohort).Age20   0.0000 0.0000  0.0810 0.006561
+Mult(Exp(.), Cohort).Age21  -0.2361 0.1294  0.1027 0.010543
+Mult(Exp(.), Cohort).Age22  -0.1666 0.1290  0.1021 0.010420
+```
+
+???
+
+delta are log-multipliers
+
+the relative approximation errors for the quasi-variances of these contrasts range from −24% to 70.1%, so the quasi-variance approximation performs poorly in this example
+
+---
+
+&lt;br&gt;
+&lt;img src="index_files/figure-html/AgeMultipliers-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+???
+
+Figure shows a clear pattern in the log-multipliers for age in both terms, with the sensitivity
+of age initially rising until about 35 years of age, then decreasing with increasing age. However
+there is a lot of local variability with the estimates rising and falling in consecutive years and
+it is clear that the precision of the estimates decreases with age. The large uncertainty in the
+log-multipliers of the cohort effects for ages 85 and above is due to the early cohorts, for which
+we only have data at the end of the age range.
+
+---
+
+# Spline model
+
+Define a piecewise linear spline over age:
+
+
+```r
+Age_num &lt;- as.numeric(as.character(Canada$Age))
+Age_bs &lt;- bs(Age_num, knots = c(seq(25, 70, by = 5), 80), 
+             degree = 1)
+```
+
+Use instead of age in the Renshaw &amp; Haberman model:
+```r
+Deaths ~ Mult(Exp(Age_bs), Year) + Mult(Exp(Age_bs), Cohort)
+```
+
+
+---
+
+# Model comparison
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Model &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Deviance &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Percent &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Lee-Carter &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32423 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6399 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr grouplength="3"&gt;&lt;td colspan="4" style="border-bottom: 1px solid;"&gt;&lt;strong&gt;Age-Period-Cohort models&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Main effects &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24730 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6318 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Spline &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12486 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6293 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 83.71 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Renshaw-Haberman &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10104 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6159 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100.00 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+The spline model preserves the year and cohort multipliers which could
+be modelled using time series methods for forecasting as in [@RensHabe06] - only depends on the *differences* between multipliers.
+
+???
+
+so it is not necessary to impose constraints on these parameters
+
+---
+
+# Wrap-up
+
+other models
+case studies, vignette
 
 ---
 

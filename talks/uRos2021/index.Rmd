@@ -694,10 +694,7 @@ ggplot(Canada, aes(x = Cohort, y = LC_res)) +
 
 @Rensabe06 considered a cohort-based extension
 
-
-$$
-\text{log}(\mu_{ay}/e_{ay}) = \alpha_a + \beta^{(0)}_a \gamma_y + \beta^{(1)}_a\lambda_{y-a}
-$$
+$$\log(\mu_{ay}/e_{ay}) = \alpha_a + \beta^{(0)}_a \gamma_y + \beta^{(1)}_a \lambda_{y-a}$$
 
 This is easy to specify in `gnm`
 

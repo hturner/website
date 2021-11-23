@@ -114,6 +114,23 @@ then created, so use css to hide) */
     visibility: hidden;
 }
 
+.inverse {
+  background-color: #393A3B;
+  color: #d6d6d6;
+  text-shadow: 0 0 20px #333;
+}
+.inverse h1, .inverse h2, .inverse h3 {
+  color: #f3f3f3;
+}
+.inverse a, a > code {
+  color: #FFC233;
+  text-decoration: none;
+}
+
+.twitter-tweet-raise {
+  margin-top: -100px !important;
+}
+
 .img-100{
   width: 100px;
   display: inline-block;

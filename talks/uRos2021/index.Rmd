@@ -70,9 +70,30 @@ class: inverse middle
     
 ---
 
-# Linear models?
+# Linear models $\newcommand{\stext}[1]{{\style{font-family:inherit}{\text{#1}}}}$
 
-So no what linear vs nonlinear means
+$$
+\hat{y_i} = \beta_0 + \beta_1 x_i + \beta_2 z_i +\epsilon_i
+$$
+--
+
+$$
+E(y_i) = \beta_0 + \exp(\theta_1) x_i + \beta_2 x_i^2
+$$
+--
+
+In general 
+
+$$
+E(y_i) = \eta_i(\beta) = \stext{linear function of unknown parameters}
+$$
+
+Also assumes variance essentially constant:
+$$
+\text{Var}(y_i) = \phi a_i
+$$
+with $a_i$ known (often $a_i\equiv 1$).
+
 
 ---
 
@@ -240,10 +261,12 @@ y ∼ a + b + a:b
 * Nonlinear terms must be specified using functions of class
 `"nonlin"`
  * specify structure of term, possible also labels & starting values
- * provided functions: Exp, Inv, Mult, MultHomog, Dref
+ * provided functions: `Exp`, `Inv`, `Mult`, `MultHomog`, `Dref`
  * custom functions
  
 ---
+
+# RC model in <tt>gnm</tt>
 
 ```{r RCmod}
 RCmod <- gnm(Freq ~ SES + MHS + Mult(SES, MHS), family = poisson, 
@@ -279,8 +302,11 @@ $$
 &= \alpha_r + \beta_r + (2\phi_r)(\psi_c/2)
 \end{align*}
 $$
+--
 
 We need to constrain both location and scale for identifiability.
+
+--
 
 `gnm` works with overparameterised models
  - will return one of infinite parameterisations at random
@@ -315,7 +341,7 @@ Data include
   
 @Bart07 modelled trajectories by combining social mobility effects with origin or destination effects.
 
-For example the origin + mobility model includes the term
+For example, the origin + mobility model includes the term
 $$
 \theta_{ij} = 
 \begin{cases}
@@ -331,23 +357,23 @@ where $\alpha_i$ is the effect for origin $i$ and $i > j$ denotes moving to a mo
 
 # GLM mobility models
 
-The probability of LLTI in 2001 was modelled via
-logistic regression.
+The full models are logistic regression models for probability of LLTI in 2001.
 
-Age in 1991 was included as a covariate and men and women were
-modelled separately.
+Since the mobility models are GLMs, they can be fitted with `glm`, e.g.
 
-In R
 ```{r dest_m, eval = FALSE}
 dest_m <- glm(llti ~ age1991 + origin + mobility, 
               family = binomial, data = LS_m)
 ```
 
+Age in 1991 was included as a covariate and men and women were
+modelled separately.
+
 ---
 
 # Social Mobility Effects
 
-The exponential of the mobility parameters gives the odds ratios of LLTI, shown here for men
+The exponential of the mobility parameters gives the odds ratios of LLTI, e.g. for men
 
 ```{r mobility_effects, echo = FALSE}
 tab <- data.frame(`Origin + Mobility` = c(1.00, 1.21, 1.45),
@@ -397,6 +423,12 @@ $$
 $$
 The effect of moving from class $i$ to class $j$ is a weighted sum of the diagonal effects $\gamma_i$, where $\gamma_i$ is the effect for stable individuals in that class.
 
+This is a alternative to adding main effects of origin and destination.
+
+???
+
+strutured main effect
+
 ---
 
 # Dref in <tt>gnm</tt>
@@ -411,6 +443,7 @@ and estimating unconstrained $\delta_f$ parameters.
 
 ---
 
+<br>
 Following the previous analysis we fit the diagonal reference model with age as a covariate and fit models for men and women separately.
 
 ```{r dref_m, eval = FALSE}
@@ -443,7 +476,7 @@ The model for the stable individuals is an ordinary logistic regression
 $$
 \text{logit}(p_{iik}) = \beta_0 + \beta_1\text{age}_k + \gamma_i        
 $$
-Setting $\gamma_i = 0$, the diagonal effects are log odds ratios of LLTI in class $i$ against the first class for a given age
+Setting $\gamma_1 = 0$, the diagonal effects are log odds ratios of LLTI in class $i$ against the first class for a given age
 
 $$
 \begin{align*}
@@ -455,6 +488,7 @@ $$
 $$
 ---
 
+<br>
 ```{r dref_m_constrain, eval = FALSE}
 dref_m <- gnm(llti ~ age1991 + Dref(origin, dest),
               family = binomial, data = LS_m,  constrain = "(high man)")
@@ -597,7 +631,7 @@ Here we consider data on deaths for men aged 20 to 99 in Canada from 1921 to 200
 
 The data comprise the variables
 * `Year`: year death recorded
-* `Age`: age at time of death (0 to 110+)
+* `Age`: age at time of death
 * `Deaths`: number of deaths
 * `Exposure`: number at risk
 model
@@ -620,7 +654,7 @@ $$
 \end{align*}
 $$
 
-where $e_{ay}$ is the \emph{exposure} (number of lives at risk).
+where $e_{ay}$ is the *exposure* (number of lives at risk).
 
 ---
 
@@ -849,7 +883,7 @@ tab$perc[1] <- NA
 kable(tab, booktabs = TRUE, 
       col.names = c("Model", "Deviance", "Df", "Percent"), 
       digits = 2, row.names = FALSE) %>%
-  pack_rows("Age-Period-Cohort models", 2, 4)
+  pack_rows("Age-Year-Cohort models", 2, 4)
 ```
 
 The spline model preserves the year and cohort multipliers which could

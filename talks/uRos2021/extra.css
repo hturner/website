@@ -127,6 +127,11 @@ then created, so use css to hide) */
   text-decoration: none;
 }
 
+a, a > code {
+  color: #B5153B;
+  text-decoration: none;
+}
+
 .twitter-tweet-raise {
   margin-top: -100px !important;
 }

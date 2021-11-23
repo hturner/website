@@ -75,11 +75,13 @@ class: inverse middle
 $$
 \hat{y_i} = \beta_0 + \beta_1 x_i + \beta_2 z_i +\epsilon_i
 $$
+
 --
 
 $$
 E(y_i) = \beta_0 + \exp(\theta_1) x_i + \beta_2 x_i^2
 $$
+
 --
 
 In general 
@@ -187,7 +189,7 @@ interpretable model.
 # Example: Mental Health Status
 
 A study of 1660 children from Manhattan recorded their mental impairment and
-parents' socioeconomic status [@Agre02]
+parents' socioeconomic status (Agresti, 2002)
 
 ```{r mosaic, eval = FALSE}
 library(vcd)
@@ -227,7 +229,9 @@ which may be over-complex.
 One intermediate model is the Row-Column association model:
 
 $$\log(\mu_{rc}) = \alpha_r + \beta_c + \phi_r\psi_c$$
-@Good79a, an example of a multiplicative interaction model.
+(Goodman, 1979), an example of a multiplicative interaction model.
+
+--
 
 For the mental health data:
 ```{r RCmodel, echo = FALSE}
@@ -302,6 +306,7 @@ $$
 &= \alpha_r + \beta_r + (2\phi_r)(\psi_c/2)
 \end{align*}
 $$
+
 --
 
 We need to constrain both location and scale for identifiability.
@@ -339,7 +344,7 @@ Data include
 
 # Bartley & Plewis Models
   
-@Bart07 modelled trajectories by combining social mobility effects with origin or destination effects.
+Bartley & Plewis (2007) modelled trajectories by combining social mobility effects with origin or destination effects.
 
 For example, the origin + mobility model includes the term
 $$
@@ -416,7 +421,7 @@ Although two sides of the same coin, the two models capture different features o
 
 # Diagonal Reference Model
 
-@Sobe1991 proposed the *diagonal reference model*,
+Sobel (1991) proposed the *diagonal reference model*,
 which combines origin, destination and social mobility effects
 $$
       w_1 \gamma_i + (1 - w_1) \gamma_j
@@ -639,7 +644,7 @@ model
 
 # Lee-Carter model
 
-@LeeCart92 proposed a model for age-specific population mortality rates that has  been the basis of many
+Lee & Carter (1992) proposed a model for age-specific population mortality rates that has  been the basis of many
 subsequent analyses.
 
 Suppose that death count $D_{ay}$ for individuals of age $a$ in year $y$ has
@@ -726,7 +731,7 @@ ggplot(Canada, aes(x = Cohort, y = LC_res)) +
 
 # Renshaw & Haberman extension
 
-@Rensabe06 considered a cohort-based extension
+Renshaw & Haberman (2006) considered a cohort-based extension
 
 $$\log(\mu_{ay}/e_{ay}) = \alpha_a + \beta^{(0)}_a \gamma_y + \beta^{(1)}_a \lambda_{y-a}$$
 
@@ -887,7 +892,7 @@ kable(tab, booktabs = TRUE,
 ```
 
 The spline model preserves the year and cohort multipliers which could
-be modelled using time series methods for forecasting as in [@RensHabe06] - only depends on the *differences* between multipliers.
+be modelled using time series methods for forecasting as in Renshaw & Haberman (2006) - only depends on the *differences* between multipliers.
 
 ???
 
@@ -895,11 +900,38 @@ so it is not necessary to impose constraints on these parameters
 
 ---
 
+class: inverse middle
+
 # Wrap-up
 
-other models
-case studies, vignette
+---
+
+# Finding out more
+
+Case studies with reproducibility materials:
+[github.com/hturner/gnm-case-studies](https://github.com/hturner/gnm-case-studies)
+ - So far Lee-Carter and UNIDIFF
+ - Diagonal Reference and Rasch models to be added
+ - Working paper with D. Firth and I. Kosmidis in progress
+
+See the `gnm` vignette for further examples
+
+Also [github.com/hturner/gnm-half-day-course](https://github.com/hturner/gnm-half-day-course) and [github.com/hturner/gnm-day-course](https://github.com/hturner/gnm-day-course)
 
 ---
 
 # References
+
+Agresti, A. 2002. Categorical Data Analysis. 2nd ed. New York: Wiley.
+
+Bartley, M, and I Plewis. 2007.  [10.1111/j.1467-985X.2006.00464.x](https://doi.org/10.1111/j.1467-985X.2006.00464.x).
+
+Goodman, L A. 1979. J. Amer. Statist. Assoc. [10.1080/01621459.1979.10481650](https://doi.org/10.1080/01621459.1979.10481650).
+
+Lee, R D, and L Carter. 1992. J. Amer. Statist. Assoc. [10.1080/01621459.1992.10475265](https://doi.org/10.1080/01621459.1992.10475265).
+
+Renshaw, A, and S Haberman. 2006. Insur Math Econ
+[10.1016/j.insmatheco.2005.12.001](https://doi.org/10.1016/j.insmatheco.2005.12.001).
+
+Sobel, M. E. 1981. Amer. Soc. Rev. [10.2307/2095086](https://doi.org/10.2307/2095086).
+

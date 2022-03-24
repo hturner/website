@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Open Code and Software</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Dr Heather Turner RSE Fellow, University of Warwick, UK " />
+    <meta name="date" content="2022-03-24" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Open Code and Software
+### <br>Dr Heather Turner<br>RSE Fellow, University of Warwick, UK<br>
+### 24 March 2022
+
+---
+
+
+# Open Access
+
+.pull-left-66[
+New UKRI policy for research articles from **1 April 2022**.
+
+Two routes to open access:
+ - **Gold**: final version on publishers website. 
+ - **Green**: accepted version in a repository.
+
+Both routes require:
+ - CC BY license.
+ - Statement about the access of the underlying data.
+]
+
+.pull-right-33[
+&lt;center&gt;
+&lt;br&gt;
+&lt;img src="Open_Access_logo.png" alt="The open access logo: an unlocked padlock" style="height:250px"&gt;
+&lt;/center&gt;
+&lt;img src="UKRI_logo.png" alt="The UKRI logo" style="height:100px"&gt;
+
+]
+
+---
+
+# Open Practices
+
+.pull-left[
+Recognised as integral to healthy research culture
+
+Working openly means that our work is 
+
+ - Accessible, for free
+ - Open to scrutiny (verifiable)
+ - Reproducible
+]
+
+.pull-right[
+&lt;img src="open-pexels-analogicus-5395777.jpg" alt="A rustic wooden 'Open' sign on a green wooden door" style="height:400px"&gt;
+&lt;small&gt;(source: [analogicus from Pexels](https://www.pexels.com/photo/wooden-welcome-signage-on-green-wooden-door-5395777/))&lt;/small&gt;
+]
+
+
+
+---
+
+# Open Teaching
+
+&lt;center&gt;
+&lt;img src="mine_cetinkaya_rundel.png" alt="A screenshot of the homepage for STA 313 - Advanced Data Visualisation, with menu items Syllabus, Teaching Team, Schedule, Useful Links, Project 1" style="height:350px"&gt;&lt;br&gt;
+&lt;small&gt; Example of CC BY-SA course materials, &lt;a href = https://www.vizdata.org/index.html&gt;vizdata.org&lt;/a&gt; &lt;/small&gt;
+&lt;/center&gt;
+
+Range of licenses e.g. CC BY, CC BY-SA, CC BY-NC, CC BY NC-ND, No license. 
+
+???
+https://stat545.stat.ubc.ca/ CC BY
+https://online.stat.psu.edu/stat501/ CC BY-NC
+https://avehtari.github.io/BDA_course_Aalto/ CC BY-NC
+https://www.andrew.cmu.edu/user/achoulde/94842/ CC BY-NC-SA
+https://econsp21.classes.andrewheiss.com/ CC BY-NC-ND
+
+---
+
+# Code and Software
+
+.pull-left[
+&lt;center&gt;
+&lt;b&gt;Script&lt;/b&gt;
+&lt;/center&gt;
+&lt;br&gt;
+Analysis/simulation script
+
+- Customised
+- Reproducible workflow
+    - read data
+    - analyse
+    - summarise
+    - report
+]
+.pull-right[
+&lt;center&gt;
+&lt;b&gt;Software&lt;/b&gt;
+&lt;/center&gt;
+&lt;br&gt;
+Package, tool, dashboard
+
+- Optimized
+- Reusable
+- Sharable
+]
+
+???
+command line tool
+
+---
+
+# Why Share Code and Software?
+
+Beyond general benefits of open practices
+
+- Increased impact and reputation
+- Faster translation into practice
+- Additional, citable, outputs
+
+Benefits of coding in the open
+
+- Encourages good practices
+- Facilitates collaboration
+- Can give access to software engineering tools
+
+---
+
+# Proprietary vs. Open Source
+
+.pull-left[
+&lt;center&gt;
+&lt;b&gt;Proprietary &lt;/b&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;img src="proprietary.png" alt="Logos for Stata, SAS and Matlab" style="height:190px"&gt;
+&lt;/center&gt;
+- Code can not be reviewed
+- No control over when bugs fixed
+- Costly: not accessible to all
+]
+.pull-right[
+&lt;center&gt;
+&lt;b&gt;Open Source&lt;/b&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;img src="open_source.png" alt="Logos for Python, R, Julia and gcc" style="height:190px"&gt;
+&lt;/center&gt;
+- Code open to scrutiny
+- Can contribute bug fix/fork code
+- Free to use
+]
+
+---
+
+# Sharing code on your website
+
+## Pros
+
+ - Simple
+ - Low maintenance
+
+## Cons
+
+ - Not persistent
+ - Not discoverable
+ - Not citable
+ - Versioning is painful, update history not transparent
+ 
+---
+
+# Sharing code as supplementary material
+
+## Pros
+
+ - Simple
+ - Low maintenance
+ - Persistent 
+
+## Cons
+
+ - Need to publish paper!
+ - Not separately discoverable/citable from paper
+ - No option to update
+ 
+---
+
+# Sharing code in an open research archive
+
+.pull-left-66[
+
+## Pros
+
+- Persistent DOI
+- Version support (including DOI for "all versions")
+- Range of licensing options
+- Link to ORCID and UKRI grant
+- Extensible to "research compendium"
+
+## Cons
+
+- Version snapshots ("releases")
+]
+.pull-right-33[
+
+&lt;a href = https://zenodo.org/&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;center&gt;
+&lt;img src="Zenodo_logo.jpg" alt="Logos for Zenodo" style="height:90px"&gt; &lt;br&gt;
+[zenodo.org](https://zenodo.org/)
+&lt;/center&gt;
+&lt;/a&gt;
+]
+
+???
+concept DOI
+Zenod: built by researchers for researchers
+https://www.agu.org/-/media/Files/Publications/Generalist-Data-Repository-Grid.pdf
+https://the-turing-way.netlify.app/communication/citable.html
+https://www.nature.com/articles/s41597-022-01143-6
+https://www.researchequals.com/faq
+Other benefits: free, support for peer review during embargo, immediate publication (no peer review)
+
+---
+
+# Sharing code in an online repository
+
+.pull-left-66[
+## Pros
+
+- Version control (commit history + releases)
+- README.md for quick documentation
+- Facilitates contribution (bug reports, patches)
+- Can use CITATION.cff file for clear citation [GitHub]
+- Links to Zenodo for publishing releases
+
+## Cons
+
+- Learning curve to take full advantage
+]
+.pull-right-33[
+&lt;br&gt;
+&lt;center&gt;
+&lt;a href = https://github.com/&gt;
+&lt;img src="GitHub_Logo.png" alt="Logo for GitHub" style="height:90px"&gt;
+&lt;/a&gt;
+&lt;br&gt;
+&lt;a href = https://github.com/&gt;
+&lt;img src="gitlab-logo.png" alt="Logo for GitLab" style="height:180px"&gt; &lt;br&gt;
+&lt;/a&gt;
+&lt;/center&gt;
+]
+
+???
+Citation File Format (CFF)
+
+---
+
+# Further benefits of GitHub
+
+## Research compendia
+
+Potential to use Binder to so that people can run your code in the browser
+ - For short analysis (&lt;10 min) on small data (&lt; 10MB)
+ - [Zero to Binder](https://the-turing-way.netlify.app/communication/binder/zero-to-binder.html) tutorial [Julia, Python, R]
+ 
+### Software packages
+
+- Users can install Julia/Python/R packages from GitHub
+- Can deploy package websites using GitHub pages
+- Can benefit from GitHub Actions, e.g. automatically running tests
+
+???
+R-universe
+
+---
+
+# Preparing to Share
+
+.pull-left-66[
+1. Choose a license
+ - No license = no permission to use, modify or share!
+ - [Open source license](https://opensource.org/licenses) for scholarly work 
+ - LGPL or BSD license for script in proprietary language.
+ - Industrial partnership: check first
+2. Make it public
+ - Do not version control secrets (passwords, private keys...)!
+]
+.pull-right-33[
+&lt;img src="OSIApproved.png" alt="Logo for the Open Source Initiative" style="height:400px"&gt;
+]
+
+???
+without explicit permission from the copyright holder(s), i.e. original author(s)
+https://choosealicense.com/no-permission/
+https://opensource.stackexchange.com/questions/1720/what-can-i-assume-if-a-publicly-published-project-has-no-license
+https://opensource.stackexchange.com/a/4888
+
+OSI picture
+
+---
+
+# Good (Enough) Software Practices
+
+* Version control
+* Documentation
+ - **Basic** Comments, README
+ - **Advanced** Codebook, function documentation
+* Tests
+ - **Basic** Validation examples with expected output
+ - **Advanced** Unit tests that check expected vs actual
+* Defining the computational environment
+ - **Basic** Document dependencies, versions
+ - **Advanced** Package management systems, containers
+ 
+???
+writing piece of code that working on for more than a day
+
+---
+
+# Release the Software
+
+* GitHub
+    - Create a versioned release on GitHub
+    - Link to Zenodo to record version with DOI
+* Package repository (CRAN, PyPI, Julia General Registry)
+    - Quality standards: interoperability
+    - Discoverable
+    - Easier to install
+    
+???
+Code is ready to be used (not a beta version)
+Basic standards: documented code, running examples, etc
+Works with current version of R and other packages
+Commitment of maintainer
+
+Julia General registry: minimal standards, package must be loadable
+Similar for PyPI?
+
+ (but see R-universe)
+
+---
+
+# Prepare for release
+
+* When (incremental) features are usable
+* Good time to do additional checks
+    - Check spelling
+    - URL/article citations up-to-date
+    - Testing on different platforms
+    - Check repository policies, run their checks
+    - Start/update NEWS or ChangeLog
+
+---
+
+# Code review
+
+* External (at time of major release)
+    - **Software only** Bioconductor, rOpenSci
+    - **With accompanying article** R Journal, JSS, JOSS
+* Internal (throughout)
+    - Code exchange/peer review within Statistics? c.f. [Oxford Code Review Network](https://www.rse.ox.ac.uk/oxford-code-review-network/)
+    - RSE: embedded RSEs (R), grant funded general RSE support via SCRTP (?)
+    
+---
+
+# Promoting your package
+
+* Some promotion automatic on official repositories
+    - E.g. CRANberries, R Views (Top New Packages), custom search engines
+* Social media
+    - Website, blog 
+    - Twitter (#RStats, #Python, #JuliaLang, #OpenSource)
+* Suggest for Task View if relevant
+    - [CRAN Task Views](https://cran.r-project.org/web/views/)
+    - [Python Task Views](https://www.pythondatascience.org/) ??
+    
+???
+CRANberries: RSS feed/Twitter
+    
+---
+
+# Talks
+
+* Meetups: Warwick RUG, Coventry R-Ladies
+* Conferences 
+    - General computing: useR!, PyCon, JuliaCon, COMPSTAT
+    - Specific: R/Finance, BioC, Psychoco
+
+* Don't forget to share your slides! (Conference/personal website, LinkedIn, RPubs, Slideshare)
+
+???
+Conferences provide greater exposure, particular to people working in
+relevant field(s).
+
+- General domain: JSM, ESA, ...
+
+---
+
+# Paper
+
+ - Traditional journals:
+    - Open Source Software: The R Journal, Journal of Statistical Software
+Computational and Graphical Statistics, SoftwareX
+    - Science: Bioinformatics, PLOS ONE, Method in Ecology and Evolution
+ - Alternative journals:
+    - F1000research Bioconductor/R package gateway: publish, then open review
+    - Journal Open Source Software: open code review, short descriptive paper
+
+???
+A paper not only promotes your package but benefits from peer review
+ - Paper can also overlap with vignette
+ 
+---
+
+# Interacting with users
+
+* Bug reports/help requests
+  - Can show where documentation/tests need improving
+  - Help you find out who's using your package and what for   
+  - Can give ideas for new features
+  - Can lead to collaborations
+* GitHub issues: better than email!
+   - Users can see if bug already reported and what action has been taken
+  
+---
+
+# Interacting with developers
+
+* Add a code of conduct, e.g. Contributor Covenant
+* Add a CONTRIBUTING.md to your GitHub repository
+    - Do you have a style guide?
+    - Reminders to run check/tests/add NEWS item to pull requests
+* Use tags to highlight issues: the following are promoted by GitHub
+    - `help wanted`
+    - `good first issue`
+* Take advantage of events e.g. [Hacktoberfest](https://hacktoberfest.digitalocean.com/), [Closember](https://closember.org/)  
+
+---
+
+# Resources
+
+* GitHub: 
+  - Intro with me: March 31, 9:00 - 10:30, MS0.07
+  - SCRTP materials: https://warwick.ac.uk/research/rtp/sc/rse/training/introgit
+* [Computational Toolkit Seminar Series](https://warwick.ac.uk/fac/sci/hetsys/outreach/toolkit/) (HetSys CDT) Tuesdays, 16:00, YouTube (live/recorded).
+* Open practices: 
+  - Research: [The Turing Way](https://the-turing-way.netlify.app/) - coding, communication, collaboration, ethics 
+  - Coding/software: [Software Sustainability Institute](https://www.software.ac.uk/) - guides, events, mentoring 
+
+???
+HetSys PhD students/guests
+---
+
+# Summary
+
+* Working openly encourages good practices
+* Your code/software is an asset!
+* We can make steps to improve our own practice
+* Consider including time for general/specific RSE support on grants
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "googlecode",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

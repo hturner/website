@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>R and the R Community</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Heather Turner  Research Software Engineering Fellow University of Warwick" />
+    <script src="index_files/header-attrs-2.11/header-attrs.js"></script>
+    <link rel="stylesheet" href="libs/remark-css-0.0.1/default.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R and the R Community
+### <span style="font-size:40px;font-weight:600">Heather Turner<br> Research Software Engineering Fellow<br>University of Warwick</span>
+### <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> <a href="https://twitter.com/heathrturnr">@HeathrTurnr</a><br><br>23 April 2022<br><br>&lt;span style=“font-size:50px;font-weight:600”;&gt;<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg> <a href="heatherturner.net/talks/RUsersNamibia2022">heatherturner.net/talks/RUsersNamibia2022</a></span>
+
+---
+
+
+layout: true
+
+.footer[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg> [heatherturner.net/talks/RUsersNamibia2022](https://www.heatherturner.net/talks/RUsersNamibia2022)  &amp;nbsp; <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> [@HeathrTurnr](https://twitter.com/heathrturnr)]
+
+---
+
+class: inverse middle
+
+# What can R do?
+
+---
+
+# Data Management
+
+.pull-left[.center[
+Data import
+
+![](DataImport.png)
+]]
+.pull-right[.center[
+Tidying, transforming
+
+![](pivot_longer_new.png)
+]]
+
+???
+https://epirhandbook.com/en/index.html
+
+---
+
+# Data Analysis
+
+.pull-left-33[.center[
+Exploratory data analysis
+![](eda.png)
+]]
+.pull-left-33[.center[
+Statistical modelling
+![](statmodelling.png)
+]]
+.pull-left-33[.center[
+Specialised analysis
+![](network.png)
+]]
+
+???
+https://programminghistorian.org/en/lessons/temporal-network-analysis-with-r
+
+---
+
+# Reporting
+
+.pull-left-raise-25[.center[
+Dashboards/web apps
+
+![](dashboard.png)
+]]
+.pull-right-raise-90[.center[
+Literate programming
+
+![](markdown.png)
+]]
+
+---
+
+class: inverse middle
+
+# The R Community
+
+---
+
+# R User Community
+
+.pull-left-33[
+Research Institutions
+* CGIAR
+* European Environment Agency
+* Indian Statistical Institute
+* University of Oxford
+* National Institute of Standards and Technology
+]
+.pull-left-33[
+Companies
+* Deloitte
+* Ebay
+* Google
+* Mozilla
+* Oracle
+* Pfizer
+* Roche
+* Twitter
+]
+.pull-left-33[
+Government, NGO, journalists...
+* BBC
+* National Health Service England &amp; Wales
+* New York Times
+* UK Government
+* World Bank
+* United Nations
+]
+
+
+???
+Consultative Group on International Agricultural Research
+
+---
+
+# R Developer Community
+
+.pull-left-64[.center[
+R Core Team + R Contributors
+
+![](rcore.png)
+
+[r-project.org/contributors.html](https://www.r-project.org/contributors.html)
+]]
+.pull-left-33[.center[
+Package Authors
+
+CRAN &lt;img height = "20px" src="Rlogo.png"&gt;&lt;br&gt;&lt;a href="https://cran.r-project.org"&gt;cran.r-project.org&lt;/a&gt;
+
+&lt;img height = "29px" src= "bioconductor_logo_rgb.jpg"&gt;&lt;br&gt;&lt;a href="https://www.bioconductor.org"&gt;bioconductor.org&lt;/a&gt;
+
+GitHub &lt;img height = "20px" src="githublogo.png"&gt;&lt;br&gt;&lt;a href="https://github.com"&gt;github.com&lt;/a&gt;
+]]
+
+
+???
+
+https://github.com/llrs/bugzilla_viz
+
+---
+
+# The R Foundation
+
+A not-for-profit organization that supports the R project
+
+* Publisher of The R Journal
+* Organizes/endorses conferences
+
+.pull-left-30[.raise-25[.center[
+&lt;img src="user with halo blue.png" alt="R logo" style="height:150px"&gt;&lt;br&gt;
+June 20-23
+
+[user2022.r-project.org](https://user2022.r-project.org/)
+
+]]]
+.pull-right-64[.raise-25[
+&lt;br&gt;
+Fees for Namibia:
+* Conference: USD 14-29
+* 2 tutorials: USE 12-22 
+
+Needs-based waivers on a case-by-case basis.
+]]
+
+---
+
+# Forwards
+
+The R Foundation taskforce for under-represented groups
+
+* Initiatives to increase participation
+
+.pull-left[.raise-25[
+![](forwards_postcard.jpg)
+]]
+.pull-right[
+Forwards Southern Africa Project 2020
+* South Africa: R-Ladies, satRdays
+* Eswatini: R User Group 
+* Botswana: WiMLDS Gaborone and PyData Botswana
+] 
+
+---
+
+# R User Groups
+
+.pull-left[According to https://benubah.github.io/r-community-explorer
+29 RUG/R-Ladies Groups (+1 for Namibia!)
+
+&lt;img src="rug_regions.png" alt="Location of African RUGs/R-Ladies" style="height:300px"&gt;
+]
+.pull-right[.center[
+&lt;img src="africa-rugs.png" alt="Location of African RUGs/R-Ladies" style="height:400px"&gt;
+]]
+
+---
+
+# R Consortium 
+
+.pull-left[
+Non-profit business association set up to support R.
+
+R Foundation + 17 business including Microsoft and RStudio
+- Funded projects
+- Working groups
+- [RUG and conference support](https://www.r-consortium.org/all-projects/r-user-group-support-program)
+]
+.pull-right[
+&lt;img src="r-consortium.png" alt="" style="width:550px"&gt;
+]  
+
+---
+
+# AfricaR
+
+.pull-left-30[.center[
+&lt;img src="africar.png" alt="" style="width:300px"&gt;
+]]
+
+.pull-right-64[
+Established 2019
+
+- Connect R users from different regions
+- Established several R User Groups
+- Organized 6 satRday conferences
+
+[@AfricaRUsers](https://twitter.com/AfricaRUsers) / [africa-r.org](https://africa-r.org/)
+]
+
+---
+
+# R-Ladies
+
+&gt; R-Ladies is a worldwide organization whose mission is to promote gender diversity in the R community.
+
+.pull-left[
+- R-Ladies Remote ([@RLadiesRemote](https://twitter.com/rladiesremote))
+    - reading group (~1/month)
+    - Slack/Zoom chats (~1/month)
+- [Abstract review for conferences](https://docs.google.com/forms/d/e/1FAIpQLSck8FBjNWjziI8pPIoCBlf5J4oQ_6pzeUdbQ1HjYfJ2bNDwDw/viewform)
+- R-Ladies community slack [sign up](https://rladies-community-slack.herokuapp.com/)
+ - many channels: #events, #r-help
+
+]
+.pull-right[.center[
+&lt;img src="R-LadiesGlobal.png" alt="" style="width:300px"&gt;
+] ]
+
+---
+
+# Minorities in R (MiR)
+
+&gt; Slack-based community to support the professional development and well-being of historically underrepresented minorities that use R
+
+.pull-left[
+- Sharing information
+- Webinars
+- RStudio Instructor Training
+- Social media and blog posts
+
+[@miR_community](https://twitter.com/miR_community) / [mircommunity.com](https://mircommunity.com/)
+]
+.pull-right[.center[
+&lt;img src="mir_logo_small.png" alt="" style="width:250px"&gt;
+] ]
+
+---
+
+# Online Community Spaces
+
+.pull-left[
+&lt;br&gt;
+- [R4DS Online Learning Community](https://www.rfordatasci.com/)
+- [RStudio Community](https://community.rstudio.com/)
+- [discoRd](https://www.r-discord.com/)
+- [Twitter for R programmers](https://www.t4rstats.com/index.html) #RStats 
+- LinkedIn
+]
+.pull-right[
+&lt;img src="welcome_to_rstats_twitter.png" alt="Two fuzzy monsters standing side-by-side outside of a door frame containing different R communities and accounts on Twitter, with a “mind blown” rainbow coming out of the one closest to the door. A welcome mat says “Welcome." style="width:450px"&gt;
+]
+
+---
+
+# Research Software Engineering
+
+&gt; Supporting the use of software in research
+
+.pull-left[.center[
+&lt;img src="rsse_africa.svg" alt="" style="width:350px"&gt;
+
+]]
+.pull-right[
+Research Software and Systems Engineers of Africa
+
+- Raise awareness of RSE
+- Organize events
+- Forum for sharing skills &amp; opportunities
+
+https://rsse.africa/
+]
+
+---
+
+class:middle
+
+.center[
+Thanks and all the best on the launch of R Users Namibia!
+
+&lt;img src="rocket.jpg" alt="" style="width:500px"&gt;
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "googlecode",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

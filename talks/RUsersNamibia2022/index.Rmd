@@ -1,0 +1,323 @@
+---
+title: "R and the R Community"
+author: <span style="font-size:40px;font-weight:600">Heather Turner<br> Research Software Engineering Fellow<br>University of Warwick</span>
+date: '`r fontawesome::fa("twitter")` [\@HeathrTurnr](https://twitter.com/heathrturnr)<br><br>23 April 2022<br><br><span style="font-size:50px;font-weight:600";>`r fontawesome::fa("link")` [heatherturner.net/talks/RUsersNamibia2022](heatherturner.net/talks/RUsersNamibia2022)</span>'
+output:
+  xaringan::moon_reader:
+    css: ["libs/remark-css-0.0.1/default.css", "extra.css"]
+    keep_md: true
+    nature:
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      highlightStyle: googlecode
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+always_allow_html: yes      
+
+---
+
+layout: true
+
+.footer[`r fontawesome::fa("link")` [heatherturner.net/talks/RUsersNamibia2022](https://www.heatherturner.net/talks/RUsersNamibia2022)  &nbsp; `r fontawesome::fa("twitter")` [@HeathrTurnr](https://twitter.com/heathrturnr)]
+
+---
+
+class: inverse middle
+
+# What can R do?
+
+---
+
+# Data Management
+
+.pull-left[.center[
+Data import
+
+![](DataImport.png)
+]]
+.pull-right[.center[
+Tidying, transforming
+
+![](pivot_longer_new.png)
+]]
+
+???
+https://epirhandbook.com/en/index.html
+
+---
+
+# Data Analysis
+
+.pull-left-33[.center[
+Exploratory data analysis
+![](eda.png)
+]]
+.pull-left-33[.center[
+Statistical modelling
+![](statmodelling.png)
+]]
+.pull-left-33[.center[
+Specialised analysis
+![](network.png)
+]]
+
+???
+https://programminghistorian.org/en/lessons/temporal-network-analysis-with-r
+
+---
+
+# Reporting
+
+.pull-left-raise-25[.center[
+Dashboards/web apps
+
+![](dashboard.png)
+]]
+.pull-right-raise-90[.center[
+Literate programming
+
+![](markdown.png)
+]]
+
+---
+
+class: inverse middle
+
+# The R Community
+
+---
+
+# R User Community
+
+.pull-left-33[
+Research Institutions
+* CGIAR
+* European Environment Agency
+* Indian Statistical Institute
+* University of Oxford
+* National Institute of Standards and Technology
+]
+.pull-left-33[
+Companies
+* Deloitte
+* Ebay
+* Google
+* Mozilla
+* Oracle
+* Pfizer
+* Roche
+* Twitter
+]
+.pull-left-33[
+Government, NGO, journalists...
+* BBC
+* National Health Service England & Wales
+* New York Times
+* UK Government
+* World Bank
+* United Nations
+]
+
+
+???
+Consultative Group on International Agricultural Research
+
+---
+
+# R Developer Community
+
+.pull-left-64[.center[
+R Core Team + R Contributors
+
+![](rcore.png)
+
+[r-project.org/contributors.html](https://www.r-project.org/contributors.html)
+]]
+.pull-left-33[.center[
+Package Authors
+
+CRAN <img height = "20px" src="Rlogo.png"><br><a href="https://cran.r-project.org">cran.r-project.org</a>
+
+<img height = "29px" src= "bioconductor_logo_rgb.jpg"><br><a href="https://www.bioconductor.org">bioconductor.org</a>
+
+GitHub <img height = "20px" src="githublogo.png"><br><a href="https://github.com">github.com</a>
+]]
+
+
+???
+
+https://github.com/llrs/bugzilla_viz
+
+---
+
+# The R Foundation
+
+A not-for-profit organization that supports the R project
+
+* Publisher of The R Journal
+* Organizes/endorses conferences
+
+.pull-left-30[.raise-25[.center[
+<img src="user with halo blue.png" alt="R logo" style="height:150px"><br>
+June 20-23
+
+[user2022.r-project.org](https://user2022.r-project.org/)
+
+]]]
+.pull-right-64[.raise-25[
+<br>
+Fees for Namibia:
+* Conference: USD 14-29
+* 2 tutorials: USE 12-22 
+
+Needs-based waivers on a case-by-case basis.
+]]
+
+---
+
+# Forwards
+
+The R Foundation taskforce for under-represented groups
+
+* Initiatives to increase participation
+
+.pull-left[.raise-25[
+![](forwards_postcard.jpg)
+]]
+.pull-right[
+Forwards Southern Africa Project 2020
+* South Africa: R-Ladies, satRdays
+* Eswatini: R User Group 
+* Botswana: WiMLDS Gaborone and PyData Botswana
+] 
+
+---
+
+# R User Groups
+
+.pull-left[According to https://benubah.github.io/r-community-explorer
+29 RUG/R-Ladies Groups (+1 for Namibia!)
+
+<img src="rug_regions.png" alt="Location of African RUGs/R-Ladies" style="height:300px">
+]
+.pull-right[.center[
+<img src="africa-rugs.png" alt="Location of African RUGs/R-Ladies" style="height:400px">
+]]
+
+---
+
+# R Consortium 
+
+.pull-left[
+Non-profit business association set up to support R.
+
+R Foundation + 17 business including Microsoft and RStudio
+- Funded projects
+- Working groups
+- [RUG and conference support](https://www.r-consortium.org/all-projects/r-user-group-support-program)
+]
+.pull-right[
+<img src="r-consortium.png" alt="" style="width:550px">
+]  
+
+---
+
+# AfricaR
+
+.pull-left-30[.center[
+<img src="africar.png" alt="" style="width:300px">
+]]
+
+.pull-right-64[
+Established 2019
+
+- Connect R users from different regions
+- Established several R User Groups
+- Organized 6 satRday conferences
+
+[@AfricaRUsers](https://twitter.com/AfricaRUsers) / [africa-r.org](https://africa-r.org/)
+]
+
+---
+
+# R-Ladies
+
+> R-Ladies is a worldwide organization whose mission is to promote gender diversity in the R community.
+
+.pull-left[
+- R-Ladies Remote ([@RLadiesRemote](https://twitter.com/rladiesremote))
+    - reading group (~1/month)
+    - Slack/Zoom chats (~1/month)
+- [Abstract review for conferences](https://docs.google.com/forms/d/e/1FAIpQLSck8FBjNWjziI8pPIoCBlf5J4oQ_6pzeUdbQ1HjYfJ2bNDwDw/viewform)
+- R-Ladies community slack [sign up](https://rladies-community-slack.herokuapp.com/)
+ - many channels: #events, #r-help
+
+]
+.pull-right[.center[
+<img src="R-LadiesGlobal.png" alt="" style="width:300px">
+] ]
+
+---
+
+# Minorities in R (MiR)
+
+> Slack-based community to support the professional development and well-being of historically underrepresented minorities that use R
+
+.pull-left[
+- Sharing information
+- Webinars
+- RStudio Instructor Training
+- Social media and blog posts
+
+[@miR_community](https://twitter.com/miR_community) / [mircommunity.com](https://mircommunity.com/)
+]
+.pull-right[.center[
+<img src="mir_logo_small.png" alt="" style="width:250px">
+] ]
+
+---
+
+# Online Community Spaces
+
+.pull-left[
+<br>
+- [R4DS Online Learning Community](https://www.rfordatasci.com/)
+- [RStudio Community](https://community.rstudio.com/)
+- [discoRd](https://www.r-discord.com/)
+- [Twitter for R programmers](https://www.t4rstats.com/index.html) #RStats 
+- LinkedIn
+]
+.pull-right[
+<img src="welcome_to_rstats_twitter.png" alt="Two fuzzy monsters standing side-by-side outside of a door frame containing different R communities and accounts on Twitter, with a “mind blown” rainbow coming out of the one closest to the door. A welcome mat says “Welcome." style="width:450px">
+]
+
+---
+
+# Research Software Engineering
+
+> Supporting the use of software in research
+
+.pull-left[.center[
+<img src="rsse_africa.svg" alt="" style="width:350px">
+
+]]
+.pull-right[
+Research Software and Systems Engineers of Africa
+
+- Raise awareness of RSE
+- Organize events
+- Forum for sharing skills & opportunities
+
+https://rsse.africa/
+]
+
+---
+
+class:middle
+
+.center[
+Thanks and all the best on the launch of R Users Namibia!
+
+<img src="rocket.jpg" alt="" style="width:500px">
+
+]

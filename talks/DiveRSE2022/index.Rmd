@@ -1,7 +1,7 @@
 ---
 title: "EDI in the R Community"
 author: <span style="font-size:36px;font-weight:600">Heather Turner<br> Research Software Engineering Fellow<br>University of Warwick</span>
-date: '`r fontawesome::fa("twitter")` [\@HeathrTurnr](https://twitter.com/heathrturnr)<br><br>4 May 2022<br><br><span style="font-size:50px;font-weight:600";>`r fontawesome::fa("link")` [heatherturner.net/talks/DiveRSE2022](heatherturner.net/talks/DiveRSE2022)</span>'
+date: '`r fontawesome::fa("twitter")` [\@HeathrTurnr](https://twitter.com/heathrturnr)<br><br>4 May 2022<br><br><span style="font-size:50px;font-weight:600";>`r fontawesome::fa("link")` [heatherturner.net/talks/DiveRSE2022](https://www.heatherturner.net/talks/DiveRSE2022)</span>'
 output:
   xaringan::moon_reader:
     seal: false
@@ -30,7 +30,7 @@ Research Software Engineering Fellow<br>University of Warwick</span>
 4 May 2022
 <br>
 <span style="font-size:50px;font-weight:600";>
-`r fontawesome::fa("link")` [heatherturner.net/talks/DiveRSE2022](heatherturner.net/talks/DiveRSE2022)</span>
+`r fontawesome::fa("link")` [heatherturner.net/talks/DiveRSE2022](https://www.heatherturner.net/talks/DiveRSE2022)</span>
 ]
 .pull-right-45[
 <br>
@@ -448,36 +448,18 @@ Tidyverse Developer Days (2019,2020)
 
 # R Contribution Working Group
 
-.pull-left[
-* Motivated by R Core panel at useR! 2020
-
-* Collaboration between R Core, Forwards and community groups
-
-* Aim to foster larger, more diverse community of contributors to the R project.
-
+.pull-left-55[
+<img src="rcore.png" alt="" style="width:700px">
 ]
-.pull-right[
-<img src="rcore.png" alt="" style="width:550px">
+.pull-right-45[
+* Motivated by R Core panel at useR! 2020
+* Collaboration between R Core, Forwards and community groups
+* Aim to foster larger, more diverse community of contributors to the R project.
 ] 
 
 ---
 
 # RCWG Initiatives
-
-First year (2020-2021):
-
- - Created the R Contribution Site: [contributor.r-project.org/](https://contributor.r-project.org/)
- - Set up the [R-Devel Slack](https://forwards.github.io/rcontribution/slack)
- - Developed a draft version of the [R Development Guide](https://forwards.github.io/rdevguide)
- - Organized, prepared and delived two contributor-focused tutorials at *useR! 2021*
-     - [Contributing to R](https://youtu.be/CZmldTOdlRM?list=PL4IzsxWztPdnCC_kMCYKrd_t6cViMhBrD)
-     - [Translating R to your language](https://forwards.github.io/rcontribution/tutorials#translating-r-to-your-language)
-
----
-
-# R Contribution Working Group
-
-> Aim to foster larger, more diverse community of contributors to the R project.
 
 First year (2020-2021):
 

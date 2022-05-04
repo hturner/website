@@ -1,0 +1,575 @@
+---
+title: "EDI in the R Community"
+author: <span style="font-size:36px;font-weight:600">Heather Turner<br> Research Software Engineering Fellow<br>University of Warwick</span>
+date: '`r fontawesome::fa("twitter")` [\@HeathrTurnr](https://twitter.com/heathrturnr)<br><br>4 May 2022<br><br><span style="font-size:50px;font-weight:600";>`r fontawesome::fa("link")` [heatherturner.net/talks/DiveRSE2022](heatherturner.net/talks/DiveRSE2022)</span>'
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: ["libs/remark-css-0.0.1/default.css", "extra.css"]
+    keep_md: true
+    nature:
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      highlightStyle: googlecode
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+always_allow_html: yes      
+---
+
+class: middle
+
+.pull-left-55[
+<h1>EDI in the R Community</h1>
+<br><br>
+<span style="font-size:36px;font-weight:600">Heather Turner</span><br> 
+<span style="font-size:30px;font-weight:600">
+Research Software Engineering Fellow<br>University of Warwick</span>
+
+`r fontawesome::fa("twitter")` [@HeathrTurnr](https://twitter.com/heathrturnr)
+<br><br>
+4 May 2022
+<br>
+<span style="font-size:50px;font-weight:600";>
+`r fontawesome::fa("link")` [heatherturner.net/talks/DiveRSE2022](heatherturner.net/talks/DiveRSE2022)</span>
+]
+.pull-right-45[
+<br>
+<br>
+!["Arms of the characters from Star Wars form a circle with their hands stacked in the middle as a sign of solidarity"](starwars-teamwork.png)
+<small> Artwork from <a href="https://twitter.com/juliesquid">@juliesquid</a> for <a href="https://twitter.com/openscapes">@openscapes</a> (illustrated by <a href="https://twitter.com/allison_horst">@allison_horst</a>).</small>]
+
+---
+
+layout: true
+
+.footer[`r fontawesome::fa("link")` [heatherturner.net/talks/DiveRSE2022](https://www.heatherturner.net/talks/DiveRSE2022)  &nbsp; `r fontawesome::fa("twitter")` [@HeathrTurnr](https://twitter.com/heathrturnr)]
+
+---
+
+class: middle, inverse
+
+# Background
+
+---
+
+# Potted History of R
+
+.pull-left[
+1992: Robert Gentleman and Ross Ihaka develop an early version of R for teaching.
+
+1995: R released under a GNU public license
+
+1997: CRAN and R Core team established
+
+2000: R 1.0.0 released
+
+April 2022: R 11th in TIOBE rankings
+
+]
+.pull-right[
+<img src="robert_gentleman_and_ross_ihaka.png" alt="Robert Gentleman and Ross Ihaka" style="width:550px">
+At the  Black Crow Cafe, Auckland, NZ 
+<small>(source: [R. Ihaka](https://www.stat.auckland.ac.nz/~ihaka/downloads/the-r-project.pdf))</small>]
+
+???
+
+1993 - shared vias Statlib, others start to use
+CRAN - 12 packages originally
+---
+
+# Gender Diversity
+
+.pull-left[![Bar chart of random sample of CRAN maintainers by self-identified gender: 10.9% Woman, 88.2% Man, 0.1% Non-binary, 0.7% NA](pinto_et_al_2018_gender_plot2.png)
+]
+.pull-right[
+Only ~11% women/non-binary package maintainers.
+
+Similar over-representation of men in general user community
+
+* [R Consortium Survey, 2017](https://blog.revolutionanalytics.com/downloads/Voice%20of%20R%20Community.pdf) <br>\> 80%
+* [RStudio R Community Survey 2020](R Community Survey) ~80%
+
+]
+
+---
+
+# Geographical Diversity
+
+.center-64[
+<img src="pinto_et_al_2018_loc_plot2.png" alt="Bar chart of random sample of CRAN maintainers by self-identified region: 48.9% Europe, 34.2% America, 5.9% Asia, 5.6% South America, 4.1% Oceania, 0.5% Africa, 0.4% Central America, 0.4% NA">
+]
+
+---
+
+class: middle, inverse
+
+# EDI Initiatives
+
+---
+
+# Women in R
+
+.pull-left[
+"heR" panel at useR! 2014 raised awareness of gender disparity
+
+In 2015:
+  - Myself and Bettina Grün elected to R Foundation
+  - Women in R taskforce set up in December 2015
+]
+
+.pull-right[
+  ![Chair and panelists at the heR panel at useR! 2014](her_panel_and_chair.png)
+  ]
+
+???
+
+R Foundation founded 2003
+
+---
+
+# useR! 2016 survey
+
+.pull-left-64[
+<img src="useR2016.png" alt="" style="width:800px">
+<small>(source: [ https://forwards.github.io/blog/2017/01/13/mapping-users/](https://forwards.github.io/blog/2017/01/13/mapping-users/))</small>
+
+]
+
+.pull-right-30[
+<br>
+- 74% White; 16 % Asian
+- 5% LGBT
+- 33% women
+]
+
+???
+Note already had some diversity scholarships and made some recommendations
+
+---
+
+# Forwards
+
+.pull-left-30[
+<br>
+.center[.img-300[![](forwards-logo.png)]]
+] 
+.pull-right-64[Widening participation in R Foundation activities: <br>*useR!*, *R Journal*, CRAN, R project
+- Accessibility
+- Community
+- Conferences
+- On-ramps
+- Surveys
+- Teaching
+
+[@R_Forwards](https://twitter.com/R_Forwards) / [forwards.github.io](https://forwards.github.io/)
+]
+
+---
+
+# Forwards Team
+
+.center[
+.img-100[![](heather.jpg)]
+.img-100[![](gwynn.jpg)]
+.img-100[![](jonathan.jpg)]
+.img-100[![](kevin.jpg)]
+.img-100[![](noa_tamir-300x300.jpg)]
+.img-100[![](yanina-300x300.jpg)]<br>
+.img-100[![](Saranjeet-Kaur-Bhogal-150x150.jpg)]
+.img-100[![](michael_lawrence.jpg)]
+.img-100[![](anna.jpg)]
+.img-100[![](andrea.jpg)]
+.img-100[![](mine.jpg)]
+.img-100[![](emma.jpg)]<br>
+<small>Core Team: Heather Turner, gwynn sturdevant, Jonathan Godfrey, Kevin O'Brien, <br> Noa Tamir, Yanina Bellini Saibene,
+Saranjeet Kaur, Michael Lawrence, Anna Vasylytsya, <br> Andrea Sánchez-Tapia, Mine Çetinkaya-Rundel, Emma Rand </small>
+
+Plus >20 sub-team members!
+]
+
+---
+
+# R Consortium 
+
+.pull-left[
+Non-profit business association set up as Linux Foundation project
+
+- Funded projects
+    - Forwards package development workshops
+- Working groups 
+    - 2018: R-Community IDEA
+- RUG and conference support
+]
+.pull-right[
+<img src="r-consortium.png" alt="" style="width:550px">
+]  
+
+???
+Inclusion, diversity equity and accessibility
+---
+
+# R-Ladies
+
+.pull-left[
+2012: Gabriela de Queiroz founded group in San Francisco
+
+Later: Twin Cities, Taipei, London
+
+2016: 
+ - San Francisco & London organizer meet at useR!
+ - R Consortium grant to create R-Ladies Global
+
+]
+.pull-right[
+<img src="R-LadiesGlobal.png" alt="" style="width:400px">
+] 
+---
+
+# R-Ladies Growth
+
+Currently 216 Chapters (source: [R Community Explorer](https://benubah.github.io/r-community-explorer))
+![Growth of R-Ladies from October 2012 to October 2021: single numbers up to late 2016 then steady increase up to ](rladies-growth.png)
+
+---
+
+# R Ladies Global Team
+
+.center[
+.img-100[![Claudia Vitolo](claudia.jpg)]
+.img-100[![Athanasia Monika Mowinckel](mo-150x150.jpg)]
+.img-100[![Averi Giudicessi](averi.png)]
+.img-100[![Batool Almarzouq](batool_almarzouq-300x300.jpg)]
+.img-100[![Bea Hernández](bea.jpg)]
+.img-100[![Christin Zasada](Christin.jpg)]
+.img-100[![Emmanuelle Nunes](emmanuelle.jpeg)]
+.img-100[![Florencia D’Andrea](florencia.jpg)]
+
+.img-100[![Erin LeDell](erin.jpg)]
+.img-100[![Jennifer Thompson](jennifer.jpg)]
+.img-100[![Katherine Simeon](Katherine-147x150.jpg)]
+.img-100[![Maëlle Salmon](maelle-300x298.jpg)]
+.img-100[![Mouna Belaid](mouna_belaid-300x300.jpg)]
+.img-100[![Nadeja Sero](Nadejda-Sero-150x150.jpg)]
+.img-100[![Noa Tamir](noa_tamir-300x300.jpg)]
+.img-100[![Page Piccinini](page.jpg)]
+
+.img-100[![Hannah Frick](hannah.jpg)]
+.img-100[![Pao Corrales](paocorrales.jpg)]
+.img-100[![Patricia A. Loto](Patricia_A_Loto-150x150.jpg)]
+.img-100[![Riva Quiroga](rivaquiroga.png)]
+.img-100[![Saranjeet Kaur Bhogal](Saranjeet-Kaur-Bhogal-150x150.jpg)]
+.img-100[![Shannon Pileggi](shannon.jpg)]
+.img-100[![Sheila Saia](sheila.jpg)]
+.img-100[![Yanina Bellini Saibene](yanina-300x300.jpg)]
+
+https://rladies.org/about-us/team/
+]
+
+---
+
+# R-Ladies vs RUGS
+
+* 858 RUGS on Meetup.com (earliest 2008)
+* R-Ladies relatively stronger in Latin America
+
+.pull-left[
+![Number of R-Ladies groups per region: US/Canada 59, Europe 57, Latin America 59, Australia 10, Asia 19, Africa 12](rladies-loc2.png)
+]
+.pull-right[
+![Number of R user groups per region: US/Canada 292, Europe 279, Latin America 111, Australia 36, Asia 97, Africa 43](rugs-loc2.png)
+]
+
+---
+
+# satRdays
+
+.pull-left[
+2016: R Consortium grant to start
+- Locally organized
+- Strong commitment to diversity
+    - Ticket price < 8hr min wage
+
+\> 20 conferences
+- 6 in Africa
+- 1 in S. America, Asia, Oceania
+
+[https://satRdays.org/](https://satRdays.org/)
+]
+.pull-right[
+<img src="satRday-logo.png" alt="" style="width:400px">
+] 
+
+???
+
+free/low-cost
+locally organized
+
+---
+
+# useR! 2017
+
+
+.pull-left[
+Forwards recommendations implemented
+- Wider diversity scholarships
+- Subsidised childcare 
+- Improved code of conduct
+
+Rainbow R established
+- [@R_LGBTQ](https://twitter.com/r_lgbtq) 
+]
+.pull-right[
+<img src="useR2017.jpg" alt="" style="width:400px">
+] 
+
+---
+
+# R Foundation Endorsed Conferences
+
+.pull-left[
+Latin America:
+- R Day, May 2018, Curitiba, Brazil.
+- LatinR, September 2018, Buenos Aires, Argentina.
+- ConectaR, January, 2019, San José, Costa Rica.
+
+India:
+- R@IIRSA. December, 2019, Mumbai.
+]
+.pull-right[
+<img src="endorsed.png" alt="" style="width:550px">
+]  
+
+---
+
+# Regional Networks
+
+.pull-left[
+![Hex logos of LatinR (a blue hex with "LATINR" and horizontal bars in approximate shape of Latin America in white), ArabR (four arms holding each others wrists forming a square with "Arab R" in the middle), AfricaR (black chloropleth of Africa with "Africa" in white and R logo on top, with orange to purple gradient in background) and AsiaR (black chloropleth of Asia with "Asia" underneath, overlaying the R logo")](regional.png)
+]
+.pull-right[
+
+* Provide community
+* Support user groups
+* Organize regional events
+
+[@LatinR_Conf](https://twitter.com/LatinR_Conf) / [latin-r.com](https://latin-r.com/)  
+[ArabR](https://arabr.github.io/ArabR-Website/)  
+[@AfricaRUsers](https://twitter.com/AfricaRUsers) / [africa-r.org](https://africa-r.org/)  
+[@AsiaR_comm](https://twitter.com/AsiaR_comm) / [AsiaR-community](https://github.com/AsiaR-community)  
+]
+
+---
+
+# Regional Leaders
+
+.center[
+LatinR chairs: 
+.img-100[![Florencia D'Andrea](florencia.jpg)]
+.img-100[![Laura Ación](lacion-150x150.jpg)]
+.img-100[![Natalia da Silva](natalia.jpg)]
+.img-100[![Riva Quiroga](riva.jpg)]
+.img-100[![Yanina Bellini Saibene](yanina-300x300.jpg)]<br>
+AfricaR leaders: 
+.img-100[![Shelmith Kariuki](shel.jpg)]
+.img-100[![Ahmadou Dicko](ahmadou.jpg)]
+.img-100[![Nelda Limilimi](Nelda.jpg)]
+.img-100[![Anicet Ebou](anicet.jpg)]
+.img-100[![Vebashini Naidoo](vebash.jpg)]
+.img-100[![Dennis Irorere](dennis.jpg)]
+.img-100[![Mohammed Ibrahim Ali](mohammed.jpg)]<br>
+AsiaR founders:
+.img-100[![Janani Ravi](janani.jpg)]
+.img-100[![Adithi Upadhya](adithi.jpg)]<br>
+ArabR team: .img-100[![Hussain Alsalman](hussain.png)]
+.img-100[![Amal Tlili](amal.jpg)] 
+.img-100[![Iman Al-Hasani](iman.jpg)] 
+.img-100[![Fahad Almsned](fahad.jpg)] 
+.img-100[![Haifa Ben Messaoud](haifa.jpg)] 
+.img-100[![Kamila Benadrouche](kamila.png)] 
+.img-100[![Mohammed El Fodil](fodil.jpg)] 
+.img-100[![Mouna Belaid](mouna.jpg)] 
+]
+    
+---
+
+# Minorities in R
+
+> MiR Community aims to support historically underrepresented R users around the world.
+.pull-left[
+![Minorities in R logo, "MiR" in the middle on a green background surrounded by hands of various skin colours typing on keyboards](mir_logo2.png)
+]
+.pull-right[
+- MiR community Slack
+- Blog
+- Webinars and tutorials
+- Support RStudio instructor certification
+
+[@miR_community](https://twitter.com/miR_community) / [mircommunity.com](https://mircommunity.com/)
+]
+
+---
+
+# MiR Team
+
+.center[
+.img-100[![](danielle.jpg)]
+.img-100[![](dorris.jpg)]<br>
+Co-founders: Danielle Smalls-Perkins, Dorris Scott<br><br>
+.img-100[![](silvia.jpg)]
+.img-100[![](liz.jpg)]
+.img-100[![](audris.jpg)]
+.img-100[![](andy.jpg)]
+.img-100[![](meenakshi.jpg)]
+.img-100[![](zaynaib_ola.jpg)]
+.img-100[![](zane.png)]
+<br>
+Silvia Canelón, Liz Hare, Audris Campbell, <br>Andy Murtha, Meenakshi Kushwaha, Ola Giwa, Zane Dax
+]
+
+---
+
+# Developer Community Events
+
+.pull-left[
+rOpenSci unconfs (2014-2019)
+- mostly invited
+- strong commitment to diversity
+
+Tidyverse Developer Days (2019,2020)
+ - open events
+ - first-timers encouraged
+]
+.pull-right[
+<img src="TDD2019.jpg" alt="" style="width:550px">
+<small>(source: [B. Milz](https://beatrizmilz.com/blog/2019-08-12-tidydevday/))</small>
+] 
+
+---
+
+# R Contribution Working Group
+
+.pull-left[
+* Motivated by R Core panel at useR! 2020
+
+* Collaboration between R Core, Forwards and community groups
+
+* Aim to foster larger, more diverse community of contributors to the R project.
+
+]
+.pull-right[
+<img src="rcore.png" alt="" style="width:550px">
+] 
+
+---
+
+# RCWG Initiatives
+
+First year (2020-2021):
+
+ - Created the R Contribution Site: [contributor.r-project.org/](https://contributor.r-project.org/)
+ - Set up the [R-Devel Slack](https://forwards.github.io/rcontribution/slack)
+ - Developed a draft version of the [R Development Guide](https://forwards.github.io/rdevguide)
+ - Organized, prepared and delived two contributor-focused tutorials at *useR! 2021*
+     - [Contributing to R](https://youtu.be/CZmldTOdlRM?list=PL4IzsxWztPdnCC_kMCYKrd_t6cViMhBrD)
+     - [Translating R to your language](https://forwards.github.io/rcontribution/tutorials#translating-r-to-your-language)
+
+---
+
+# R Contribution Working Group
+
+> Aim to foster larger, more diverse community of contributors to the R project.
+
+First year (2020-2021):
+
+ - Created the R Contribution Site: [contributor.r-project.org/](https://contributor.r-project.org/)
+ - Set up the [R-Devel Slack](https://forwards.github.io/rcontribution/slack)
+ - Developed a draft version of the [R Development Guide](https://forwards.github.io/rdevguide)
+ - Organized, prepared and delived two contributor-focused tutorials at *useR! 2021*
+     - [Contributing to R](https://youtu.be/CZmldTOdlRM?list=PL4IzsxWztPdnCC_kMCYKrd_t6cViMhBrD)
+     - [Translating R to your language](https://forwards.github.io/rcontribution/tutorials#translating-r-to-your-language)
+
+---
+
+# Collaboration Campfires
+
+.pull-left[
+Novice-friendly topics
+ - Bug handling
+ - Contributing translations
+Designed to be inclusive
+ - Community champions
+ - Targeted promotion
+]
+.pull-right[
+<img src="collaboration-campfires.jpg" alt="" style="width:550px">
+] 
+
+---
+
+# Ongoing RCWG Initiatives
+
+* Google Season of Docs: 
+_Expanding and reorganizing the R Development Guide_
+ - new chapter on contributing translations
+ - using a git workflow to test bug patches
+* Google Summer of Code: _Track R Translation Status_
+ - dashboard to monitor status of translated messages in R
+* Bug BBQ
+ - online, 24-hour event after useR! 2022 to tackle bugs
+ - aiming to be novice-friendly!
+ 
+
+---
+
+# RCWG participants
+
+.pull-left[
+.img-100-float[![](Saranjeet-Kaur-Bhogal-150x150.jpg)] 
+Saranjeet Kaur<br> *R Development Guide<br>Collaboration Campfires* <br><br>
+.img-100-float[![](lluis.jpg)] 
+Lluís Revilla Sancho<br> *R Bugzilla analysis*<br><br>
+.img-100-float[![](michael_chirico.jpg)] 
+.img-100-float-next[![](michael_lawrence.jpg)] 
+Michael Chirico<br>
+Michael Lawrence *Translations tutorial*
+]
+.pull-right[
+.img-100-float[![](kara.jpg)] 
+Kara Woo<br> *R-Ladies link, RWeekly<br>Slack moderator* <br>
+.img-100-float[![](gwynn.jpg)] 
+gwynn sturdevant<br> *MiR link*<br><br>
+.img-100-float[![](gabe.jpg)] 
+.img-100-float-next[![](martin.jpg)] 
+Gabriel Becker<br>
+Martin Mächler *Contributing tutorial*
+]
+
+<br>
+Plus several others joining meetings, contributing via [github.com/r-devel/rcontribution](https://github.com/forwards/rcontribution)
+
+---
+
+class: middle, inverse
+
+# Impact
+
+---
+
+# Overview
+
+- User community: 
+    - Grass-roots communities have had a big impact on building welcoming community
+    - R Foundation/R Consortium played role by stimulating change/providing support
+- CRAN: need updated data, but would need large changes to make an impact
+- R core/contributors: still early days!
+- useR! 
+    - gender balance improved in recent years (women and gender minorities 2017-2021: 27%, 30%, 34%, 42%)
+    - COVID (moving online) + greater representation in committees had biggest impact on diversity
+
+---
+
+# useR! Global 2021
+
+<center>
+<img src="countries_24.png" alt="" style="width:850px">
+</center>

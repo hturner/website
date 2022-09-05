@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>50 years on from the GLM: Nonlinear predictors in generalized models</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Heather Turner  Research Software Engineering Fellow University of Warwick" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# 50 years on from the GLM: Nonlinear predictors in generalized models
+]
+.author[
+### <span style="font-size:40px;font-weight:600">Heather Turner<br> Research Software Engineering Fellow<br>University of Warwick</span>
+]
+.date[
+### <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> <a href="https://twitter.com/heathrturnr">@HeathrTurnr</a><br><br>8 September 2022<br><br>
+]
+
+---
+
+
+
+
+
+# 50 Years Ago...
+
+&lt;img src="glm_paper_cropped.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Extending to nonlinear predictors
+
+In a **GLM** we have
+
+`$$g(\mu) = \beta_0 + \beta_1 x_{1} + ... + \beta_p x_{p}$$` 
+
+and
+
+`$$\text{Var}(Y) = \phi V(\mu)$$` 
+
+A **generalized nonlinear model (GNM)** is the same as a GLM except that we have 
+
+`$$g(\mu) = \eta(\boldsymbol{x}; \boldsymbol{\beta})$$` 
+
+where `\(\eta(\boldsymbol{x}; \boldsymbol{\beta})\)` is nonlinear in the
+parameters `\(\boldsymbol{\beta}\)`.
+
+---
+
+# Motivation
+
+* Parsimony, e.g. 
+    - multiplicative interaction
+    - weighted main effects
+
+* Interpretability, e.g. 
+    - multiplicative scaling
+    - mechanistic model
+    
+Several specific models proposed in the literature: the R package gnm 
+(Turner and Firth, 2005) enables fitting in unified framework.
+    
+---
+
+.pull-left-45[
+# Example: Mental Health Status
+
+A study of 1660 children from Manhattan recorded their mental impairment and
+parents' socioeconomic status (Agresti, 2002)
+]
+
+.pull-right-54-raise[
+![](index_files/figure-html/mentalHealth-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Independence
+
+A simple analysis of these data might be to test for independence of MHS
+and SES using a chi-squared test.
+
+This is equivalent to testing the goodness-of-fit of the independence
+model 
+
+`$$\log(\mu_{rc}) = \alpha_r + \beta_c$$`
+
+Such a test compares the independence model to the saturated model
+
+`$$\log(\mu_{rc}) = \alpha_r + \beta_c + \gamma_{rc}$$` 
+
+which may be over-complex.
+
+---
+
+# Row-column Association
+
+One intermediate model is the Row-Column association model:
+
+`$$\log(\mu_{rc}) = \alpha_r + \beta_c + \phi_r\psi_c$$` 
+
+(Goodman, 1979), an example of a multiplicative interaction model.
+
+For the Mental Health data:
+
+```
+Analysis of Deviance Table
+
+Model 1: Freq ~ SES + MHS
+Model 2: Freq ~ SES + MHS + Mult(SES, MHS)
+Model 3: Freq ~ SES + MHS + SES:MHS
+  Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)
+1        15       47.4                     
+2         8        3.6  7     43.8  2.3e-07
+3         0        0.0  8      3.6     0.89
+```
+
+---
+
+# Parameterisation
+
+The independence model was defined earlier in an over-parameterised
+form: 
+
+$$
+`\begin{aligned}
+  \log(\mu_{rc}) &amp;= \alpha_r + \beta_c \\
+    &amp;= (\alpha_r + 1) + (\beta_c - 1) \\
+    &amp;= \alpha_r^* + \beta_c^*
+\end{aligned}`
+$$ 
+  
+Identifiability constraints may be imposed
+
+-   to fix a one-to-one mapping between parameter values and
+    distributions
+-   to enable interpretation of parameters
+
+---
+
+# Standard Implementation
+
+The standard approach of all major statistical software packages is to
+apply the identifiability constraints in the construction of the model
+
+`$$g(\boldsymbol{\mu}) = \boldsymbol{X\beta}$$` 
+
+so that `\(\text{rank}(\boldsymbol{X})\)` is equal to the number of parameters `\(p\)`.
+
+Then the inverse in the score equations of the IWLS algorithm
+`$$\boldsymbol{\beta}^{(r + 1)} = \left(\boldsymbol{X}^{T}\boldsymbol{W}^{(r)}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{T}\boldsymbol{W}^{(r)}\boldsymbol{z}^{(r)}$$`
+exists.
+
+---
+
+# Alternative Implementation
+
+An alternative is to keep models in their over-parameterised form, so
+that `\(\text{rank}(\boldsymbol{X}) &lt; p\)`, and use the generalised inverse in
+the IWLS updates:
+`$$\boldsymbol{\beta}^{(r + 1)} = \left(\boldsymbol{X}^{T}\boldsymbol{W}^{(r)}\boldsymbol{X}\right)^{-}\boldsymbol{X}^{T}\boldsymbol{W}^{(r)}\boldsymbol{z}^{(r)}$$`
+
+This approach is more useful for GNMs, since in this case it is much
+harder to define standard rules for specifying identifiability
+constraints.
+
+Rather, identifiability constraints can be applied post-fitting for
+inference and interpretation.
+
+---
+
+# Parameterisation of RC Model
+
+The RC model is invariant to changes in scale or location of the
+interaction parameters: 
+
+$$
+`\begin{aligned}
+  \log(\mu_{rc}) &amp;= \alpha_r + \beta_c + \phi_r\psi_c \\
+    &amp;= \alpha_r + \beta_c + (2\phi_r)(0.5\psi_c) \\
+    &amp;= \alpha_r + (\beta_c - \psi_c) + (\phi_r + 1)(\psi_c)
+\end{aligned}`
+$$ 
+
+One way to constrain these parameters is as follows
+
+$$
+\phi_r^* = \frac{\phi_r - \frac{\sum_r w_r \phi_r}{\sum_r w_r}}{
+\sqrt{\sum_r w_r \left(
+\phi_r - \frac{\sum_r w_r \phi_r}{\sum_r w_r}
+\right)^2
+}}
+$$ 
+
+where `\(w_r\)` is the row probability, say, so that `\(\sum_r w_r \phi_r^* = 0\)` and `\(\sum_r w_r (\phi_r^*)^2 = 1\)`.
+    
+---
+
+#  Row and Column Scores
+
+The row and columns scores for the RC model are
+
+```
+                  Estimate Std. Error
+Mult(., MHS).SESA     1.11       0.30
+Mult(., MHS).SESB     1.12       0.31
+Mult(., MHS).SESC     0.37       0.32
+Mult(., MHS).SESD    -0.03       0.27
+Mult(., MHS).SESE    -1.01       0.31
+Mult(., MHS).SESF    -1.82       0.28
+```
+
+```
+                         Estimate Std. Error
+Mult(SES, .).MHSwell         1.68       0.19
+Mult(SES, .).MHSmild         0.14       0.20
+Mult(SES, .).MHSmoderate    -0.14       0.28
+Mult(SES, .).MHSimpaired    -1.41       0.17
+```
+
+As one might expect, the scores are ordered for both factors, suggesting
+the model for the dependence structure might be simplified further.
+
+---
+
+# Stereotype Model
+
+The stereotype model (Anderson, 1984) is suitable for ordered categorical data.
+It is a special case of the multinomial logistic model:
+`$$pr(y_i = c | \boldsymbol{x}_i) = \frac{\exp(\beta_{0c} + \boldsymbol{\beta}_c^T \boldsymbol{x}_i)}
+    {\sum_r\exp(\beta_{0r} + \boldsymbol{\beta}_r^T \boldsymbol{x}_i)}$$`
+in which only the *scale* of the relationship with the covariates
+changes between categories:
+`$$pr(y_i = c | \boldsymbol{x}_i) = \frac{\exp(\beta_{0c} + \gamma_c \boldsymbol{\beta}^T \boldsymbol{x}_i)}
+    {\sum_r\exp(\beta_{0r} + \gamma_r \boldsymbol{\beta}^T \boldsymbol{x}_i)}$$`
+
+---
+
+# Poisson Trick
+
+The stereotype model can be fitted as a GNM by re-expressing the
+categorical data as category counts `\(Y_i = (Y_{i1}, \ldots, Y_{ik})\)`.
+
+Assuming a Poisson distribution for `\(Y_{ic}\)`, the joint distribution of
+`\(Y_i\)` is `\(\text{Multinomial}(N_i, p_{i1}, \ldots, p_{ik})\)` conditional on the
+total count `\(N_i\)`.
+
+The expected counts are then `\(\mu_{ic} = N_ip_{ic}\)` and the parameters can be estimated via
+$$
+`\begin{aligned}
+    \log \mu_{ic} &amp;= \log(N_i) + \log(p_{ic}) \\
+        &amp;= \alpha_i + \beta_{0c} + \gamma_c\sum_r \beta_{r}x_{ir}
+\end{aligned}`
+$$ 
+where the "nuisance" parameters `\(\alpha_i\)` ensure
+that the multinomial denominators are reproduced exactly, as required.
+
+---
+
+# Augmented Least Squares
+
+The number of nuisance parameters can be large, making computation slow. The algorithm can be adapted using *augmented least squares*. 
+
+For an ordinary least squares model, 
+$$
+`\begin{aligned}
+    \left[(\boldsymbol{y}|\boldsymbol{X})^T(\boldsymbol{y}|\boldsymbol{X})\right]^{-1} &amp;=
+        \begin{pmatrix}
+            \boldsymbol{y}^T\boldsymbol{y} &amp; \boldsymbol{y}^T\boldsymbol{X} \\
+            \boldsymbol{X}^T\boldsymbol{y} &amp; \boldsymbol{X}^T\boldsymbol{X} \\
+        \end{pmatrix}^{-1} =
+        \begin{pmatrix}
+            \boldsymbol{A}_{11} &amp; \boldsymbol{A}_{12} \\
+            \boldsymbol{A}_{21} &amp; \boldsymbol{A}_{22} \\
+        \end{pmatrix}
+\end{aligned}`
+$$ 
+where `\(\boldsymbol{A}_{11}, \boldsymbol{A}_{12}\)` and
+`\(\boldsymbol{A}_{22}\)` are functions of `\(\boldsymbol{y}^T\boldsymbol{y}\)`,
+`\(\boldsymbol{X}^T\boldsymbol{y}\)` and `\(\boldsymbol{X}^T\boldsymbol{X}\)`. It can be shown that 
+$$
+`\begin{aligned}
+  \hat{\boldsymbol{\beta}} &amp;= (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}
+        = - \frac{\boldsymbol{A}_{21}}{\boldsymbol{A}_{11}}
+\end{aligned}`
+$$ 
+requiring only the first row (column) of the inverse
+to be found.
+
+
+
+---
+
+# Application to Nuisance Parameters I
+
+The same approach can be applied to the IWLS algorithm, letting
+`$$\tilde{\boldsymbol{X}} = \boldsymbol{W}^{\frac{1}{2}}(\boldsymbol{z}|\boldsymbol{X})$$`
+
+Now let `$$\tilde{\boldsymbol{X}} = (\boldsymbol{U} | \boldsymbol{V})$$`
+where `\(\boldsymbol{V}\)` is the part of the design matrix corresponding to
+the nuisance factor.
+
+`\(\boldsymbol{U}\)` is an `\(nk \times p\)` matrix where `\(n\)` is the number of
+nuisance parameters and `\(k\)` is the number of categories and `\(p\)` is the
+number of model parameters, typically with `\(n &gt;&gt; p\)`.
+
+`\(\boldsymbol{V}\)` is an `\(nk \times n\)` matrix of dummy variables
+identifying each individual.
+
+---
+
+# Application to Nuisance Parameters II
+
+Then 
+$$
+`\begin{aligned}
+        (\tilde{\boldsymbol{X}}^T\tilde{\boldsymbol{X}})^{-} &amp;=
+        \begin{pmatrix}
+            \boldsymbol{U}^T\boldsymbol{U} &amp; \boldsymbol{U}^T\boldsymbol{V} \\
+            \boldsymbol{V}^T\boldsymbol{U} &amp; \boldsymbol{V}^T\boldsymbol{V} \\
+        \end{pmatrix}^{-}
+        = \begin{pmatrix}
+            \boldsymbol{B}_{11} &amp; \boldsymbol{B}_{12} \\
+            \boldsymbol{B}_{21} &amp; \boldsymbol{B}_{22} \\
+        \end{pmatrix}
+\end{aligned}`
+$$
+
+Again, only the first row (column) of this generalised inverse is
+required to estimate `\(\hat{\boldsymbol{\beta}}\)`, so we are only
+interested in `\(\boldsymbol{B}_{11}\)` and `\(\boldsymbol{B}_{12}\)`.
+$$
+`\begin{aligned}
+        \boldsymbol{B}_{11} &amp;= (\boldsymbol{U}^T\boldsymbol{U} -
+        \boldsymbol{U}^T\boldsymbol{V}(\boldsymbol{V}^T\boldsymbol{V})^{-1}\boldsymbol{V}^T\boldsymbol{U})^{-} \\
+        \boldsymbol{B}_{12} &amp;= - (\boldsymbol{V}^T\boldsymbol{V})^{-1}\boldsymbol{V}^T\boldsymbol{U}\boldsymbol{B}_{11}
+\end{aligned}`
+$$
+
+---
+
+# Elimination of the Nuisance Factor
+
+`\(\boldsymbol{U}^T\boldsymbol{U}\)` is `\(p \times p\)`, therefore not
+expensive to compute.
+
+`\(\boldsymbol{V}^T\boldsymbol{V}\)` and `\(\boldsymbol{V}^T\boldsymbol{U}\)`
+can be computed without constructing the large `\(nk \times n\)` matrix
+`\(\boldsymbol{V}\)`, due to the stucture of `\(\boldsymbol{V}\)`
+
+-   `\(\boldsymbol{V}^T\boldsymbol{V}\)` is diagonal and the non-zero
+    elements can be computed directly
+
+-   `\(\boldsymbol{V}^T\boldsymbol{U}\)` is equivalent to aggregating the
+    rows of `\(\boldsymbol{U}\)` by levels of the nuisance factor
+
+Thus we only need to construct the `\(\boldsymbol{U}\)` matrix, saving
+memory and reducing the computational burden
+
+---
+
+# Example: Back Pain Data
+
+For 101 patients, 3 prognostic variables were recorded at baseline, then
+after 3 weeks the level of back pain was recorded (Anderson, 1984)
+
+These data were converted to counts, for example for the first record:
+
+
+```
+    x1 x2 x3                 pain count id
+1    1  1  1                worse     0  1
+1.1  1  1  1                 same     1  1
+1.2  1  1  1   slight.improvement     0  1
+1.3  1  1  1 moderate.improvement     0  1
+1.4  1  1  1   marked.improvement     0  1
+1.5  1  1  1      complete.relief     0  1
+```
+
+---
+
+# Back Pain Model
+
+In this example, the expanded data is not that long (606 records) and
+the total number of parameters is only 115 (9 nonlinear), so the model
+does not take long to fit (&lt;1s!).
+
+However, eliminating the linear parameters reduces the computation time
+by almost two-thirds, showing the potential of this technique.
+
+Compare the stereotype model to the multinomial logistic model:
+
+
+```
+Analysis of Deviance Table
+
+Model 1: count ~ pain + Mult(pain, x1 + x2 + x3) - 1
+Model 2: count ~ pain + pain:x1 + pain:x2 + pain:x3 - 1
+  Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)
+1       493        303                     
+2       485        299  8     4.08     0.85
+```
+
+---
+
+# Identifiability Constraints
+
+In order to make the category-specific multipliers identifiable, we must
+constrain both the location and scale.
+
+A simple way to do this is to set the first multiplier to zero and fix
+the coefficient of the first covariate to one.
+
+```
+                     estimate    SE
+worse                   0.000 0.000
+same                   -3.710 1.826
+slight.improvement     -3.510 1.792
+moderate.improvement   -2.633 1.669
+marked.improvement     -4.612 1.895
+complete.relief        -5.372 2.000
+```
+---
+
+# Summary
+
+Moving from GLMs to GNMs present some technical difficulties, but
+provides a framework that covers several useful models.
+
+Further examples can be found in the help files and manual accompanying
+the **gnm** package which is available on CRAN:
+[https://cran.r-project.org/package=gnm](https://cran.r-project.org/package=gnm)
+
+---
+
+# References
+
+Agresti, A. 2002. _Categorical Data Analysis_. 2nd ed. New York: Wiley.
+
+Anderson, J.A. 1984. _J. R. Statist. Soc. B_ [https://doi.org/10.2307/2336390](https://doi.org/10.2307/2336390)
+
+Goodman, L A. 1979. _J. Amer. Statist. Assoc._ [10.1080/01621459.1979.10481650](https://doi.org/10.1080/01621459.1979.10481650).
+
+Turner, H. and D. Firth 2005. _gnm: Generalized Nonlinear Models_. [https://CRAN.R-project.org/package=gnm](https://CRAN.R-project.org/package=gnm)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "googlecode",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

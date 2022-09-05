@@ -450,8 +450,8 @@ the **gnm** package which is available on CRAN:
 
 Agresti, A. 2002. _Categorical Data Analysis_. 2nd ed. New York: Wiley.
 
-Anderson, J.A. 1984. _J. R. Statist. Soc. B_ [https://doi.org/10.2307/2336390](https://doi.org/10.2307/2336390)
+Anderson, J.A. 1984. _J. R. Statist. Soc. B_ [https://doi.org/10.2307/2336390](https://doi.org/10.2307/2336390).
 
 Goodman, L A. 1979. _J. Amer. Statist. Assoc._ [10.1080/01621459.1979.10481650](https://doi.org/10.1080/01621459.1979.10481650).
 
-Turner, H. and D. Firth 2005. _gnm: Generalized Nonlinear Models_. [https://CRAN.R-project.org/package=gnm](https://CRAN.R-project.org/package=gnm)
+Turner, H. and D. Firth 2005. _gnm: Generalized Nonlinear Models_. [https://CRAN.R-project.org/package=gnm](https://CRAN.R-project.org/package=gnm).

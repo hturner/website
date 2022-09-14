@@ -1,0 +1,3 @@
+https://medium.com/@trung.ngvan/best-and-good-enough-practices-in-scientific-computing-3b1063d98930
+
+future: naniar package to explore/handle missing values

@@ -1,0 +1,7 @@
+In longer course could look at
+
+ - profiling for bottlenecks
+
+ - Drake or similar?
+
+https://medium.com/@trung.ngvan/best-and-good-enough-practices-in-scientific-computing-3b1063d98930

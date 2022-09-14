@@ -1,0 +1,186 @@
+---
+title: "Programming Exercises"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+# show code in output
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data Structures Exercise
+
+The lm function calls the "workhorse" function lm.fit to actually fit the 
+model. Unlike lm, works from a formula, lm.fit works from the model matrix 
+and the response vector.
+
+```{r lm.fit-setup}
+# Define a response y containing 10 numeric values.
+y <- c(1,7,2,9,5,6,2,7,4,3)
+# Define an explanatory variable z of the numbers 1 to 10.
+z <- 1:10
+# Use the function cbind() to create a matrix x with 1s in the first 
+# column and z in the second column.
+x <- cbind(rep(1, 10), z)
+```
+
+```{r lm.fit-fit1}
+# Fit a model using fit1 <- lm.fit(x, y). Use str to explore the 
+# structure of the results. Use $ to extract the coefficients.
+fit1 <- lm.fit(x, y)
+str(fit1)
+fit1$coefficients
+```
+
+```{r lm.fit-fit2}
+# Create a second fit using lm(y ~ z). Use names() to compare the results. 
+# Check the coefficients of the second fit are the same.
+fit2 <- lm(y ~ z)
+names(fit1)
+names(fit2)
+fit2$coefficients
+```
+
+## For loop exercise
+
+```{r for-loop-setup}
+# Load the broom package, as we will use glance in this exercise.
+library(broom)
+# Assign to y the variable mtcars$mpg. 
+y <- mtcars$mpg
+# Assign to n the number of columns of mtcars minus 1. 
+n <- ncol(mtcars) - 1
+# Create a vector named r.squared with this number of elements.
+r.squared <- numeric(n)
+```
+
+```{r for-loop}
+# Write a for loop to iterate through the names of mtcars except mpg that
+nm <- names(mtcars)[-1]
+for (i in seq_along(nm)){
+    # prints a message stating the current variable
+    message("Current variable: ", nm[i])
+    # assigns the current variable to x
+    x <- mtcars[[nm[i]]]
+    # fits a linear model using lm, regressing y on x
+    fit <- lm(y ~ x)
+    # uses glance to obtain the R2 value and stores it in r.squared
+    r.squared[i] <- glance(fit)$r.squared
+}
+```
+
+```{r for-loop-end}
+# Use which.max() to find the best predictor for mpg 
+which.max(r.squared)
+nm[5]
+# and the corresponding R2 value
+r.squared[5]
+```
+
+## Simulation exercise
+
+```{r t-statistic}
+# Define the t_statistic function - run this chunk to source the code
+t_statistic <- function(n) {
+    x <- rnorm(n)
+    y <- rnorm(n)
+    t.test(x, y)$statistic
+}
+```
+
+```{r t-statistic-check}
+# Try calling the function with different values of n to check it works.
+t_statistic(3)
+t_statistic(10)
+```
+
+```{r simulation}
+# Use replicate() to simulate 1000 t-statistics 
+# comparing two samples of size 10 drawn from N(0, 1).
+tstat <- replicate(1000, t_statistic(10))
+# Use rt to simulate 1000 values from t_{18} distribution.
+tval <- rt(1000, df = 18)
+```
+
+```{r simulation-results}
+# Compare the simulated values
+dat <- data.frame(x = c(tstat, tval), 
+                  set = rep(c("t-statistics", "t-values"), each = 1000))
+library(ggplot2)
+ggplot(dat, aes(x = x, group = set, color = set)) + 
+    geom_density()
+```
+
+## Function exercise
+
+```{r qq_norm}
+## work out slope and intercept of line for Q-Q plot N(0, 1)
+qq_norm <- function(y){
+    q.sample <- quantile(y, # sample data
+                         c(0.25, 0.75), # quantiles to compute (only need 2)
+                         names = FALSE, na.rm = TRUE )
+    q.theory <- qnorm(c(0.25, 0.75)) # work out theoretical quantiles
+    slope <- diff(q.sample) / diff(q.theory) # slope = (y2 - y1)/(x2 - x1)
+    intercept <- q.sample[1] - slope * q.theory[1] # intercept = y1 - slope*x1
+    list(slope = slope, intercept = intercept)
+}
+```
+
+
+```{r normal-QQ}
+# simulate random sample from a normal distribution
+y <- rnorm(1000, 100, 5)
+
+# find parameters of line to add to QQ-plot
+par <- qq_norm(y)
+
+# QQ-plot (vs standard normal, should fall along line)
+dat <- data.frame(sample = y, theoretical = rnorm(1000))
+ggplot(dat, aes(x = sort(theoretical), y = sort(sample))) +
+    geom_point() +
+    geom_abline(slope = par$slope,
+                intercept = par$intercept)
+```
+
+```{r qq}
+## work out slope and intercept of line for Q-Q plot any theoretical distribution
+qq <- function(y, fun = qnorm, ...){
+    q.sample <- quantile(y, # sample data
+                         c(0.25, 0.75), # quantiles to compute (only need 2)
+                         names = FALSE, na.rm = TRUE)
+    qfun <- match.fun(fun)
+    q.theory <- qfun(c(0.25, 0.75), ...) # work out theoretical quantiles
+    slope <- diff(q.sample) / diff(q.theory) # slope = (y2 - y1)/(x2 - x1)
+    intercept <- q.sample[1] - slope * q.theory[1] # intercept = y1 - slope*x1
+    list(slope = slope, intercept = intercept)
+}
+```
+
+```{r t-QQ}
+# find parameters of line to add to QQ-plot
+# based on simulated t-statistics and reference t_18 distribution
+par <- qq(tstat, qt, df = 18)
+
+## QQ-plot
+dat <- data.frame(sample = tstat, theoretical = tval)
+ggplot(dat, aes(x = sort(theoretical), y = sort(sample))) +
+    geom_point() +
+    geom_abline(slope = par$slope,
+                intercept = par$intercept)
+
+```
+
+## Documentation and Testing Exercise
+
+```{r documentation}
+library(docstring)
+source("functions.R")
+?qq
+```
+
+```{r tests}
+library(testthat)
+test_file("tests.R")
+```

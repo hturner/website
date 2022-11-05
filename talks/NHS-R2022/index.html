@@ -172,7 +172,7 @@ Ideal should be understandable without a comment
 ## Going further on transparency
 
 - Style guides
-    - Naming conventions, e.g. `snake_case` vs `CamelCase`
+    - Naming conventions, e.g. `snake_case` vs `camelCase`
     - Indentation
     - See e.g. [The Tidyverse Style Guide](https://style.tidyverse.org/)
 - Code review
@@ -307,7 +307,7 @@ The **assertthat** and **validate** packages can be useful here.
 Check results of filters and joins
 ```r
 tab1 &lt;- patient_outcomes %&gt;%
-    filter_(~ as.Date(DATE) == report_date &amp; PT == patient)
+    filter(as.Date(DATE) == report_date &amp; PT == patient)
 if (!nrow(tab1))
     warning("No records for ", patient, " on ", report_date)
 ```
@@ -439,7 +439,7 @@ test_that("log_2 returns log to base 2", {
 ```
 
 ```
-## Test passed 😸
+## Test passed 🎊
 ```
 
 --

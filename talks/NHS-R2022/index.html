@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Good Coding Practices for Data Analysts</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Heather Turner  Research Software Engineering Fellow University of Warwick" />
+    <script src="index_files/header-attrs-2.11/header-attrs.js"></script>
+    <link rel="stylesheet" href="libs/remark-css-0.0.1/default.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Good Coding Practices for Data Analysts
+]
+.author[
+### <span style="font-size:40px;font-weight:600">Heather Turner<br> Research Software Engineering Fellow<br>University of Warwick</span>
+]
+.date[
+### <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> <a href="https://twitter.com/heathrturnr">@HeathrTurnr</a><br><br>16 November 2022<br><br>&lt;span style=“font-size:50px;font-weight:600”;&gt;<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg> <a href="heatherturner.net/talks/NHS-R2022">heatherturner.net/talks/NHS-R2022</a></span>
+]
+
+---
+
+
+layout: true
+
+.footer[<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg> [heatherturner.net/talks/NHS-R2022](https://www.heatherturner.net/talks/NHS-R2022)  &amp;nbsp; <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> [@HeathrTurnr](https://twitter.com/heathrturnr)]
+
+???
+
+Background: experience in research and industry, both writing my own scripts and reviewing other peoples - what am I looking for?
+
+---
+
+# Goals
+
+In theory, writing scripts for data analysis makes our work
+
+- Transparent
+- Reproducible/reusable
+- Maintainable
+
+In practice, need to adopt good coding and software engineering practices!
+
+???
+
+Note other ways of defining "good", e.g. efficiency - not covered here!
+
+Useful whether work on own or part of a team
+
+---
+
+class: inverse middle
+
+# Transparency
+
+???
+
+Organize code as you would like to find it!
+
+---
+
+## Project Organization
+
+.pull-left[
+
+Organize your project as you would like to find it!
+
+* Organize files by type (data, code, etc) to make it easy to navigate.
+* Name files to reflect the content/function.
+]
+.pull-right[
+```
+example_project
+│
+└─── data
+│   │   patient_outcomes.csv
+│
+└─── outputs
+│   │   summarized_outcomes.csv
+│   
+└─── reports
+│   │   study_report.Rmd
+│   │   study_report.docx
+│
+└─── scripts
+│   │   functions.R
+│   │   analysis.R
+```
+]
+
+???
+
+---
+
+## Documentation
+
+* Put a README at the top level of your project folder
+* Comment your code to describe its purpose
+
+```r
+# Patient exposure and event rate
+patient_summary &lt;- patient_outcomes |&gt;
+    group_by(STUDYID, COUNTRY, CENTRE, PT) |&gt;
+    summarise(d_exposure = max(d_exposure, na.rm = TRUE),
+              exposure = (d_exposure/30.4), # calculate exposure per month
+              event_count = sum(!is.na(EVENT)),
+              event_rate = event_count/exposure)
+```
+
+--
+
+* In RStudio, use &lt;kbd&gt;Ctrl&lt;/kbd&gt;/&lt;kbd title = "command"&gt;&amp;#8984;&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt; + R to insert a section
+
+```r
+# Pre-processing ----------------------------------------------------------
+```
+
+
+???
+
+What would you tell a colleague if you were passing on the project and sat next to them?
+
+Commenting, README
+
+- could add slide on sectioning with picture of RStudio outline, if time/space
+- could add comments on .Rmd vs .R (chunk names.main text can replace some comments; markdown sectioning replaces comment sectioning)
+
+---
+
+## Readable code
+
+* Use meaningful names
+* Keep line length &lt;80 characters and use white space around operators
+* Use one chunk of code per objective
+* Prefer readability over maximum efficiency
+
+--
+
+.pull-left-53[
+Efficient but complex
+
+```r
+df$lag_value &lt;- c(NA, df$value[-nrow(df)])
+df$lag_value[which(!duplicated(df$group))] &lt;- NA
+```
+]
+.pull-right-43[
+More readable, slightly less efficienct
+```r
+df %&gt;%
+  group_by(group) %&gt;%
+  mutate(lag_value = dplyr::lag(value))
+```
+]
+
+???
+
+Naming, code style, one chunk of code per objective
+Readable vs max efficiency
+
+
+Favour readability over maximum efficiency. 
+
+Ideal should be understandable without a comment
+
+---
+
+## Going further on transparency
+
+- Style guides
+    - Naming conventions, e.g. `snake_case` vs `CamelCase`
+    - Indentation
+    - See e.g. [The Tidyverse Style Guide](https://style.tidyverse.org/)
+- Code review
+- Pair programming
+- Function documentation using the **docstring** package
+
+???
+
+docstring: Create help files from special roxygen2 comments.
+
+---
+
+class: inverse middle
+
+# Reproducibility/Reusability
+
+---
+
+## Project-oriented workflow
+
+In addition to organizing files within a project directory...
+ 1. Set the working directory to the project root
+   - Use RStudio Projects
+   - Use `here::set_here()` to tag the project root with a `.here` file
+ 2. Use file paths relative to the project root, to make your project portable
+   - The here package makes this easy, e.g. 
+   ```r
+   ggsave(here("figs", "mpg_hp.png"))
+   ```
+   - If you need to use paths from outside the project, set these once at the start
+
+???
+
+General issue of hard-coding
+
+Can use askpass:::askpass()
+
+---
+
+## Parameterized R Markdown/Quarto
+
+
+
+.pull-left[
+
+```yaml
+---
+title: "`r params$data` Dataset"
+output: html_document
+params:
+  data: sleep
+---
+```
+
+```markdown
+Summary of the `r params$data` dataset:
+```
+````r
+```{r summary-data, echo = FALSE}
+report_data &lt;- get(params$data)
+summary(report_data)
+```
+````
+]
+
+.pull-right[
+
+```yaml
+---
+title: "`r params$data` Dataset"
+format: html
+params:
+  data: sleep
+---
+```
+
+```markdown
+Summary of the `r params$data` dataset:
+```
+````r
+```{r}
+#| label: summary-data
+#| echo: false
+report_data &lt;- get(params$data)
+summary(report_data)
+```
+````
+]
+
+???
+Data analyst's reusable component
+
+---
+
+### Render with custom parameters
+
+.pull-left[
+```r
+rmarkdown::render("rmarkdown.Rmd", 
+  params = list(data = "sleep"))
+  
+```
+&lt;iframe src="rmarkdown.html" title="Output of rendering R markdown template" width = 400 height = 300&gt;&lt;/iframe&gt;
+]
+
+.pull-right[
+```r
+quarto::quarto_render("quarto.qmd", 
+  execute_params = list(data = "women"))
+  
+```
+&lt;iframe src="quarto.html" title="Output of rendering Quarto template" width = 400 height = 300&gt;&lt;/iframe&gt;
+]
+
+---
+
+## Defensive programming
+
+Validate inputs, e.g.
+
+```r
+# check a Excel file exists at given path
+xlsx &lt;- normalizePath(xlsx, winslash = "/", mustWork = TRUE)
+# check a threshold is valid
+stopifnot(is.numeric(threshold) &amp;&amp; threshold &gt;= 0)
+```
+
+The **assertthat** and **validate** packages can be useful here.
+
+--
+
+Check results of filters and joins
+```r
+tab1 &lt;- patient_outcomes %&gt;%
+    filter_(~ as.Date(DATE) == report_date &amp; PT == patient)
+if (!nrow(tab1))
+    warning("No records for ", patient, " on ", report_date)
+```
+
+
+???
+
+**assertthat** extension of stopifnot with more helpful error messages
+**validate** for validating input data
+
+
+---
+
+## Package management
+
+Most basic:
+1. Add a `requirements.txt` at the root of the project.
+2. Put `library()` calls at the top of `.R` and `.Rmd` files.
+
+More advanced tools to specify and restore working environment:
+1. _One-off analysis_: use **groundhog** to specify R, packages &amp; dependencies by a **date**. 
+2. _Repeated analysis_: use **automagic** to install package versions specified in **deps.yaml**.
+3. _Production code_: use **renv** to specify version R, packages &amp; dependencies.
+
+???
+
+one-off report: groundhog
+reusable scripts: automagic
+production code: renv
+
+---
+
+class: inverse middle
+
+# Maintainability
+
+---
+
+## Choose dependencies carefully
+
+Using a (non-base) package is always a trade-off:
+
+| For (e.g.) | Against |
+|-----|---------|
+| Better readability | Package update can break code |
+| Faster implementation | Dependent on maintainer to fix bugs |
+| Better error handling | More setup to reproduce analysis |
+
+--
+
+* How much of the functionality are you using?
+* How mature/well-maintained is the package?
+* Are you using it across multiple projects?
+
+???
+
+Not minimize (conflicts with transparency)
+Select often-changing packages with care
+Avoid trivial dependencies
+
+---
+
+## Don't Repeat Yourself
+
+Copy-pasting is error-prone and leads to over-complex code.
+
+Use custom functions instead, e.g.
+```r
+# convert counts to percentages in 2-way table with row/column totals
+make_perc_tab &lt;- function(tab){
+    nr &lt;- nrow(tab)
+    nc &lt;- ncol(tab)
+    tab/tab[nr, nc] * 100
+}
+```
+
+--
+
+Makes it easier to re-use or iterate, e.g.
+```r
+tab_list &lt;- list(tab1, tab2, tab3)
+out &lt;- lapply(tab_list, make_perc_tab)
+```
+
+???
+
+https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply
+
+make_perc_tab &lt;- function(tab){
+    tab/sum(tab) * 100
+}
+
+---
+
+## Version control
+
+Version control systems (e.g. git) allow us to record changes made to files in a directory.
+
+![Screenshot of commit history of a git repository, showing three commits: "added README file to start off", "added data for KHK project", "pre-processed KHK data"](commit_history.png)
+
+--
+
+* Avoid saving multiple variants or commenting out old code
+* Commits can be restored temporarily or permanently
+* Syncing with a remote repository (e.g. on GitHub) provides a backup
+
+???
+
+Acts like a log, with comments on changes made
+Facilitates merging work from collaborators
+
+---
+
+## Testing
+
+Tests can be used to custom functions act as expected, e.g.
+
+
+```r
+log_2 &lt;- function(x) log(x, 2)
+```
+
+
+```r
+library(testthat)
+test_that("log_2 returns log to base 2", {
+  expect_equal(log_2(2^3), 3)
+})
+```
+
+```
+## Test passed 😸
+```
+
+--
+
+Can create a test suite and run as `test_file("tests.R")`.
+
+Helps to detect issues introduced by changes to the code.
+
+???
+
+Pipelines/package development
+
+Can also check Rmd output, e.g. by comparing hashes (MD5 checksums) of HTML files, possibly also testthat::expect_snapshot (untested!)
+
+---
+
+## Going further on maintainability
+
+- Package development
+    - Functions, documentation and tests in a shareable format
+    - Easier to use across projects
+- Using a repository host, e.g. GitHub
+    - Use issues: note and discuss changes to make
+    - Teamwork: work asynchronously and merge changes
+    - Publish your code
+    - Encourage external contribution
+
+---
+
+# Resources
+
+[Good enough practices in scientific computing](https://doi.org/10.1371/journal.pcbi.1005510), Wilson et al, PLOS Computat. Biol., 2017.  
+[The Turing Way : A Handbook for Reproducible Data Science](http://doi.org/10.5281/zenodo.3233986), Arnold et al, 2022.       
+[What They Forgot to Teach You About R](https://rstats.wtf/project-oriented-workflow.html), Bryan and Hester, 2021.  
+[Why should I use the here package when I'm already using projects?](https://malco.io/2018/11/05/why-should-i-use-the-here-package-when-i-m-already-using-projects/), Barrett, 2018.  
+[How to use Quarto for Parameterized Reporting](https://www.mm218.dev/posts/2022-08-04-how-to-use-quarto-for-parameterized-reporting/), Mahoney, 2022.  
+[Managing R script dependencies: automagic and renv](https://warwickrug.github.io/wrug_website/posts/2022-07-14-dependencies/), Cámara-Menoyo, 2022.  
+[How to Use Git/GitHub with R](https://rfortherestofus.com/2021/02/how-to-use-git-github-with-r/), Keyes, 2021.  
+[Happy Git and GitHub for the useR](http://happygitwithr.com/) Bryan et al, 2022.
+
+
+
+???
+https://mgimond.github.io/rug_2019_12/Index.html
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "googlecode",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

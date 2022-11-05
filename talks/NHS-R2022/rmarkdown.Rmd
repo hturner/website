@@ -1,0 +1,11 @@
+---
+title: "`r params$data` Dataset"
+output: html_document
+params:
+  data: cars
+---
+Summary of the `r params$data` dataset:
+```{r summary-data, echo = FALSE}
+report_data <- get(params$data)
+summary(report_data)
+```

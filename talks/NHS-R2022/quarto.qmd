@@ -1,0 +1,13 @@
+---
+title: "`r params$data` Dataset"
+format: html
+params:
+  data: sleep
+---
+
+Summary of the `r params$data` dataset:
+```{r}
+#| label: summary-data
+#| echo: false
+summary(get(params$data))
+```

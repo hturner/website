@@ -140,8 +140,8 @@ df$lag_value[which(!duplicated(df$group))] <- NA
 .pull-right-43[
 More readable, slightly less efficienct
 ```r
-df %>%
-  group_by(group) %>%
+df |>
+  group_by(group) |>
   mutate(lag_value = dplyr::lag(value))
 ```
 ]
@@ -294,7 +294,7 @@ The **assertthat** and **validate** packages can be useful here.
 
 Check results of filters and joins
 ```r
-tab1 <- patient_outcomes %>%
+tab1 <- patient_outcomes |>
     filter(as.Date(DATE) == report_date & PT == patient)
 if (!nrow(tab1))
     warning("No records for ", patient, " on ", report_date)

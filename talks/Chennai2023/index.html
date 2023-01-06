@@ -353,7 +353,7 @@ file_exists
 ##     old &lt;- path_expand(path)
 ##     .Call(fs_exists_, old, path)
 ## }
-## &lt;bytecode: 0x000001e3329c3b20&gt;
+## &lt;bytecode: 0x000002080c8d1f18&gt;
 ## &lt;environment: namespace:fs&gt;
 ```
 
@@ -378,7 +378,7 @@ fs:::display_mode_to_symbolic_mode_windows
 ## {
 ##     paste0("u=", substring(x, 1, 3))
 ## }
-## &lt;bytecode: 0x000001e32f5a2260&gt;
+## &lt;bytecode: 0x000002080cb8f500&gt;
 ## &lt;environment: namespace:fs&gt;
 ```
 ]
@@ -507,7 +507,7 @@ Install [RTools 4.2](https://cran.r-project.org/bin/windows/Rtools/) using the R
      - Run the following in R to identify a path where you can install RTools:  
         
         ```r
-        normalizePath(file.path(Sys.getenv("LOCALAPPDATA"), "Programs", "RTools"), 
+        normalizePath(file.path(Sys.getenv("LOCALAPPDATA"), "Programs", "R", "RTools"), 
               winslash = "/", mustWork = FALSE)
         ```
      - Run the installer: on "Select Destination Location" copy-paste the path into the dialog box; on "Select Additional Tasks" uncheck the options offered, then install.

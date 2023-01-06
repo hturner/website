@@ -461,7 +461,7 @@ Install [RTools 4.2](https://cran.r-project.org/bin/windows/Rtools/) using the R
  - **For Windows with no admin rights:**  
      - Run the following in R to identify a path where you can install RTools:  
         ```{r RTools, eval = FALSE}
-        normalizePath(file.path(Sys.getenv("LOCALAPPDATA"), "Programs", "RTools"), 
+        normalizePath(file.path(Sys.getenv("LOCALAPPDATA"), "Programs", "R", "RTools"), 
               winslash = "/", mustWork = FALSE)
         ```
      - Run the installer: on "Select Destination Location" copy-paste the path into the dialog box; on "Select Additional Tasks" uncheck the options offered, then install.

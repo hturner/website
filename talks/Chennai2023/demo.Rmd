@@ -1,0 +1,25 @@
+---
+title: "Creating R Packages Demo"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Package development setup
+
+We will use the **devtools** package to support the package development workflow
+
+```{r devtools}
+#install.packages("devtools")
+library(devtools)
+```
+
+## Create a package
+
+```{r create}
+usethis::create_package("~/Desktop/mypackage")
+```
+
+
